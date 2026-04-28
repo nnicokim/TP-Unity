@@ -9,4 +9,6 @@ public interface IGun
     int MaxBulletCount { get; }
     void Attack();
     void Reload();
+
+    // void Drop();
 }
