@@ -28,7 +28,8 @@ public class LifeController : MonoBehaviour, IDamagable
 
         if (IsDead())
         {
-            if (name == "Character") EventManager.instance.EventGameOver(false);
+            // TODO: Agregar animacion de muerte
+            // if (name == "Character") EventManager.instance.EventGameOver(false);
             Die();
         }
     }

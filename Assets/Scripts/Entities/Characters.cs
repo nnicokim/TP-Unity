@@ -60,7 +60,8 @@ public class Character : MonoBehaviour
         if (Input.GetKeyDown(_reload)) EventQueueManager.Instance.AddEventToQueue(_cmdReload);
 
         /* Gameover Test */
-        if (Input.GetKeyDown(KeyCode.Return)) EventManager.instance.EventGameOver(true);
+        //if (Input.GetKeyDown(KeyCode.Return)) EventManager.instance.EventGameOver(true);
+
         /* Lifebar Test */
         if (Input.GetKeyDown(KeyCode.Backspace)) EventQueueManager.Instance.AddEventToQueue(_cmdApplyDamage);
 

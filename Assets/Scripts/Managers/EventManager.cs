@@ -15,8 +15,9 @@ public class EventManager : MonoBehaviour
     }
     #endregion
 
-    #region GAME_MANAGER
-    public event Action<bool> OnGameOver;
+    #region GAME_MANAGER 
+    // TODO: falta esto de gameover
+    // public event Action<bool> OnGameOver;
 
     // public void EventGameOver(bool isVictory)
     // {
