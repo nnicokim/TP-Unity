@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour, IBullet
 {
-    #region PRIVATE_PROPERTEIS
+    #region PRIVATE_PROPERTIES
     [SerializeField] private IGun _owner;
     [SerializeField] private int _damage = 10;
     [SerializeField] private float _speed = 10;
