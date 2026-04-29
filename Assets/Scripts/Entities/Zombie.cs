@@ -15,7 +15,7 @@ public class Zombie : MonoBehaviour, IEnemy
     #endregion
 
     #region IEnemy_PROPERTIES
-    public float CurrentLife => _currentLife;
+    public float CurrentLife => _enemyCurrentLife;
     public float MaxLife => Stats.MaxLife;
     public int Damage => Stats.Damage;
     public float Speed => Stats.MovementSpeed;
@@ -30,8 +30,8 @@ public class Zombie : MonoBehaviour, IEnemy
 
     public void TakeDamage(int damage)
     {
-        _currentLife -= damage;
-        if (_currentLife <= 0)
+        _enemyCurrentLife -= damage;
+        if (_enemyCurrentLife <= 0)
         {
             Die();
         }

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GunStats", menuName = "Stats/Guns", order = 0)]
 public class GunStats : ScriptableObject
 {
-    [SerializeField] private StatsValues _stats;
+    [SerializeField] private GunStatsValues _stats;
 
     public GameObject BulletPrefab => _stats.BulletPrefab;
     public int Damage => _stats.Damage;
@@ -14,7 +14,7 @@ public class GunStats : ScriptableObject
 }
 
 [System.Serializable]
-public struct StatsValues
+public struct GunStatsValues
 {
     public GameObject BulletPrefab;
     public int Damage;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turn : Actor, IMovable
+public class Turn : Actor, IMoveable
 {
     // Velocidad para girar -> de rotacion
     public float Speed => Stats.RotationSpeed;

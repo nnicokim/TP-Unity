@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Run : Actor, IMovable
+public class Run : Actor, IMoveable
 {
     // Velocidad para girar -> de desplazamiento
     public float Speed => Stats.RunSpeed;

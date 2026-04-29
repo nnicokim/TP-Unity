@@ -29,8 +29,8 @@ public class EventManager : MonoBehaviour
     public event Action<int, int> OnAmmoChange;
     public event Action<float, float> OnCharacterLifeChange;
     public event Action<int> OnWeaponChange;
-    // TODO: ver si llegamos con avatarChange
-    public event Action OnAvatarChange;
+    public event Action<int> OnEnemiesKilledChange;
+    public event Action<float> OnTimerChange;
 
     public void AmmoChange(int currentAmmo, int maxAmmo)
     {
@@ -47,9 +47,14 @@ public class EventManager : MonoBehaviour
         if (OnWeaponChange != null) OnWeaponChange(weaponIndex);
     }
 
-    public void AvatarChange()
+    public void EnemiesKilledChange(int enemiesKilled)
     {
-        if (OnAvatarChange != null) OnAvatarChange();
+        // TODO: implementar
+    }
+
+    public void TimerChange(float time)
+    {
+        // TODO: implementar
     }
     #endregion
 }

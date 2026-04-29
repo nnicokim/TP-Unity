@@ -6,7 +6,8 @@ using UnityEngine;
 public class MovementController : MonoBehaviour, IMoveable
 {
     #region IMOVEABLE_PROPERTIES
-    public float Speed => GetComponent<Actor>().Stats.MovementSpeed;
+    public float Speed => GetComponent<Actor>().Stats.WalkSpeed;
+    // TODO: implementar RunSpeed y RotationSpeed
     #endregion
 
     #region IMOVEABLE_METHODS

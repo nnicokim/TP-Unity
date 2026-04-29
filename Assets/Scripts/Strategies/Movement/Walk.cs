@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Walk : Actor, IMovable
+public class Walk : Actor, IMoveable
 {
     // Velocidad para girar -> de desplazamiento
-    public float Speed => Stats.MoveSpeed;
+    public float Speed => Stats.WalkSpeed;
 
     public void Move(Vector3 direction)
         => transform.Translate(direction * Speed * Time.deltaTime);

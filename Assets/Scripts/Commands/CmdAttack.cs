@@ -14,6 +14,5 @@ public class CmdAttack : ICommand
     public void Execute()
     {
         _gun.Attack();
-        EventManager.instance.AvatarChange();
     }
 }
