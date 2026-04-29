@@ -8,13 +8,12 @@ public class UIManager : MonoBehaviour
     /* Image References */
     [SerializeField] private Image _weapon;
     [SerializeField] private Image _lifebar;
-    [SerializeField] private Image _avatar;
-
-    [SerializeField] private List<Sprite> _avatarFaces;
     [SerializeField] private List<Sprite> _weapons;
 
     /* Text References */
     [SerializeField] private Text _ammoValue;
+    [SerializeField] private Text _enemiesKilled;
+    [SerializeField] private Text _timer;
 
     /* Variables */
     private float _characterCurrentLife;
@@ -22,17 +21,11 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         /* Suscripcion de eventos */
-        // TODO: ver tema avatarChange, quizas para esta entrega no llegamos
         EventManager.instance.OnAmmoChange += UpdateAmmoValue;
         EventManager.instance.OnCharacterLifeChange += UpdateLifebar;
-        EventManager.instance.OnAvatarChange += UpdateFightingAvatarSprite;
         EventManager.instance.OnWeaponChange += UpdateWeapon;
-    }
-
-    private void UpdateFightingAvatarSprite()
-    {
-        _avatar.sprite = _avatarFaces[2];
-        Invoke("UpdateNormalAvatarSprite", 1f);
+        EventManager.instance.OnEnemiesKilledChange += UpdateEnemiesKilled;
+        EventManager.instance.OnTimerChange += UpdateTimer;
     }
 
     private void UpdateLifebar(float currentLife, float maxLife)
@@ -43,7 +36,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateAmmoValue(int currentAmmo, int maxAmmo)
     {
-        _ammoValue.text = $"{currentAmmo} de {maxAmmo}";
+        _ammoValue.text = $"{currentAmmo} / {maxAmmo}";
     }
 
     private void UpdateWeapon(int weaponIndex)
@@ -51,17 +44,15 @@ public class UIManager : MonoBehaviour
         _weapon.sprite = _weapons[weaponIndex];
     }
 
-    private void UpdateNormalAvatarSprite()
+    private void UpdateEnemiesKilled(int enemiesKilled)
     {
-        _avatar.sprite = _characterCurrentLife <= 20 ? _avatarFaces[0] : _avatarFaces[1];
+        _enemiesKilled.text = $"Enemies killed: {enemiesKilled}";
+    }
+
+    private void UpdateTimer(float time)
+    {
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
+        _timer.text = $"Time in level: {minutes:00}:{seconds:00}";
     }
 }
-
-/*
- Notas de pendientes
- - clase est�tica Utils con constantes y enums para listas
- - pasar sprite de armas a blanco
- - armar los eventos
- - evaluar de agregar sonidos de disparo y pickup coins
- - x
- */
