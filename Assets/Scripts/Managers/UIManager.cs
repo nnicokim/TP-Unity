@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<Sprite> _weapons;
 
     /* Text References */
+    [SerializeField] private Text _weaponName;
     [SerializeField] private Text _ammoValue;
     [SerializeField] private Text _enemiesKilled;
     [SerializeField] private Text _timer;
@@ -42,6 +43,7 @@ public class UIManager : MonoBehaviour
     private void UpdateWeapon(int weaponIndex)
     {
         _weapon.sprite = _weapons[weaponIndex];
+        _weaponName.text = _weapons[weaponIndex].name;
     }
 
     private void UpdateEnemiesKilled(int enemiesKilled)
