@@ -90,8 +90,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Character : MonoBehaviour
+public class CharacterInputManager : MonoBehaviour
 {
+    // MOVEMENT STRATEGIES
+    private Walk _walk;
+    private Run _run;
+    private Turn _turn;
     private MovementController _movementController;
 
     [SerializeField] private Gun _gun;
@@ -101,10 +105,10 @@ public class Character : MonoBehaviour
 
     #region COMMANDS
 
-    private CmdMovement _cmdMovementForward;
-    private CmdMovement _cmdMovementBack;
-    private CmdMovement _cmdMovementLeft;
-    private CmdMovement _cmdMovementRight;
+    private CmdMove _cmdMovementForward;
+    private CmdMove _cmdMovementBack;
+    private CmdMove _cmdMovementLeft;
+    private CmdMove _cmdMovementRight;
 
     private CmdAttack _cmdAttack;
     private CmdReload _cmdReload;
@@ -115,6 +119,10 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
+        _walk = GetComponent<Walk>();
+        _run = GetComponent<Run>();
+        _turn = GetComponent<Turn>();
+
         _movementController = GetComponent<MovementController>();
 
         if (_movementController == null)
@@ -131,10 +139,10 @@ public class Character : MonoBehaviour
             return;
         }
 
-        _cmdMovementForward = new CmdMovement(_movementController, transform.forward);
-        _cmdMovementBack = new CmdMovement(_movementController, -transform.forward);
-        _cmdMovementLeft = new CmdMovement(_movementController, -transform.right);
-        _cmdMovementRight = new CmdMovement(_movementController, transform.right);
+        _cmdMovementForward = new CmdMove(_movementController, transform.forward);
+        _cmdMovementBack = new CmdMove(_movementController, -transform.forward);
+        _cmdMovementLeft = new CmdMove(_movementController, -transform.right);
+        _cmdMovementRight = new CmdMove(_movementController, transform.right);
 
         _cmdApplyDamage = new CmdApplyDamage(GetComponent<IDamagable>(), 5);
 

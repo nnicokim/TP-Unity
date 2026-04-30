@@ -5,19 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ActorStats", menuName = "Stats/Actor", order = 0)]
 public class ActorStats : ScriptableObject
 {
-    [SerializeField] private ActorStatValues _statValues;
+    [SerializeField] private ActorStruct _struct;
 
-    public int MaxLife => _statValues.MaxLife;
-    public float WalkSpeed => _statValues.WalkSpeed;
-    public float RunSpeed => _statValues.RunSpeed;
-    public float RotationSpeed => _statValues.RotationSpeed;
+    public int MaxLife => _struct.MaxLife;
+    public float MoveSpeed => _struct.MoveSpeed;
+    public float RunSpeed => _struct.RunSpeed;
+    public float RotationSpeed => _struct.RotationSpeed;
 }
 
 [System.Serializable]
-public struct ActorStatValues
+public struct ActorStruct
 {
     public int MaxLife;
-    public float WalkSpeed;
+    public float MoveSpeed;
     public float RunSpeed;
     public float RotationSpeed;
 }

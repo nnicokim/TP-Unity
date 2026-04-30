@@ -5,7 +5,7 @@ using UnityEngine;
 public class Walk : Actor, IMoveable
 {
     // Velocidad para girar -> de desplazamiento
-    public float Speed => Stats.WalkSpeed;
+    public float Speed => Stats.MoveSpeed;
 
     public void Move(Vector3 direction)
         => transform.Translate(direction * Speed * Time.deltaTime);

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Turn : Actor, IMoveable
 {
-    // Velocidad para girar -> de rotacion
     public float Speed => Stats.RotationSpeed;
 
     public void Move(Vector3 direction)
