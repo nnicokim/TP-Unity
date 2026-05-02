@@ -17,14 +17,14 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     [SerializeField] private Animation _animation;
     [SerializeField] private string _walkAnimationName;
     [SerializeField] private string _idleAnimationName;
-    [SerializeField] private string _attackAnimationName = "attack";
+    [SerializeField] private string _attackAnimationName;
     #endregion
 
     #region IINTERACTABLE_GROUP
     public int Value => _damage;
-    [SerializeField] private int _damage = 10;
+    [SerializeField] private int _damage = 25;
 
-    [SerializeField] private float _damageCooldown = 1f;
+    [SerializeField] private float _damageCooldown = 2f;
     private bool _canDamage = true;
 
     public void Interact(Collider Collider)
