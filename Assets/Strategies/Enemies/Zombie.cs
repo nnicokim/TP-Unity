@@ -81,7 +81,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         _life = Mathf.Min(_life + amount, MaxLife);
     }
 
-    public void Die()
+    public virtual void Die()
     {
         if (_isDead)
             return;
@@ -89,11 +89,14 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         _isDead = true;
         _canDamage = false;
         CancelInvoke(nameof(EnableDamage));
+        OnDie();
 
         Debug.Log($"Zombie {name} ha muerto.");
         PlayDieAnimation();
         Destroy(gameObject, DESTROY_AFTER_DEATH_DELAY);
     }
+
+    protected virtual void OnDie() { }
     #endregion
 
     #region UNITY_EVENTS
