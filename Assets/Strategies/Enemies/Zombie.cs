@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour, IInteractable, IDamageable
 {
+    private const float DESTROY_AFTER_DEATH_DELAY = 1.5f;
+
     #region TARGET_GROUP
     [SerializeField] private Transform _target;
     #endregion
@@ -18,6 +20,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     [SerializeField] private string _walkAnimationName;
     [SerializeField] private string _idleAnimationName;
     [SerializeField] private string _attackAnimationName;
+    [SerializeField] private string _dieAnimationName;
     #endregion
 
     #region IINTERACTABLE_GROUP
@@ -26,10 +29,11 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
 
     [SerializeField] private float _damageCooldown = 2f;
     private bool _canDamage = true;
+    private bool _isDead;
 
     public void Interact(Collider Collider)
     {
-        if (!_canDamage)
+        if (_isDead || !_canDamage)
             return;
 
         IDamageable lifeStrategy = Collider.GetComponentInParent<IDamageable>();
@@ -59,6 +63,9 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
 
     public void ApplyDamage(int damage)
     {
+        if (_isDead)
+            return;
+
         _life -= damage;
         Debug.Log($"Zombie recibio daño: {damage}. Vida restante: {_life}");
 
@@ -68,13 +75,24 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
 
     public void ApplyHealthRecovery(int amount)
     {
+        if (_isDead)
+            return;
+
         _life = Mathf.Min(_life + amount, MaxLife);
     }
 
     public void Die()
     {
+        if (_isDead)
+            return;
+
+        _isDead = true;
+        _canDamage = false;
+        CancelInvoke(nameof(EnableDamage));
+
         Debug.Log($"Zombie {name} ha muerto.");
-        Destroy(gameObject);
+        PlayDieAnimation();
+        Destroy(gameObject, DESTROY_AFTER_DEATH_DELAY);
     }
     #endregion
 
@@ -123,6 +141,9 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     #region CHASE_GROUP
     private void ChaseTarget()
     {
+        if (_isDead)
+            return;
+
         if (_target == null || IsGamePaused())
         {
             PlayMovementAnimation(false);
@@ -208,6 +229,17 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
             PlayAnimation(_attackAnimationName);
         else
             PlayMovementAnimation(false);
+    }
+
+    private void PlayDieAnimation()
+    {
+        if (_animation == null)
+            return;
+
+        if (!string.IsNullOrEmpty(_dieAnimationName))
+            PlayAnimation(_dieAnimationName);
+        else
+            _animation.Stop();
     }
 
     private string GetAnimationName(string preferredName)
