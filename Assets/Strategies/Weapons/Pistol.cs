@@ -6,7 +6,7 @@ public class Pistol : Gun
 {
     public override void Attack()
     {
-        if (_bulletCount > 0)
+        if (CanShoot)
         {
             Quaternion shootRotation = transform.parent != null ? transform.parent.rotation : transform.rotation;
             GameObject bullet = Instantiate(BulletPrefab, transform.position, shootRotation, ParentTransform);

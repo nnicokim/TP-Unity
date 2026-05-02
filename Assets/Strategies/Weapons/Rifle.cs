@@ -6,7 +6,7 @@ public class Rifle : Gun
 {
     public override void Attack()
     {
-        if (_bulletCount <= 0)
+        if (!CanShoot)
             return;
 
         int bulletsToShoot = Mathf.Min(BulletsPerShot, _bulletCount);

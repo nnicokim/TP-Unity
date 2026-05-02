@@ -25,6 +25,7 @@ public class UiManager : MonoBehaviour
         ActionsManager.instance.OnLifeFeedback -= OnLifeFeedback;
         ActionsManager.instance.OnWeaponChangeFeedback -= OnWeaponChangeFeedback;
         ActionsManager.instance.OnWeaponAmmoFeedback -= OnWeaponAmmoFeedback;
+        ActionsManager.instance.OnWeaponReloadFeedback -= OnWeaponReloadFeedback;
     }
 
     #region UI_LIFE_FEEDBACK
@@ -69,14 +70,18 @@ public class UiManager : MonoBehaviour
     [SerializeField] private List<Sprite> _weaponSprites;
     [SerializeField] private Image _weapon;
     [SerializeField] private Text _ammo;
+    [SerializeField] private Text _reloadText;
 
     private void WeaponsSuscription()
     {
+        OnWeaponReloadFeedback(false);
+
         if (ActionsManager.instance == null)
             return;
 
         ActionsManager.instance.OnWeaponChangeFeedback += OnWeaponChangeFeedback;
         ActionsManager.instance.OnWeaponAmmoFeedback += OnWeaponAmmoFeedback;
+        ActionsManager.instance.OnWeaponReloadFeedback += OnWeaponReloadFeedback;
     }
 
     public void OnWeaponChangeFeedback(ItemWeapons value)
@@ -94,6 +99,14 @@ public class UiManager : MonoBehaviour
             return;
 
         _ammo.text = value;
+    }
+
+    public void OnWeaponReloadFeedback(bool isReloading)
+    {
+        if (_reloadText == null)
+            return;
+
+        _reloadText.gameObject.SetActive(isReloading);
     }
     #endregion
 }

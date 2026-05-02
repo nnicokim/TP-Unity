@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Shotgun : Gun
 {
+    protected override float ReloadDuration => 2.5f;
+
     public override void Attack()
     {
-        if (_bulletCount <= 0)
+        if (!CanShoot)
             return;
 
         int bulletsToShoot = Mathf.Min(BulletsPerShot, _bulletCount);

@@ -47,8 +47,11 @@ public class ActionsManager : MonoBehaviour
     #region UI_WEAPONS_FEEDBACK
     public event Action<ItemWeapons> OnWeaponChangeFeedback;
     public event Action<string> OnWeaponAmmoFeedback;
+    public event Action<bool> OnWeaponReloadFeedback;
     private bool _hasWeaponAmmoFeedback;
     private string _weaponAmmoFeedback;
+    private bool _hasWeaponReloadFeedback;
+    private bool _isWeaponReloading;
 
     public void ActionWeaponChangeFeedback(ItemWeapons value) { if (OnWeaponChangeFeedback != null) OnWeaponChangeFeedback(value); }
     public void ActionWeaponAmmoFeedback(string value)
@@ -58,6 +61,15 @@ public class ActionsManager : MonoBehaviour
 
         if (OnWeaponAmmoFeedback != null)
             OnWeaponAmmoFeedback(value);
+    }
+
+    public void ActionWeaponReloadFeedback(bool isReloading)
+    {
+        _hasWeaponReloadFeedback = true;
+        _isWeaponReloading = isReloading;
+
+        if (OnWeaponReloadFeedback != null)
+            OnWeaponReloadFeedback(isReloading);
     }
     #endregion
 
@@ -69,6 +81,9 @@ public class ActionsManager : MonoBehaviour
 
         if (_hasWeaponAmmoFeedback && OnWeaponAmmoFeedback != null)
             OnWeaponAmmoFeedback(_weaponAmmoFeedback);
+
+        if (_hasWeaponReloadFeedback && OnWeaponReloadFeedback != null)
+            OnWeaponReloadFeedback(_isWeaponReloading);
     }
     #endregion
 }
