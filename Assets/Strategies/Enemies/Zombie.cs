@@ -17,6 +17,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     [SerializeField] private Animation _animation;
     [SerializeField] private string _walkAnimationName;
     [SerializeField] private string _idleAnimationName;
+    [SerializeField] private string _attackAnimationName = "attack";
     #endregion
 
     #region IINTERACTABLE_GROUP
@@ -122,7 +123,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     #region CHASE_GROUP
     private void ChaseTarget()
     {
-        if (_target == null || _moveSpeed <= 0f || IsGamePaused())
+        if (_target == null || IsGamePaused())
         {
             PlayMovementAnimation(false);
             return;
@@ -132,14 +133,28 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         direction.y = 0f;
 
         float distance = direction.magnitude;
-        bool canChase = distance > _stopDistance && (_detectionRange <= 0f || distance <= _detectionRange);
-        if (!canChase)
+        bool targetDetected = _detectionRange <= 0f || distance <= _detectionRange;
+        if (!targetDetected)
         {
             PlayMovementAnimation(false);
             return;
         }
 
         Vector3 moveDirection = direction.normalized;
+
+        if (distance <= _stopDistance)
+        {
+            RotateTowards(moveDirection);
+            PlayAttackAnimation();
+            return;
+        }
+
+        if (_moveSpeed <= 0f)
+        {
+            PlayMovementAnimation(false);
+            return;
+        }
+
         RotateTowards(moveDirection);
         transform.position += moveDirection * _moveSpeed * Time.deltaTime;
         PlayMovementAnimation(true);
@@ -182,6 +197,17 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
             PlayAnimation(_idleAnimationName);
         else
             _animation.Stop();
+    }
+
+    private void PlayAttackAnimation()
+    {
+        if (_animation == null)
+            return;
+
+        if (!string.IsNullOrEmpty(_attackAnimationName))
+            PlayAnimation(_attackAnimationName);
+        else
+            PlayMovementAnimation(false);
     }
 
     private string GetAnimationName(string preferredName)

@@ -491,6 +491,7 @@ MonoBehaviour:
   _animation: {fileID: 183954395}
   _walkAnimationName: walk
   _idleAnimationName: idle
+  _attackAnimationName: attack
   _damage: 10
   _damageCooldown: 1
   _life: 100
@@ -3880,6 +3881,7 @@ MonoBehaviour:
   _animation: {fileID: 1263030242}
   _walkAnimationName: walk
   _idleAnimationName: idle
+  _attackAnimationName: attack
   _damage: 25
   _damageCooldown: 1
   _life: 100
@@ -3971,6 +3973,7 @@ MonoBehaviour:
   _animation: {fileID: 1289483549}
   _walkAnimationName: walk
   _idleAnimationName: idle
+  _attackAnimationName: attack
   _damage: 25
   _damageCooldown: 2
   _life: 100
@@ -3991,6 +3994,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie_1
       objectReference: {fileID: 0}
+    - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
+      propertyPath: 'm_Animations.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
     - target: {fileID: 8897093224900880590, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.37
@@ -4123,7 +4134,8 @@ MonoBehaviour:
   _animation: {fileID: 1310547583}
   _walkAnimationName: walk
   _idleAnimationName: idle
-  _damage: 50
+  _attackAnimationName: attack
+  _damage: 25
   _damageCooldown: 2
   _life: 100
 --- !u!111 &1310547583 stripped
@@ -4927,6 +4939,7 @@ MonoBehaviour:
   _animation: {fileID: 1518727570}
   _walkAnimationName: walk
   _idleAnimationName: idle
+  _attackAnimationName: attack
   _damage: 25
   _damageCooldown: 2
   _life: 100
@@ -5986,6 +5999,7 @@ MonoBehaviour:
   _animation: {fileID: 1578898773}
   _walkAnimationName: walk
   _idleAnimationName: idle
+  _attackAnimationName: attack
   _damage: 25
   _damageCooldown: 1
   _life: 100
@@ -6269,7 +6283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: a30cb683e35a04de2a0c6fabcdc4a2cf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -33.2
+      value: -16.9
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: a30cb683e35a04de2a0c6fabcdc4a2cf, type: 3}
       propertyPath: m_LocalRotation.w
