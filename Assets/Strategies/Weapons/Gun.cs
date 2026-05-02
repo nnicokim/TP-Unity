@@ -48,16 +48,20 @@ public class Gun : MonoBehaviour, IGun
     // Instanciar o crear una bala.
     public virtual void Attack()
     {
-        //AmmoUiFeedback();
+        AmmoUiFeedback();
     }
 
     public void Reload()
     {
         _bulletCount = ClipSize;
-        //AmmoUiFeedback();
+        AmmoUiFeedback();
     }
 
-    //private void AmmoUiFeedback() => ActionsManager.instance.ActionWeaponAmmoFeedback($"{_bulletCount} de {ClipSize}");
+    protected void AmmoUiFeedback()
+    {
+        if (ActionsManager.instance != null)
+            ActionsManager.instance.ActionWeaponAmmoFeedback($"{_bulletCount} / {ClipSize}");
+    }
 
     private void AssignDefaultStats()
     {

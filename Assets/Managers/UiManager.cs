@@ -12,6 +12,19 @@ public class UiManager : MonoBehaviour
     {
         LifeSuscription();
         WeaponsSuscription();
+
+        if (ActionsManager.instance != null)
+            ActionsManager.instance.ReplayUiFeedback();
+    }
+
+    private void OnDestroy()
+    {
+        if (ActionsManager.instance == null)
+            return;
+
+        ActionsManager.instance.OnLifeFeedback -= OnLifeFeedback;
+        ActionsManager.instance.OnWeaponChangeFeedback -= OnWeaponChangeFeedback;
+        ActionsManager.instance.OnWeaponAmmoFeedback -= OnWeaponAmmoFeedback;
     }
 
     #region UI_LIFE_FEEDBACK
@@ -22,6 +35,9 @@ public class UiManager : MonoBehaviour
 
     private void LifeSuscription()
     {
+        if (ActionsManager.instance == null)
+            return;
+
         ActionsManager.instance.OnLifeFeedback += OnLifeFeedback;
     }
 
@@ -32,18 +48,20 @@ public class UiManager : MonoBehaviour
 
         float result = CalculatePorcentage(currentLife, maxLife);
 
-        _lifeBar.fillAmount = result;
-        _lifeValue.text = $"{result * 100} %";
+        if (_lifeBar != null)
+            _lifeBar.fillAmount = result;
 
-        Color color = result > .5f ? Color.green
-                                : result > .2f && result <= .5f ? Color.yellow
-                                : Color.red;
-        _lifeBar.color = color;
-        _lifeValue.color = color;
+        if (_lifeValue != null)
+            _lifeValue.text = $"{Mathf.RoundToInt(result * 100f)} %";
     }
 
     private float CalculatePorcentage(int value, int maxValue)
-        => (float)value / (float)maxValue;
+    {
+        if (maxValue <= 0)
+            return 0f;
+
+        return Mathf.Clamp01((float)value / (float)maxValue);
+    }
     #endregion
 
     #region UI_WEAPONS_FEEDBACK
@@ -54,11 +72,28 @@ public class UiManager : MonoBehaviour
 
     private void WeaponsSuscription()
     {
+        if (ActionsManager.instance == null)
+            return;
+
         ActionsManager.instance.OnWeaponChangeFeedback += OnWeaponChangeFeedback;
         ActionsManager.instance.OnWeaponAmmoFeedback += OnWeaponAmmoFeedback;
     }
 
-    public void OnWeaponChangeFeedback(ItemWeapons value) => _weapon.sprite = _weaponSprites[(int)value];
-    public void OnWeaponAmmoFeedback(string value) => _ammo.text = value;
+    public void OnWeaponChangeFeedback(ItemWeapons value)
+    {
+        int weaponIndex = (int)value;
+        if (_weapon == null || _weaponSprites == null || weaponIndex < 0 || weaponIndex >= _weaponSprites.Count)
+            return;
+
+        _weapon.sprite = _weaponSprites[weaponIndex];
+    }
+
+    public void OnWeaponAmmoFeedback(string value)
+    {
+        if (_ammo == null)
+            return;
+
+        _ammo.text = value;
+    }
     #endregion
 }

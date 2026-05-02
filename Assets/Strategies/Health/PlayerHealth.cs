@@ -1,21 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class PlayerHealth : BasicHealth
 {
     private bool _lostGame = false;
+
     public override void ApplyDamage(int damage)
     {
         base.ApplyDamage(damage);
-        //ActionsManager.instance.ActionLifeFeedback(Life, MaxLife);
+        LifeUiFeedback();
     }
 
     public override void ApplyHealthRecovery(int amount)
     {
         base.ApplyHealthRecovery(amount);
-        //ActionsManager.instance.ActionLifeFeedback(Life, MaxLife);
+        LifeUiFeedback();
     }
 
     public override void Die()
@@ -35,7 +34,12 @@ public class PlayerHealth : BasicHealth
     {
         yield return new WaitForSeconds(.25f);
 
-        //ActionsManager.instance.ActionLifeFeedback(MaxLife, MaxLife);
+        LifeUiFeedback();
     }
 
+    private void LifeUiFeedback()
+    {
+        if (ActionsManager.instance != null)
+            ActionsManager.instance.ActionLifeFeedback(Life, MaxLife);
+    }
 }

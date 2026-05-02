@@ -29,15 +29,46 @@ public class ActionsManager : MonoBehaviour
 
     #region UI_LIFE_FEEDBACK
     public event Action<int, int> OnLifeFeedback;
+    private bool _hasLifeFeedback;
+    private int _currentLife;
+    private int _maxLife;
 
-    public void ActionLifeFeedback(int value, int maxValue) { if (OnLifeFeedback != null) OnLifeFeedback(value, maxValue); }
+    public void ActionLifeFeedback(int value, int maxValue)
+    {
+        _hasLifeFeedback = true;
+        _currentLife = value;
+        _maxLife = maxValue;
+
+        if (OnLifeFeedback != null)
+            OnLifeFeedback(value, maxValue);
+    }
     #endregion
 
     #region UI_WEAPONS_FEEDBACK
     public event Action<ItemWeapons> OnWeaponChangeFeedback;
     public event Action<string> OnWeaponAmmoFeedback;
+    private bool _hasWeaponAmmoFeedback;
+    private string _weaponAmmoFeedback;
 
     public void ActionWeaponChangeFeedback(ItemWeapons value) { if (OnWeaponChangeFeedback != null) OnWeaponChangeFeedback(value); }
-    public void ActionWeaponAmmoFeedback(string value) { if (OnWeaponAmmoFeedback != null) OnWeaponAmmoFeedback(value); }
+    public void ActionWeaponAmmoFeedback(string value)
+    {
+        _hasWeaponAmmoFeedback = true;
+        _weaponAmmoFeedback = value;
+
+        if (OnWeaponAmmoFeedback != null)
+            OnWeaponAmmoFeedback(value);
+    }
+    #endregion
+
+    #region UI_REPLAY
+    public void ReplayUiFeedback()
+    {
+        if (_hasLifeFeedback && OnLifeFeedback != null)
+            OnLifeFeedback(_currentLife, _maxLife);
+
+        if (_hasWeaponAmmoFeedback && OnWeaponAmmoFeedback != null)
+            OnWeaponAmmoFeedback(_weaponAmmoFeedback);
+    }
     #endregion
 }
