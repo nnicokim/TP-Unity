@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NormalBullet : MonoBehaviour, IBullet
@@ -13,37 +11,82 @@ public class NormalBullet : MonoBehaviour, IBullet
     public Gun Owner => _owner;
     [SerializeField] private Gun _owner;
 
+    private Vector3 _previousPosition;
+    private bool _hasHit;
+
     public void Travel() => transform.Translate(Vector3.forward * Speed * Time.deltaTime);
 
     public void SetOwner(Gun owner) => _owner = owner;
 
+    private void Awake()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+    }
+
+    private void Start()
+    {
+        _previousPosition = transform.position;
+    }
+
     private void Update()
     {
+        if (_hasHit)
+            return;
+
         Travel();
+        SweepDetect();
 
         _lifeTime -= Time.deltaTime;
         if (_lifeTime <= 0) Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    // Raycast desde la posición anterior hasta la actual para evitar tunneling
+    private void SweepDetect()
     {
-        Debug.Log($"Bullet collide with: {collision.gameObject.name}");
+        Vector3 currentPosition = transform.position;
+        Vector3 delta = currentPosition - _previousPosition;
+        float distance = delta.magnitude;
 
-        // 1. Detectar si el objeto colisionado tiene capacidad de manejar vida (obtener referncia)
-        IDamageable lifeStrategy = collision.gameObject.GetComponentInParent<IDamageable>();
-        lifeStrategy ??= collision.gameObject.GetComponentInChildren<IDamageable>();
-
-        // 2. Preguntar si la referencia es nula o valida
-        if (lifeStrategy != null)
+        if (distance > 0f && Physics.Raycast(_previousPosition, delta.normalized, out RaycastHit hit, distance, ~0, QueryTriggerInteraction.Collide))
         {
-            // 3. Realizar la resta de vida
-            if (EventQueueManager.instance != null)
-                EventQueueManager.instance.AddCommand(new CmdApplyDamage(lifeStrategy, _owner.Damage));
-            else
-                lifeStrategy.ApplyDamage(_owner.Damage);
+            ResolveHit(hit.collider);
         }
 
-        // 4. Matar la bala
+        _previousPosition = currentPosition;
+    }
+
+    private void OnCollisionEnter(Collision collision) => ResolveHit(collision.collider);
+    private void OnTriggerEnter(Collider other) => ResolveHit(other);
+
+    private void ResolveHit(Collider collider)
+    {
+        if (_hasHit || collider == null)
+            return;
+
+        // No dañar al dueño del arma (ej. el propio jugador) ni a otras balas
+        if (_owner != null && collider.transform.IsChildOf(_owner.transform.root))
+            return;
+
+        if (collider.GetComponent<IBullet>() != null)
+            return;
+
+        IDamageable lifeStrategy = collider.GetComponentInParent<IDamageable>();
+        lifeStrategy ??= collider.GetComponentInChildren<IDamageable>();
+
+        if (lifeStrategy != null)
+        {
+            int damage = _owner != null ? _owner.Damage : 0;
+            Debug.Log($"Bullet golpeo a {collider.name} (-{damage})");
+
+            if (EventQueueManager.instance != null)
+                EventQueueManager.instance.AddCommand(new CmdApplyDamage(lifeStrategy, damage));
+            else
+                lifeStrategy.ApplyDamage(damage);
+        }
+
+        _hasHit = true;
         Destroy(gameObject);
     }
 }

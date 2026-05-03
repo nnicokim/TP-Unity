@@ -11,16 +11,20 @@ public class Spike : MonoBehaviour, IInteractable
 
     public void Interact(Collider Collider)
     {
-        Debug.Log($"Colision detectada con {Collider.name}");
         IDamageable lifeStrategy = Collider.GetComponentInParent<IDamageable>();
         lifeStrategy ??= Collider.GetComponentInChildren<IDamageable>();
 
-        if (lifeStrategy != null && EventQueueManager.instance != null)
+        if (lifeStrategy == null)
+            return;
+
+        if (EventQueueManager.instance != null)
             EventQueueManager.instance.AddCommand(new CmdApplyDamage(lifeStrategy, Value));
+        else
+            lifeStrategy.ApplyDamage(Value);
 
         _collider.enabled = false;
         Invoke("EnableCollider", 2f);
-        Debug.Log($"Daño aplicado: {Value}");
+        Debug.Log($"Spike aplico {Value} de daño a {Collider.name}");
     }
     #endregion
 

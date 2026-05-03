@@ -48,12 +48,21 @@ public class ActionsManager : MonoBehaviour
     public event Action<ItemWeapons> OnWeaponChangeFeedback;
     public event Action<string> OnWeaponAmmoFeedback;
     public event Action<bool> OnWeaponReloadFeedback;
+    private bool _hasWeaponChangeFeedback;
+    private ItemWeapons _currentWeapon;
     private bool _hasWeaponAmmoFeedback;
     private string _weaponAmmoFeedback;
     private bool _hasWeaponReloadFeedback;
     private bool _isWeaponReloading;
 
-    public void ActionWeaponChangeFeedback(ItemWeapons value) { if (OnWeaponChangeFeedback != null) OnWeaponChangeFeedback(value); }
+    public void ActionWeaponChangeFeedback(ItemWeapons value)
+    {
+        _hasWeaponChangeFeedback = true;
+        _currentWeapon = value;
+
+        if (OnWeaponChangeFeedback != null)
+            OnWeaponChangeFeedback(value);
+    }
     public void ActionWeaponAmmoFeedback(string value)
     {
         _hasWeaponAmmoFeedback = true;
@@ -78,6 +87,9 @@ public class ActionsManager : MonoBehaviour
     {
         if (_hasLifeFeedback && OnLifeFeedback != null)
             OnLifeFeedback(_currentLife, _maxLife);
+
+        if (_hasWeaponChangeFeedback && OnWeaponChangeFeedback != null)
+            OnWeaponChangeFeedback(_currentWeapon);
 
         if (_hasWeaponAmmoFeedback && OnWeaponAmmoFeedback != null)
             OnWeaponAmmoFeedback(_weaponAmmoFeedback);

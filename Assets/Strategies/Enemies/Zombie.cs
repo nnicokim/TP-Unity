@@ -39,6 +39,14 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         IDamageable lifeStrategy = Collider.GetComponentInParent<IDamageable>();
         lifeStrategy ??= Collider.GetComponentInChildren<IDamageable>();
 
+        TryDealDamage(lifeStrategy, Collider != null ? Collider.name : "<unknown>");
+    }
+
+    private void TryDealDamage(IDamageable lifeStrategy, string targetName)
+    {
+        if (_isDead || !_canDamage)
+            return;
+
         if (lifeStrategy == null || ReferenceEquals(lifeStrategy, this))
             return;
 
@@ -49,7 +57,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         else
             lifeStrategy.ApplyDamage(Value);
 
-        Debug.Log($"Zombie aplico daño: {Value} a {Collider.name}");
+        Debug.Log($"Zombie aplico daño: {Value} a {targetName}");
         Invoke(nameof(EnableDamage), _damageCooldown);
     }
     #endregion
@@ -170,6 +178,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         {
             RotateTowards(moveDirection);
             PlayAttackAnimation();
+            AttackTargetInRange();
             return;
         }
 
@@ -196,6 +205,19 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     private bool IsGamePaused()
     {
         return GameManager.instance != null && GameManager.instance.isGamePause;
+    }
+
+    // El daño no depende de que los colliders se toquen: si el target está dentro de
+    // _stopDistance y el cooldown está listo, aplicamos daño.
+    private void AttackTargetInRange()
+    {
+        if (_target == null)
+            return;
+
+        IDamageable lifeStrategy = _target.GetComponentInParent<IDamageable>();
+        lifeStrategy ??= _target.GetComponentInChildren<IDamageable>();
+
+        TryDealDamage(lifeStrategy, _target.name);
     }
     #endregion
 
