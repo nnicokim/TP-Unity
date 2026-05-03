@@ -55,8 +55,14 @@ public class UiManager : MonoBehaviour
         if (_lifeValue != null)
             _lifeValue.text = $"{Mathf.RoundToInt(result * 100f)} %";
 
-        _lifeValue.color = result > .6f ? Color.green 
+        Color color = result > .6f ? Color.green 
                             : result > .3f ? Color.yellow : Color.red;
+
+        if (_lifeValue != null)
+            _lifeValue.color = color;
+
+        if (_lifeBar != null)
+            _lifeBar.color = color;
     }
 
     private float CalculatePorcentage(int value, int maxValue)
