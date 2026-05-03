@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static InventoryManager;
 
 public class CharacterInputManager : MonoBehaviour
 {
@@ -22,13 +23,6 @@ public class CharacterInputManager : MonoBehaviour
     private const int PISTOL_ID = 0; // TODO: ver como hacer si solo porta 2 armas.
     private const int RIFLE_ID = 1;
     private const int SHOTGUN_ID = 2;
-
-    private enum ItemWeapons
-    {
-        PistolClip = PISTOL_ID,
-        RifleClip = RIFLE_ID,
-        ShotgunClip = SHOTGUN_ID
-    }
 
     [SerializeField] private GameObject[] _weapons;
     [SerializeField] private Gun _equipedGun; // main gun strategy
@@ -103,6 +97,8 @@ public class CharacterInputManager : MonoBehaviour
         // Nueva instancia de comandos - Armas
         _cmdAttack = new CmdAttack(_equipedGun);
         _cmdReload = new CmdReload(_equipedGun);
+
+        ActionsManager.instance.ActionWeaponChangeFeedback(ItemWeapons.PistolClip);
     }
 
     private void Update()
@@ -160,11 +156,11 @@ public class CharacterInputManager : MonoBehaviour
 
         if (keyboard.digit3Key.wasPressedThisFrame)
         {
-            WeaponsSelection(ItemWeapons.ShotgunClip);
+            WeaponsSelection(ItemWeapons.ShotgunShell);
         }
     }
 
-    private void WeaponsSelection(ItemWeapons selection)
+    private void WeaponsSelection(InventoryManager.ItemWeapons selection)
     {
         if (_weapons == null || _weapons.Length == 0)
             LoadWeaponsFromChildren();
@@ -198,7 +194,7 @@ public class CharacterInputManager : MonoBehaviour
         _cmdReload = new CmdReload(_equipedGun);
 
         // 4. Update Ui Feedback
-        //ActionsManager.instance.ActionWeaponChangeFeedback(selection);
+        ActionsManager.instance.ActionWeaponChangeFeedback(selection);
 
         // 5. Reload weapon
         EventQueueManager.instance.AddCommand(_cmdReload);
