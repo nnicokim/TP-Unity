@@ -103,8 +103,10 @@ public class Gun : MonoBehaviour, IGun
 
     protected void AmmoUiFeedback()
     {
-        if (ActionsManager.instance != null)
+        if (ActionsManager.instance != null && _bulletCount >= 10)
             ActionsManager.instance.ActionWeaponAmmoFeedback($"{_bulletCount}   {ClipSize}");
+        else if (ActionsManager.instance != null && _bulletCount < 10)
+            ActionsManager.instance.ActionWeaponAmmoFeedback($"  {_bulletCount}   {ClipSize}");
     }
 
     private void ReloadUiFeedback(bool isReloading)
