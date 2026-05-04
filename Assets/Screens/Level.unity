@@ -7607,8 +7607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4fbedde12a14cbbb02a20f259347fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Gameover
-  _victory: {fileID: -422354513, guid: bf7ce78582ebf4c1baaabd7d7966e8d3, type: 3}
-  _defeat: {fileID: -1814832529, guid: 32779bcb7ea814ee197faeaa37eeb4c5, type: 3}
+  _victory: {fileID: 21300000, guid: d398360e4438f46158b1fdb6a0cdd5e8, type: 3}
+  _defeat: {fileID: 21300000, guid: b90cbc7e5226840698e0e0fa783c81b9, type: 3}
   _gameoverImage: {fileID: 316486097}
 --- !u!114 &1200470358
 MonoBehaviour:
