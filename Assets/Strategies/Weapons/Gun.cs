@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour, IGun
 {
     private const string DEFAULT_STATS_PATH = "Assets/Flyweight/WeaponStats.asset";
     private const float DEFAULT_RELOAD_DURATION = 1.5f;
+    private const string FULL_AMMO_RELOAD_MESSAGE = "Amunicion completa. No se puede recargar";
 
     [SerializeField] private WeaponStats _stats;
 
@@ -68,12 +69,19 @@ public class Gun : MonoBehaviour, IGun
     {
         PlayShotSound();
         AmmoUiFeedback();
+        ReloadIfEmpty();
     }
 
     public void Reload()
     {
         if (_isReloading)
             return;
+
+        if (HasFullAmmo())
+        {
+            Debug.Log(FULL_AMMO_RELOAD_MESSAGE);
+            return;
+        }
 
         Debug.Log($"Recargando {gameObject.name}...");
         StartCoroutine(ReloadRoutine());
@@ -119,6 +127,19 @@ public class Gun : MonoBehaviour, IGun
             return;
 
         _audioSource.PlayOneShot(_stats.ReloadSound);
+    }
+
+    private void ReloadIfEmpty()
+    {
+        if (_bulletCount > 0 || _isReloading)
+            return;
+
+        Reload();
+    }
+
+    private bool HasFullAmmo()
+    {
+        return ClipSize > 0 && _bulletCount >= ClipSize;
     }
 
     private void AssignDefaultStats()
