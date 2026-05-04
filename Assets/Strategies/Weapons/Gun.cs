@@ -16,6 +16,7 @@ public class Gun : MonoBehaviour, IGun
     public Transform ParentTransform => _parent;
     [SerializeField] private Transform _parent;
     [SerializeField] protected int _bulletCount;
+    [SerializeField] private AudioSource _audioSource;
     private bool _isReloading;
 
     public GameObject BulletPrefab => _stats != null ? _stats.BulletPrefab : null;
@@ -46,6 +47,9 @@ public class Gun : MonoBehaviour, IGun
             return;
         }
 
+        if (_audioSource == null)
+            _audioSource = GetComponent<AudioSource>();
+
         _bulletCount = ClipSize;
         AmmoUiFeedback();
     }
@@ -62,6 +66,7 @@ public class Gun : MonoBehaviour, IGun
     // Instanciar o crear una bala.
     public virtual void Attack()
     {
+        PlayShotSound();
         AmmoUiFeedback();
     }
 
@@ -78,6 +83,7 @@ public class Gun : MonoBehaviour, IGun
     {
         _isReloading = true;
         ReloadUiFeedback(true);
+        PlayReloadSound();
 
         yield return new WaitForSeconds(ReloadDuration);
 
@@ -97,6 +103,22 @@ public class Gun : MonoBehaviour, IGun
     {
         if (ActionsManager.instance != null)
             ActionsManager.instance.ActionWeaponReloadFeedback(isReloading);
+    }
+
+    private void PlayShotSound()
+    {
+        if (_audioSource == null || _stats == null || _stats.ShotSound == null)
+            return;
+
+        _audioSource.PlayOneShot(_stats.ShotSound);
+    }
+
+    private void PlayReloadSound()
+    {
+        if (_audioSource == null || _stats == null || _stats.ReloadSound == null)
+            return;
+
+        _audioSource.PlayOneShot(_stats.ReloadSound);
     }
 
     private void AssignDefaultStats()

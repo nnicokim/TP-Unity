@@ -26,7 +26,6 @@ public class Rifle : Gun
             );
 
             _bulletCount--;
-            base.Attack();
 
             IBullet bulletBehaviour = bullet.GetComponent<IBullet>();
 
@@ -40,5 +39,7 @@ public class Rifle : Gun
             bulletBehaviour.SetOwner(this);
             bullet.name = "Bullet";
         }
+
+        base.Attack();
     }
 }

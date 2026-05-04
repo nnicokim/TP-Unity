@@ -23,6 +23,16 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     [SerializeField] private string _dieAnimationName;
     #endregion
 
+    #region AUDIO_GROUP
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip[] _attackClips;
+    [SerializeField] private AudioClip[] _hurtClips;
+    [SerializeField] private AudioClip[] _dieClips;
+    [SerializeField] private AudioClip[] _idleClips;
+    [SerializeField] private float _idleSoundMinInterval = 4f;
+    [SerializeField] private float _idleSoundMaxInterval = 9f;
+    #endregion
+
     #region IINTERACTABLE_GROUP
     public int Value => _damage;
     [SerializeField] private int _damage = 25;
@@ -57,6 +67,8 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         else
             lifeStrategy.ApplyDamage(Value);
 
+        PlayRandomClip(_attackClips);
+
         Debug.Log($"Zombie aplico daño: {Value} a {targetName}");
         Invoke(nameof(EnableDamage), _damageCooldown);
     }
@@ -78,7 +90,12 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         Debug.Log($"Zombie recibio daño: {damage}. Vida restante: {_life}");
 
         if (_life <= 0)
+        {
             Die();
+            return;
+        }
+
+        PlayRandomClip(_hurtClips);
     }
 
     public void ApplyHealthRecovery(int amount)
@@ -97,10 +114,12 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         _isDead = true;
         _canDamage = false;
         CancelInvoke(nameof(EnableDamage));
+        CancelInvoke(nameof(PlayIdleSound));
         OnDie();
 
         Debug.Log($"Zombie {name} ha muerto.");
         PlayDieAnimation();
+        PlayRandomClip(_dieClips);
         Destroy(gameObject, DESTROY_AFTER_DEATH_DELAY);
     }
 
@@ -113,6 +132,8 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         _maxLife = _life;
         ConfigureRigidbody();
         ResolveAnimation();
+        ResolveAudio();
+        ScheduleNextIdleSound();
     }
 
     private void Update()
@@ -281,6 +302,42 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
             return;
 
         _animation.CrossFade(animationName);
+    }
+    #endregion
+
+    #region AUDIO_PLAYBACK_GROUP
+    private void ResolveAudio()
+    {
+        if (_audioSource == null)
+            _audioSource = GetComponent<AudioSource>();
+    }
+
+    private void PlayRandomClip(AudioClip[] clips)
+    {
+        if (_audioSource == null || clips == null || clips.Length == 0)
+            return;
+
+        AudioClip clip = clips[Random.Range(0, clips.Length)];
+        if (clip != null)
+            _audioSource.PlayOneShot(clip);
+    }
+
+    private void ScheduleNextIdleSound()
+    {
+        if (_idleClips == null || _idleClips.Length == 0)
+            return;
+
+        float delay = Random.Range(_idleSoundMinInterval, Mathf.Max(_idleSoundMinInterval, _idleSoundMaxInterval));
+        Invoke(nameof(PlayIdleSound), delay);
+    }
+
+    private void PlayIdleSound()
+    {
+        if (_isDead)
+            return;
+
+        PlayRandomClip(_idleClips);
+        ScheduleNextIdleSound();
     }
     #endregion
 }
