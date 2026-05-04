@@ -9,6 +9,8 @@ public class WeaponStats : ScriptableObject
     public int Damage => _struct.Damage;
     public int ClipSize => _struct.ClipSize;
     public int BulletsPerShot => _struct.BulletsPerShot;
+    public AudioClip ShotSound => _struct.ShotSound;
+    public AudioClip ReloadSound => _struct.ReloadSound;
 }
 
 [System.Serializable]
@@ -18,4 +20,6 @@ public struct WeaponStruct
     public int Damage;
     public int ClipSize;
     public int BulletsPerShot;
+    public AudioClip ShotSound;
+    public AudioClip ReloadSound;
 }

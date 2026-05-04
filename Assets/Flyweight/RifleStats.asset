@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4219ee2627e1f486691fd6680e41153b, type: 3}
+  m_Name: RifleStats
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponStats
+  _struct:
+    BulletPrefab: {fileID: 2953714819622099806, guid: 416b03361826f4604b050031c1e29ac2, type: 3}
+    Damage: 15
+    ClipSize: 30
+    BulletsPerShot: 3
+    ShotSound: {fileID: 8300000, guid: 198ff5a67911d084b84a3f6ffa6cfc8e, type: 3}
+    ReloadSound: {fileID: 8300000, guid: ca24ab80a8c2c9f4aafd2912312e9e48, type: 3}
