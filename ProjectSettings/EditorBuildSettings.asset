@@ -9,13 +9,10 @@ EditorBuildSettings:
     path: Assets/Screens/Menu.unity
     guid: 150b45f4d71634a168cb38b7e9daf0dd
   - enabled: 1
-    path: Assets/Screens/Level.unity
-    guid: 42aba2c8ac6044c75abff2c3fbac694c
-  - enabled: 1
     path: Assets/Screens/AsyncLoad.unity
     guid: 3593409299dec49cbb2329f3cc83c78e
-  - enabled: 0
-    path: Assets/Screens/Level2.unity
-    guid: e85347f25d83f409fb417ae6fffc5c2c
+  - enabled: 1
+    path: Assets/Screens/Level.unity
+    guid: ff86fdd2ba599441f8b288c6995d3a7c
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

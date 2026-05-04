@@ -1007,9 +1007,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 3
-  _rotationSpeed: 8
-  _stopDistance: 1.4
+  _moveSpeed: 4.2
+  _rotationSpeed: 7
+  _stopDistance: 1.5
   _detectionRange: 25
   _animation: {fileID: 183954395}
   _walkAnimationName: walk
@@ -4705,10 +4705,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossZombie
   _target: {fileID: 833159271}
-  _moveSpeed: 2
-  _rotationSpeed: 8
-  _stopDistance: 1.4
-  _detectionRange: 50
+  _moveSpeed: 3.2
+  _rotationSpeed: 5
+  _stopDistance: 2.2
+  _detectionRange: 35
   _animation: {fileID: 631169778}
   _walkAnimationName: fast.qc_skeleton|idle_angry
   _idleAnimationName: fast.qc_skeleton|idle_onfire
@@ -4723,7 +4723,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 50
   _damageCooldown: 2
-  _life: 200
+  _life: 800
   _exitDoor: {fileID: 375902604}
 --- !u!1 &639844169 stripped
 GameObject:
@@ -7649,6 +7649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d12ac82279a548bb81119d0ed78f7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UiManager
+  _gameplayHud:
+  - {fileID: 365064529}
   _lifeBar: {fileID: 120581047}
   _lifeValue: {fileID: 775930789}
   _life: 0
@@ -7968,10 +7970,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 3
-  _rotationSpeed: 8
-  _stopDistance: 1.4
-  _detectionRange: 50
+  _moveSpeed: 4.2
+  _rotationSpeed: 7
+  _stopDistance: 1.5
+  _detectionRange: 25
   _animation: {fileID: 1263030242}
   _walkAnimationName: walk
   _idleAnimationName: idle
@@ -8172,10 +8174,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 3
-  _rotationSpeed: 8
-  _stopDistance: 1.4
-  _detectionRange: 50
+  _moveSpeed: 4.2
+  _rotationSpeed: 7
+  _stopDistance: 1.5
+  _detectionRange: 25
   _animation: {fileID: 1289483549}
   _walkAnimationName: walk
   _idleAnimationName: idle
@@ -8465,10 +8467,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 3
-  _rotationSpeed: 8
-  _stopDistance: 1.3
-  _detectionRange: 50
+  _moveSpeed: 4.2
+  _rotationSpeed: 7
+  _stopDistance: 1.5
+  _detectionRange: 25
   _animation: {fileID: 1310547583}
   _walkAnimationName: walk
   _idleAnimationName: idle
@@ -9817,10 +9819,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 3
-  _rotationSpeed: 8
+  _moveSpeed: 4.2
+  _rotationSpeed: 7
   _stopDistance: 1.5
-  _detectionRange: 50
+  _detectionRange: 25
   _animation: {fileID: 1518727570}
   _walkAnimationName: walk
   _idleAnimationName: idle
@@ -10213,10 +10215,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 3
-  _rotationSpeed: 8
-  _stopDistance: 1.4
-  _detectionRange: 50
+  _moveSpeed: 4.2
+  _rotationSpeed: 7
+  _stopDistance: 1.5
+  _detectionRange: 25
   _animation: {fileID: 1578898773}
   _walkAnimationName: walk
   _idleAnimationName: idle

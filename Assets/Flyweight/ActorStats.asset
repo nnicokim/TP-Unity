@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ActorStats
   m_EditorClassIdentifier: Assembly-CSharp::ActorStats
   _struct:
-    MaxLife: 250
-    MoveSpeed: 20
-    RunSpeed: 35
-    RotationSpeed: 80
+    MaxLife: 200
+    MoveSpeed: 8
+    RunSpeed: 12
+    RotationSpeed: 120
