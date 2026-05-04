@@ -3122,7 +3122,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 3, z: 3}
+  m_Size: {x: 4, y: 3.2, z: 3}
   m_Center: {x: -2, y: 2, z: 0}
 --- !u!111 &375902603
 Animation:
@@ -3162,6 +3162,11 @@ MonoBehaviour:
   _showPromptOnlyWhenPlayerInRange: 1
   _lockedMessage: Exit door is locked
   _unlockedMessage: Press 'o' to open
+  _useDistanceFallback: 1
+  _interactionOrigin: {fileID: 0}
+  _interactionRadius: 5
+  _canOpenWhileGamePaused: 1
+  _debugInteraction: 1
 --- !u!1 &381168757 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8128668236925612103, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
@@ -3751,7 +3756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 806, y: -441}
+  m_AnchoredPosition: {x: 808, y: -441}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &430709776

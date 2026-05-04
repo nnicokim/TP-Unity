@@ -6635,6 +6635,11 @@ MonoBehaviour:
   _showPromptOnlyWhenPlayerInRange: 1
   _lockedMessage: Exit door is locked
   _unlockedMessage: Press 'o' to open
+  _useDistanceFallback: 1
+  _interactionOrigin: {fileID: 0}
+  _interactionRadius: 5
+  _canOpenWhileGamePaused: 1
+  _debugInteraction: 1
 --- !u!1001 &1441990455
 PrefabInstance:
   m_ObjectHideFlags: 0
