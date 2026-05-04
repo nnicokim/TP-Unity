@@ -7496,8 +7496,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e285a25e6f9e949b48551c120de9a940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameoverSounds
-  _victory: {fileID: 8300000, guid: 4a55cf003027f4f02b3edc3f5fc2ebe9, type: 3}
-  _defeat: {fileID: 8300000, guid: 941ae17cec6d6465a976024909e87ce0, type: 3}
+  _victory: {fileID: 8300000, guid: dfdde0519f45c46e3a7b3fe016042a2b, type: 3}
+  _defeat: {fileID: 8300000, guid: fe72933e401ff4e8a9d8e4681d00da87, type: 3}
 --- !u!82 &1200470356
 AudioSource:
   m_ObjectHideFlags: 0
