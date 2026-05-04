@@ -6320,6 +6320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d12ac82279a548bb81119d0ed78f7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UiManager
+  _gameplayHud:
+  - {fileID: 365064529}
   _lifeBar: {fileID: 120581047}
   _lifeValue: {fileID: 775930789}
   _life: 0

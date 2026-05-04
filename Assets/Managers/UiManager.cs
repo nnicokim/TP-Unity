@@ -8,10 +8,14 @@ using static InventoryManager;
 
 public class UiManager : MonoBehaviour
 {
+    [Header("Gameplay HUD")]
+    [SerializeField] private GameObject[] _gameplayHud;
+
     private void Start()
     {
         LifeSuscription();
         WeaponsSuscription();
+        GameoverSuscription();
 
         if (ActionsManager.instance != null)
             ActionsManager.instance.ReplayUiFeedback();
@@ -26,7 +30,30 @@ public class UiManager : MonoBehaviour
         ActionsManager.instance.OnWeaponChangeFeedback -= OnWeaponChangeFeedback;
         ActionsManager.instance.OnWeaponAmmoFeedback -= OnWeaponAmmoFeedback;
         ActionsManager.instance.OnWeaponReloadFeedback -= OnWeaponReloadFeedback;
+        ActionsManager.instance.OnGameover -= OnGameover;
     }
+
+    #region UI_GAMEOVER
+    private void GameoverSuscription()
+    {
+        if (ActionsManager.instance == null)
+            return;
+
+        ActionsManager.instance.OnGameover += OnGameover;
+    }
+
+    private void OnGameover(bool isVictory)
+    {
+        if (_gameplayHud == null)
+            return;
+
+        for (int i = 0; i < _gameplayHud.Length; i++)
+        {
+            if (_gameplayHud[i] != null)
+                _gameplayHud[i].SetActive(false);
+        }
+    }
+    #endregion
 
     #region UI_LIFE_FEEDBACK
     [Header("Life Feedback")]
