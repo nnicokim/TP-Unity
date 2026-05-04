@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ExitDoor : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class ExitDoor : MonoBehaviour
     [Header("Victory")]
     [SerializeField] private float _victoryDelay = 2f;
 
+    [Header("Interaction Prompt")]
+    [SerializeField] private Text _interactionText;
+    [SerializeField] private bool _showPromptOnlyWhenPlayerInRange = true;
+    [SerializeField] private string _lockedMessage = "Exit door is locked";
+    [SerializeField] private string _unlockedMessage = "Press 'o' to open";
+
     private bool _isPlayerInRange;
     private bool _victoryScheduled;
 
@@ -24,6 +31,7 @@ public class ExitDoor : MonoBehaviour
     {
         ResolveAnimation();
         ConfigureAnimation();
+        UpdateDoorMessage();
     }
 
     private void Update()
@@ -39,19 +47,26 @@ public class ExitDoor : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (IsPlayer(other))
+        {
             _isPlayerInRange = true;
+            UpdateDoorMessage();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (IsPlayer(other))
+        {
             _isPlayerInRange = false;
+            UpdateDoorMessage();
+        }
     }
 
     public void Unlock()
     {
         _isLocked = false;
         Debug.Log($"{name} desbloqueada.");
+        UpdateDoorMessage();
     }
 
     public void Open()
@@ -60,6 +75,7 @@ public class ExitDoor : MonoBehaviour
             return;
 
         _isOpen = true;
+        UpdateDoorMessage();
         PlayOpenAnimation();
 
         if (!_victoryScheduled)
@@ -142,5 +158,19 @@ public class ExitDoor : MonoBehaviour
     private bool IsGamePaused()
     {
         return GameManager.instance != null && GameManager.instance.isGamePause;
+    }
+
+    private void UpdateDoorMessage()
+    {
+        if (_interactionText == null)
+            return;
+
+        bool shouldShow = !_isOpen && (!_showPromptOnlyWhenPlayerInRange || _isPlayerInRange);
+        _interactionText.gameObject.SetActive(shouldShow);
+
+        if (!shouldShow)
+            return;
+
+        _interactionText.text = _isLocked ? _lockedMessage : _unlockedMessage;
     }
 }
