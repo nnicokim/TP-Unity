@@ -55,26 +55,47 @@ public class CharacterInputManager : MonoBehaviour
         if (_weapons == null || _weapons.Length == 0)
             LoadWeaponsFromChildren();
 
-        if (_equipedGun == null && _weapons != null && _weapons.Length > PISTOL_ID && _weapons[PISTOL_ID] != null)
-            _equipedGun = _weapons[PISTOL_ID].GetComponent<Gun>();
-
-        if (_equipedGun == null)
-            _equipedGun = GetComponentInChildren<Gun>(true);
-
-        if (_equipedGun == null)
+        if (_weapons == null || _weapons.Length == 0)
         {
-            Debug.LogError($"No hay un arma equipada en {gameObject.name}.");
+            Debug.LogError($"No hay armas configuradas en {gameObject.name}.");
             enabled = false;
             return;
         }
 
         ResolveCameraTransform();
+        EquipDefaultWeapon();
+    }
 
-        // Nueva instancia de comandos - Armas
+    private void EquipDefaultWeapon()
+    {
+        foreach (var weapon in _weapons)
+        {
+            if (weapon != null)
+                weapon.SetActive(false);
+        }
+
+        if (_weapons[PISTOL_ID] == null)
+        {
+            Debug.LogError($"No hay arma por defecto (pistola) configurada en {gameObject.name}.");
+            enabled = false;
+            return;
+        }
+
+        _weapons[PISTOL_ID].SetActive(true);
+        _equipedGun = _weapons[PISTOL_ID].GetComponent<Gun>();
+
+        if (_equipedGun == null)
+        {
+            Debug.LogError($"{_weapons[PISTOL_ID].name} no tiene componente Gun.");
+            enabled = false;
+            return;
+        }
+
         _cmdAttack = new CmdAttack(_equipedGun);
         _cmdReload = new CmdReload(_equipedGun);
 
-        ActionsManager.instance.ActionWeaponChangeFeedback(ItemWeapons.PistolClip);
+        if (ActionsManager.instance != null)
+            ActionsManager.instance.ActionWeaponChangeFeedback(ItemWeapons.PistolClip);
     }
 
     private void Update()

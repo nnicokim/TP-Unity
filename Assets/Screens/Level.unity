@@ -7957,7 +7957,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f67b561d13544468bf7938854b8170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterInputManager
-  _weapons: []
+  _weapons:
+  - {fileID: 772681395}
+  - {fileID: 180034439}
+  - {fileID: 1472233568}
   _equipedGun: {fileID: 1195219893}
   cameraTransform: {fileID: 0}
   _faceCameraDirection: 1
