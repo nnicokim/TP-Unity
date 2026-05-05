@@ -1299,9 +1299,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ab62cbf20de44a4582c40ed442be13a, type: 3}
   - {fileID: 8300000, guid: ecff13b727eaf4888a9f6a3221bdb662, type: 3}
   _dieClips:
-  - {fileID: 8300000, guid: 326203e6dcd57467c92e2bcbf9c25e85, type: 3}
-  - {fileID: 8300000, guid: 763a323b04dbb4cbf99082a82ef3cb54, type: 3}
-  - {fileID: 8300000, guid: d8285c976a26141b7b956c30552425bb, type: 3}
+  - {fileID: 8300000, guid: 2b936944dc7f748379f2dc028cdbb9e6, type: 3}
+  - {fileID: 8300000, guid: c6836b2f92f034dd6a6db93f2552c658, type: 3}
+  - {fileID: 8300000, guid: ab2f1cdd01e0c41e8a4da64f74d842c4, type: 3}
   _idleClips:
   - {fileID: 8300000, guid: f462d308fc6a648b288adb78161502a5, type: 3}
   - {fileID: 8300000, guid: 824a492d546744169b7e4460926ebb2a, type: 3}
@@ -2570,9 +2570,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ab62cbf20de44a4582c40ed442be13a, type: 3}
   - {fileID: 8300000, guid: ecff13b727eaf4888a9f6a3221bdb662, type: 3}
   _dieClips:
-  - {fileID: 8300000, guid: 326203e6dcd57467c92e2bcbf9c25e85, type: 3}
-  - {fileID: 8300000, guid: 763a323b04dbb4cbf99082a82ef3cb54, type: 3}
-  - {fileID: 8300000, guid: d8285c976a26141b7b956c30552425bb, type: 3}
+  - {fileID: 8300000, guid: 2b936944dc7f748379f2dc028cdbb9e6, type: 3}
+  - {fileID: 8300000, guid: c6836b2f92f034dd6a6db93f2552c658, type: 3}
+  - {fileID: 8300000, guid: ab2f1cdd01e0c41e8a4da64f74d842c4, type: 3}
   _idleClips:
   - {fileID: 8300000, guid: f462d308fc6a648b288adb78161502a5, type: 3}
   - {fileID: 8300000, guid: 824a492d546744169b7e4460926ebb2a, type: 3}
@@ -2774,9 +2774,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ab62cbf20de44a4582c40ed442be13a, type: 3}
   - {fileID: 8300000, guid: ecff13b727eaf4888a9f6a3221bdb662, type: 3}
   _dieClips:
-  - {fileID: 8300000, guid: 326203e6dcd57467c92e2bcbf9c25e85, type: 3}
-  - {fileID: 8300000, guid: 763a323b04dbb4cbf99082a82ef3cb54, type: 3}
-  - {fileID: 8300000, guid: d8285c976a26141b7b956c30552425bb, type: 3}
+  - {fileID: 8300000, guid: 2b936944dc7f748379f2dc028cdbb9e6, type: 3}
+  - {fileID: 8300000, guid: c6836b2f92f034dd6a6db93f2552c658, type: 3}
+  - {fileID: 8300000, guid: ab2f1cdd01e0c41e8a4da64f74d842c4, type: 3}
   _idleClips:
   - {fileID: 8300000, guid: f462d308fc6a648b288adb78161502a5, type: 3}
   - {fileID: 8300000, guid: 824a492d546744169b7e4460926ebb2a, type: 3}
@@ -3490,9 +3490,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ab62cbf20de44a4582c40ed442be13a, type: 3}
   - {fileID: 8300000, guid: ecff13b727eaf4888a9f6a3221bdb662, type: 3}
   _dieClips:
-  - {fileID: 8300000, guid: 326203e6dcd57467c92e2bcbf9c25e85, type: 3}
-  - {fileID: 8300000, guid: 763a323b04dbb4cbf99082a82ef3cb54, type: 3}
-  - {fileID: 8300000, guid: d8285c976a26141b7b956c30552425bb, type: 3}
+  - {fileID: 8300000, guid: 2b936944dc7f748379f2dc028cdbb9e6, type: 3}
+  - {fileID: 8300000, guid: c6836b2f92f034dd6a6db93f2552c658, type: 3}
+  - {fileID: 8300000, guid: ab2f1cdd01e0c41e8a4da64f74d842c4, type: 3}
   _idleClips:
   - {fileID: 8300000, guid: f462d308fc6a648b288adb78161502a5, type: 3}
   - {fileID: 8300000, guid: 824a492d546744169b7e4460926ebb2a, type: 3}
@@ -6496,10 +6496,22 @@ MonoBehaviour:
   _attackAnimationName: fast.qc_skeleton|Melee
   _dieAnimationName: fast.qc_skeleton|idle_onfire
   _audioSource: {fileID: 0}
-  _attackClips: []
-  _hurtClips: []
-  _dieClips: []
-  _idleClips: []
+  _attackClips:
+  - {fileID: 8300000, guid: 44491c6b5c032437090631520291016e, type: 3}
+  - {fileID: 8300000, guid: cfc397cb5b5f64b7b878c48eca85eda0, type: 3}
+  - {fileID: 8300000, guid: 63703089188d94794ab7dc38b5b04945, type: 3}
+  _hurtClips:
+  - {fileID: 8300000, guid: 5c7e7f7ff6af44437862648463f3c5ef, type: 3}
+  - {fileID: 8300000, guid: 68b8b6d04cbdd498da65a4398bb638db, type: 3}
+  - {fileID: 8300000, guid: d95af07615f1e496eab2a5ec4f80c7a6, type: 3}
+  _dieClips:
+  - {fileID: 8300000, guid: 2b936944dc7f748379f2dc028cdbb9e6, type: 3}
+  - {fileID: 8300000, guid: c6836b2f92f034dd6a6db93f2552c658, type: 3}
+  - {fileID: 8300000, guid: ab2f1cdd01e0c41e8a4da64f74d842c4, type: 3}
+  _idleClips:
+  - {fileID: 8300000, guid: 217f3e279b3f4445f9fe577e91d151f7, type: 3}
+  - {fileID: 8300000, guid: 9da6b91ad0f474aea94bd4aa74110411, type: 3}
+  - {fileID: 8300000, guid: a531dfb28fd3941149784d5fd97083cb, type: 3}
   _idleSoundMinInterval: 4
   _idleSoundMaxInterval: 9
   _damage: 50
@@ -7485,9 +7497,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ab62cbf20de44a4582c40ed442be13a, type: 3}
   - {fileID: 8300000, guid: ecff13b727eaf4888a9f6a3221bdb662, type: 3}
   _dieClips:
-  - {fileID: 8300000, guid: 326203e6dcd57467c92e2bcbf9c25e85, type: 3}
-  - {fileID: 8300000, guid: 763a323b04dbb4cbf99082a82ef3cb54, type: 3}
-  - {fileID: 8300000, guid: d8285c976a26141b7b956c30552425bb, type: 3}
+  - {fileID: 8300000, guid: 2b936944dc7f748379f2dc028cdbb9e6, type: 3}
+  - {fileID: 8300000, guid: c6836b2f92f034dd6a6db93f2552c658, type: 3}
+  - {fileID: 8300000, guid: ab2f1cdd01e0c41e8a4da64f74d842c4, type: 3}
   _idleClips:
   - {fileID: 8300000, guid: f462d308fc6a648b288adb78161502a5, type: 3}
   - {fileID: 8300000, guid: 824a492d546744169b7e4460926ebb2a, type: 3}
@@ -8860,9 +8872,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ab62cbf20de44a4582c40ed442be13a, type: 3}
   - {fileID: 8300000, guid: ecff13b727eaf4888a9f6a3221bdb662, type: 3}
   _dieClips:
-  - {fileID: 8300000, guid: 326203e6dcd57467c92e2bcbf9c25e85, type: 3}
-  - {fileID: 8300000, guid: 763a323b04dbb4cbf99082a82ef3cb54, type: 3}
-  - {fileID: 8300000, guid: d8285c976a26141b7b956c30552425bb, type: 3}
+  - {fileID: 8300000, guid: 2b936944dc7f748379f2dc028cdbb9e6, type: 3}
+  - {fileID: 8300000, guid: c6836b2f92f034dd6a6db93f2552c658, type: 3}
+  - {fileID: 8300000, guid: ab2f1cdd01e0c41e8a4da64f74d842c4, type: 3}
   _idleClips:
   - {fileID: 8300000, guid: f462d308fc6a648b288adb78161502a5, type: 3}
   - {fileID: 8300000, guid: 824a492d546744169b7e4460926ebb2a, type: 3}
@@ -10073,9 +10085,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ab62cbf20de44a4582c40ed442be13a, type: 3}
   - {fileID: 8300000, guid: ecff13b727eaf4888a9f6a3221bdb662, type: 3}
   _dieClips:
-  - {fileID: 8300000, guid: 326203e6dcd57467c92e2bcbf9c25e85, type: 3}
-  - {fileID: 8300000, guid: 763a323b04dbb4cbf99082a82ef3cb54, type: 3}
-  - {fileID: 8300000, guid: d8285c976a26141b7b956c30552425bb, type: 3}
+  - {fileID: 8300000, guid: 2b936944dc7f748379f2dc028cdbb9e6, type: 3}
+  - {fileID: 8300000, guid: c6836b2f92f034dd6a6db93f2552c658, type: 3}
+  - {fileID: 8300000, guid: ab2f1cdd01e0c41e8a4da64f74d842c4, type: 3}
   _idleClips:
   - {fileID: 8300000, guid: f462d308fc6a648b288adb78161502a5, type: 3}
   - {fileID: 8300000, guid: 824a492d546744169b7e4460926ebb2a, type: 3}
