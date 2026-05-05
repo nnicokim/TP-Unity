@@ -18,6 +18,12 @@ public class Gun : MonoBehaviour, IGun
     [SerializeField] private Transform _parent;
     [SerializeField] protected int _bulletCount;
     [SerializeField] private AudioSource _audioSource;
+
+    [Header("Camera Aim")]
+    [SerializeField] private Camera _aimCamera;
+    [SerializeField] private float _aimDistance = 1000f;
+    [SerializeField] private LayerMask _aimMask = ~0;
+
     private bool _isReloading;
 
     public GameObject BulletPrefab => _stats != null ? _stats.BulletPrefab : null;
@@ -50,6 +56,8 @@ public class Gun : MonoBehaviour, IGun
 
         if (_audioSource == null)
             _audioSource = GetComponent<AudioSource>();
+
+        ResolveAimCamera();
 
         _bulletCount = ClipSize;
         AmmoUiFeedback();
@@ -142,6 +150,62 @@ public class Gun : MonoBehaviour, IGun
     private bool HasFullAmmo()
     {
         return ClipSize > 0 && _bulletCount >= ClipSize;
+    }
+
+    protected Quaternion GetShootRotation(Vector3 spawnPosition)
+    {
+        Vector3 direction = GetShootDirection(spawnPosition);
+
+        if (direction.sqrMagnitude <= 0f)
+            return transform.parent != null ? transform.parent.rotation : transform.rotation;
+
+        return Quaternion.LookRotation(direction);
+    }
+
+    protected Vector3 GetShootDirection(Vector3 spawnPosition)
+    {
+        Vector3 aimPoint = GetCameraAimPoint();
+        Vector3 direction = aimPoint - spawnPosition;
+
+        if (direction.sqrMagnitude <= 0f)
+            return transform.parent != null ? transform.parent.forward : transform.forward;
+
+        return direction.normalized;
+    }
+
+    private Vector3 GetCameraAimPoint()
+    {
+        ResolveAimCamera();
+
+        if (_aimCamera == null)
+            return transform.position + (transform.parent != null ? transform.parent.forward : transform.forward) * _aimDistance;
+
+        Ray aimRay = _aimCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        RaycastHit[] hits = Physics.RaycastAll(aimRay, _aimDistance, _aimMask, QueryTriggerInteraction.Ignore);
+
+        float closestDistance = float.PositiveInfinity;
+        Vector3 closestPoint = aimRay.origin + aimRay.direction * _aimDistance;
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            RaycastHit hit = hits[i];
+            if (hit.collider == null || hit.transform.IsChildOf(transform.root))
+                continue;
+
+            if (hit.distance >= closestDistance)
+                continue;
+
+            closestDistance = hit.distance;
+            closestPoint = hit.point;
+        }
+
+        return closestPoint;
+    }
+
+    private void ResolveAimCamera()
+    {
+        if (_aimCamera == null)
+            _aimCamera = Camera.main;
     }
 
     private void AssignDefaultStats()

@@ -8,7 +8,7 @@ public class Pistol : Gun
     {
         if (CanShoot)
         {
-            Quaternion shootRotation = transform.parent != null ? transform.parent.rotation : transform.rotation;
+            Quaternion shootRotation = GetShootRotation(transform.position);
             GameObject bullet = Instantiate(BulletPrefab, transform.position, shootRotation, ParentTransform);
             _bulletCount--;
             base.Attack();

@@ -7,17 +7,6 @@ public class CharacterInputManager : MonoBehaviour
     // MOVEMENT STRATEGIES
     private Walk _walk;
     private Run _run;
-    private Turn _turn;
-
-    // COMMANDS - MOVEMENT
-    private CmdMove _cmdMoveForward;
-    private CmdMove _cmdMoveBack;
-
-    private CmdMove _cmdTurnLeft;
-    private CmdMove _cmdTurnRight;
-
-    private CmdMove _cmdRunForward;
-    private CmdMove _cmdRunBack;
 
     // WEAPONS LIST
     private const int PISTOL_ID = 0; // TODO: ver como hacer si solo porta 2 armas.
@@ -26,6 +15,11 @@ public class CharacterInputManager : MonoBehaviour
 
     [SerializeField] private GameObject[] _weapons;
     [SerializeField] private Gun _equipedGun; // main gun strategy
+
+    [Header("Camera Relative Movement")]
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private bool _faceCameraDirection = true;
+    [SerializeField] private float _rotationSmoothSpeed = 12f;
 
     // COMMANDS - WEAPONS
     private CmdAttack _cmdAttack;
@@ -36,7 +30,6 @@ public class CharacterInputManager : MonoBehaviour
         // Asignación de referencias
         _walk = GetComponent<Walk>();
         _run = GetComponent<Run>();
-        _turn = GetComponent<Turn>();
 
         if (_walk == null)
         {
@@ -48,13 +41,6 @@ public class CharacterInputManager : MonoBehaviour
         if (_run == null)
         {
             Debug.LogError($"Falta el componente Run en {gameObject.name}.");
-            enabled = false;
-            return;
-        }
-
-        if (_turn == null)
-        {
-            Debug.LogError($"Falta el componente Turn en {gameObject.name}.");
             enabled = false;
             return;
         }
@@ -82,17 +68,7 @@ public class CharacterInputManager : MonoBehaviour
             return;
         }
 
-        // Nueva instancia de comandos - Caminar
-        _cmdMoveForward = new CmdMove(_walk, Vector3.forward);
-        _cmdMoveBack = new CmdMove(_walk, -Vector3.forward);
-
-        // Nueva instancia de comandos - Correr
-        _cmdRunForward = new CmdMove(_run, Vector3.forward);
-        _cmdRunBack = new CmdMove(_run, -Vector3.forward);
-
-        // Nueva instancia de comandos - Girar
-        _cmdTurnLeft = new CmdMove(_turn, -Vector3.up);
-        _cmdTurnRight = new CmdMove(_turn, Vector3.up);
+        ResolveCameraTransform();
 
         // Nueva instancia de comandos - Armas
         _cmdAttack = new CmdAttack(_equipedGun);
@@ -111,26 +87,8 @@ public class CharacterInputManager : MonoBehaviour
 
         bool isRunning = keyboard.leftShiftKey.isPressed;
 
-        // MOVEMENT
-        if (keyboard.wKey.isPressed)
-        {
-            EventQueueManager.instance.AddCommand(isRunning ? _cmdRunForward : _cmdMoveForward);
-        }
-
-        if (keyboard.sKey.isPressed)
-        {
-            EventQueueManager.instance.AddCommand(isRunning ? _cmdRunBack : _cmdMoveBack);
-        }
-
-        if (keyboard.aKey.isPressed)
-        {
-            EventQueueManager.instance.AddCommand(_cmdTurnLeft);
-        }
-
-        if (keyboard.dKey.isPressed)
-        {
-            EventQueueManager.instance.AddCommand(_cmdTurnRight);
-        }
+        HandleMovementInput(keyboard, isRunning);
+        RotateTowardsCameraDirection();
 
         // WEAPONS
         if (mouse != null && mouse.leftButton.wasPressedThisFrame)
@@ -198,6 +156,69 @@ public class CharacterInputManager : MonoBehaviour
 
         // 5. Reload weapon
         EventQueueManager.instance.AddCommand(_cmdReload);
+    }
+
+    private void HandleMovementInput(Keyboard keyboard, bool isRunning)
+    {
+        Vector3 moveDirection = GetCameraRelativeMoveDirection(keyboard);
+        if (moveDirection == Vector3.zero)
+            return;
+
+        IMovable movementStrategy = isRunning ? _run : _walk;
+        EventQueueManager.instance.AddCommand(new CmdMove(movementStrategy, moveDirection));
+    }
+
+    private Vector3 GetCameraRelativeMoveDirection(Keyboard keyboard)
+    {
+        ResolveCameraTransform();
+
+        Vector3 forward = cameraTransform != null ? cameraTransform.forward : transform.forward;
+        Vector3 right = cameraTransform != null ? cameraTransform.right : transform.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward = forward.sqrMagnitude > 0f ? forward.normalized : transform.forward;
+        right = right.sqrMagnitude > 0f ? right.normalized : transform.right;
+
+        Vector3 direction = Vector3.zero;
+
+        if (keyboard.wKey.isPressed)
+            direction += forward;
+
+        if (keyboard.sKey.isPressed)
+            direction -= forward;
+
+        if (keyboard.aKey.isPressed)
+            direction -= right;
+
+        if (keyboard.dKey.isPressed)
+            direction += right;
+
+        return direction.sqrMagnitude > 1f ? direction.normalized : direction;
+    }
+
+    private void RotateTowardsCameraDirection()
+    {
+        if (!_faceCameraDirection)
+            return;
+
+        ResolveCameraTransform();
+
+        Vector3 lookDirection = cameraTransform != null ? cameraTransform.forward : transform.forward;
+        lookDirection.y = 0f;
+
+        if (lookDirection.sqrMagnitude <= 0f)
+            return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(lookDirection.normalized);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSmoothSpeed * Time.deltaTime);
+    }
+
+    private void ResolveCameraTransform()
+    {
+        if (cameraTransform == null && Camera.main != null)
+            cameraTransform = Camera.main.transform;
     }
 
     private void LoadWeaponsFromChildren()

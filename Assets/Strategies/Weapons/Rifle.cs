@@ -11,12 +11,12 @@ public class Rifle : Gun
 
         int bulletsToShoot = Mathf.Min(BulletsPerShot, _bulletCount);
 
-        Quaternion shootRotation = transform.parent != null ? transform.parent.rotation : transform.rotation;
-        Vector3 shootDirection = transform.parent != null ? transform.parent.forward : transform.forward;
+        Vector3 shootDirection = GetShootDirection(transform.position);
 
         for (int i = 0; i < bulletsToShoot; i++)
         {
             Vector3 spawnPosition = transform.position + shootDirection * i * 0.8f;
+            Quaternion shootRotation = GetShootRotation(spawnPosition);
 
             GameObject bullet = Instantiate(
                 BulletPrefab,

@@ -12,11 +12,12 @@ public class Shotgun : Gun
             return;
 
         int bulletsToShoot = Mathf.Min(BulletsPerShot, _bulletCount);
-        Quaternion shootRotation = transform.parent != null ? transform.parent.rotation : transform.rotation;
 
         for (int i = 0; i < bulletsToShoot; i++)
         {
-            GameObject bullet = Instantiate(BulletPrefab, transform.position + Random.insideUnitSphere * 0.4f, shootRotation, ParentTransform);
+            Vector3 spawnPosition = transform.position + Random.insideUnitSphere * 0.4f;
+            Quaternion shootRotation = GetShootRotation(spawnPosition);
+            GameObject bullet = Instantiate(BulletPrefab, spawnPosition, shootRotation, ParentTransform);
 
             bullet.GetComponent<IBullet>().SetOwner(this);
             bullet.name = "Bullet";

@@ -12,5 +12,5 @@ public class Run : Actor, IMovable
     // Valor x de consumo de estamina
 
     public void Move(Vector3 direction)
-        => transform.Translate(direction * Speed * Time.deltaTime);
+        => transform.Translate(direction * Speed * Time.deltaTime, Space.World);
 }
