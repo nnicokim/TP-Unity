@@ -1236,7 +1236,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -1254,7 +1254,7 @@ BoxCollider:
     m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1283,7 +1283,7 @@ MonoBehaviour:
   _moveSpeed: 4.2
   _rotationSpeed: 7
   _stopDistance: 1.5
-  _detectionRange: 25
+  _detectionRange: 50
   _animation: {fileID: 183954395}
   _walkAnimationName: walk
   _idleAnimationName: idle
@@ -2512,7 +2512,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -2530,7 +2530,7 @@ BoxCollider:
     m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -2554,7 +2554,7 @@ MonoBehaviour:
   _moveSpeed: 4.2
   _rotationSpeed: 7
   _stopDistance: 1.5
-  _detectionRange: 25
+  _detectionRange: 50
   _animation: {fileID: 327475243}
   _walkAnimationName: walk
   _idleAnimationName: idle
@@ -2716,7 +2716,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -2734,7 +2734,7 @@ BoxCollider:
     m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -2758,7 +2758,7 @@ MonoBehaviour:
   _moveSpeed: 4.2
   _rotationSpeed: 7
   _stopDistance: 1.5
-  _detectionRange: 25
+  _detectionRange: 50
   _animation: {fileID: 331024899}
   _walkAnimationName: walk
   _idleAnimationName: idle
@@ -3432,7 +3432,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -3450,7 +3450,7 @@ BoxCollider:
     m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -3474,7 +3474,7 @@ MonoBehaviour:
   _moveSpeed: 4.2
   _rotationSpeed: 7
   _stopDistance: 1.5
-  _detectionRange: 25
+  _detectionRange: 50
   _animation: {fileID: 381168763}
   _walkAnimationName: walk
   _idleAnimationName: idle
@@ -6422,7 +6422,7 @@ Rigidbody:
     m_Bits: 4294967295
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -7427,7 +7427,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -7445,7 +7445,7 @@ BoxCollider:
     m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -10015,7 +10015,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -10033,7 +10033,7 @@ BoxCollider:
     m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -10057,7 +10057,7 @@ MonoBehaviour:
   _moveSpeed: 4.2
   _rotationSpeed: 7
   _stopDistance: 1.5
-  _detectionRange: 25
+  _detectionRange: 50
   _animation: {fileID: 1083448174}
   _walkAnimationName: walk
   _idleAnimationName: idle
