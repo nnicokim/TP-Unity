@@ -25,7 +25,7 @@ public class AsyncLoadScreen : MonoBehaviour
 
         while (!operation.isDone)
         {
-            _loadingBar.fillAmount = operation.progress;
+            _loadingBar.fillAmount = operation.progress / 0.9f;
 
             if (operation.progress >= 0.9f)
             {
