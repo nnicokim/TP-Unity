@@ -6815,12 +6815,12 @@ MonoBehaviour:
   CameraSide: 1
   CameraDistance: 2
   AvoidObstacles:
-    Enabled: 0
+    Enabled: 1
     CollisionFilter:
       serializedVersion: 2
-      m_Bits: 1
+      m_Bits: 4294967295
     IgnoreTag: 
-    CameraRadius: 0.2
+    CameraRadius: 0.5
     DampingIntoCollision: 0
     DampingFromCollision: 0.5
 --- !u!114 &615870358
@@ -9932,6 +9932,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f67b561d13544468bf7938854b8170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterInputManager
+  _keyForward: 37
+  _keyBack: 33
+  _keyLeft: 15
+  _keyRight: 18
+  _keyReload: 32
+  _keyWeapon1: 41
+  _keyWeapon2: 42
+  _keyWeapon3: 43
   _weapons:
   - {fileID: 772681395}
   - {fileID: 180034439}
