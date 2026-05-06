@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Screens/Menu.unity
     guid: 150b45f4d71634a168cb38b7e9daf0dd
   - enabled: 1
+    path: Assets/Screens/Info.unity
+    guid: af1ad0b686e2a46f98b1d071a110cb37
+  - enabled: 1
     path: Assets/Screens/AsyncLoad.unity
     guid: 3593409299dec49cbb2329f3cc83c78e
   - enabled: 1
