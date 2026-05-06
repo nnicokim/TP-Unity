@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    public bool isGameOver => _isGameOver;
     [SerializeField] private bool _isGameOver = false;
     [SerializeField] private bool _isVictory = false;
 
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null) Destroy(instance);
         instance = this;
+
+        Time.timeScale = 1f;
     }
     #endregion
 
@@ -50,6 +53,8 @@ public class GameManager : MonoBehaviour
     {
         _isGameOver = true;
         _isVictory = isVictory;
+
+        Time.timeScale = 0f;
     }
     #endregion
 }

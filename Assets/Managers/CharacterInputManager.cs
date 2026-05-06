@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using static InventoryManager;
 
@@ -100,6 +101,9 @@ public class CharacterInputManager : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance != null && GameManager.instance.isGameOver)
+            return;
+
         Keyboard keyboard = Keyboard.current;
         Mouse mouse = Mouse.current;
 
@@ -112,7 +116,7 @@ public class CharacterInputManager : MonoBehaviour
         RotateTowardsCameraDirection();
 
         // WEAPONS
-        if (mouse != null && mouse.leftButton.wasPressedThisFrame)
+        if (mouse != null && mouse.leftButton.wasPressedThisFrame && !IsPointerOverUi())
         {
             EventQueueManager.instance.AddCommand(_cmdAttack);
         }
@@ -240,6 +244,11 @@ public class CharacterInputManager : MonoBehaviour
     {
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
+    }
+
+    private bool IsPointerOverUi()
+    {
+        return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
     }
 
     private void LoadWeaponsFromChildren()

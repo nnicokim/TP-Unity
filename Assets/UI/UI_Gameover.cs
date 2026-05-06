@@ -56,6 +56,8 @@ public class UI_Gameover : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        Time.timeScale = 1f;
+
         SceneManager.LoadScene(MENU_SCENE_NAME);
     }
     #endregion
