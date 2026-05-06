@@ -1782,7 +1782,7 @@ MonoBehaviour:
   _target: {fileID: 833159271}
   _moveSpeed: 4.2
   _rotationSpeed: 7
-  _stopDistance: 1.5
+  _stopDistance: 2.5
   _detectionRange: 150
   _animation: {fileID: 183954395}
   _walkAnimationName: walk
@@ -3053,7 +3053,7 @@ MonoBehaviour:
   _target: {fileID: 833159271}
   _moveSpeed: 4.2
   _rotationSpeed: 7
-  _stopDistance: 1.5
+  _stopDistance: 2.5
   _detectionRange: 150
   _animation: {fileID: 327475243}
   _walkAnimationName: walk
@@ -3257,7 +3257,7 @@ MonoBehaviour:
   _target: {fileID: 833159271}
   _moveSpeed: 4.2
   _rotationSpeed: 7
-  _stopDistance: 1.5
+  _stopDistance: 2.5
   _detectionRange: 150
   _animation: {fileID: 331024899}
   _walkAnimationName: walk
@@ -3973,7 +3973,7 @@ MonoBehaviour:
   _target: {fileID: 833159271}
   _moveSpeed: 4.2
   _rotationSpeed: 7
-  _stopDistance: 1.5
+  _stopDistance: 2.5
   _detectionRange: 150
   _animation: {fileID: 381168763}
   _walkAnimationName: walk
@@ -8123,7 +8123,7 @@ MonoBehaviour:
   _target: {fileID: 833159271}
   _moveSpeed: 3.2
   _rotationSpeed: 5
-  _stopDistance: 2.2
+  _stopDistance: 4
   _detectionRange: 150
   _animation: {fileID: 631169778}
   _walkAnimationName: fast.qc_skeleton|idle_angry
@@ -9503,7 +9503,7 @@ MonoBehaviour:
   _target: {fileID: 833159271}
   _moveSpeed: 4.2
   _rotationSpeed: 7
-  _stopDistance: 1.5
+  _stopDistance: 2.5
   _detectionRange: 50
   _animation: {fileID: 816713285}
   _walkAnimationName: walk
@@ -11274,7 +11274,7 @@ MonoBehaviour:
   _target: {fileID: 833159271}
   _moveSpeed: 4.2
   _rotationSpeed: 7
-  _stopDistance: 1.5
+  _stopDistance: 2.5
   _detectionRange: 30
   _animation: {fileID: 953153107}
   _walkAnimationName: walk
@@ -13352,7 +13352,7 @@ MonoBehaviour:
   _target: {fileID: 833159271}
   _moveSpeed: 4.2
   _rotationSpeed: 7
-  _stopDistance: 1.5
+  _stopDistance: 2.5
   _detectionRange: 150
   _animation: {fileID: 1083448174}
   _walkAnimationName: walk
@@ -19635,7 +19635,7 @@ MonoBehaviour:
   _target: {fileID: 833159271}
   _moveSpeed: 4.2
   _rotationSpeed: 7
-  _stopDistance: 1.5
+  _stopDistance: 2.5
   _detectionRange: 100
   _animation: {fileID: 2115883596}
   _walkAnimationName: walk
