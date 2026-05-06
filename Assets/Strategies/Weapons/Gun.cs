@@ -31,7 +31,9 @@ public class Gun : MonoBehaviour, IGun
     public int Damage => _stats != null ? _stats.Damage : 0;
     public int ClipSize => _stats != null ? _stats.ClipSize : 0;
     public int BulletsPerShot => _stats != null ? _stats.BulletsPerShot : 0;
-    protected virtual float ReloadDuration => DEFAULT_RELOAD_DURATION;
+    public float BulletMaxPositionRadius => _stats != null ? _stats.BulletMaxPositionRadius : 0;
+    public float BulletMaxRandomAngle => _stats != null ?  _stats.BulletMaxRandomAngle : 0;
+    protected virtual float ReloadDuration => _stats != null ? _stats.BulletReloadTime : DEFAULT_RELOAD_DURATION;
     protected bool CanShoot => !_isReloading && _bulletCount > 0;
 
     private void Reset()
@@ -83,6 +85,38 @@ public class Gun : MonoBehaviour, IGun
     }
 
     // Instanciar o crear una bala.
+    protected void CreateBullet(Vector3 position, Quaternion rotation)
+    {
+        if (CanShoot)
+        {
+            GameObject bullet = Instantiate(BulletPrefab, position, rotation, ParentTransform);
+
+            IBullet bulletBehaviour = bullet.GetComponent<IBullet>();
+            if (bulletBehaviour == null)
+            {
+                Debug.LogError($"El prefab {BulletPrefab.name} no tiene un componente IBullet.", bullet);
+                Destroy(bullet);
+                return;
+            }
+
+            bulletBehaviour.SetOwner(this);
+            bullet.name = "Bullet";
+        }
+    }
+
+    protected void CreateSingleBullet()
+    {
+        CreateBullet(transform.position, GetShootRotation(transform.position));
+    }
+    protected void CreateRandomBullets()
+    {
+        for (int i = 0; i < BulletsPerShot; i++)
+        {
+            Vector3 spawnPosition = transform.position + Random.insideUnitSphere * BulletMaxPositionRadius;
+            Quaternion shootRotation = GetShootRotation(spawnPosition) * Quaternion.AngleAxis(Random.Range(0, BulletMaxRandomAngle), spawnPosition);
+            CreateBullet(spawnPosition, shootRotation);
+        }
+    }
     public virtual void Attack()
     {
         PlayShotSound();

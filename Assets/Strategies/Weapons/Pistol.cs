@@ -9,20 +9,9 @@ public class Pistol : Gun
         if (CanShoot)
         {
             Quaternion shootRotation = GetShootRotation(transform.position);
-            GameObject bullet = Instantiate(BulletPrefab, transform.position, shootRotation, ParentTransform);
+            CreateBullet(transform.position, shootRotation);
             _bulletCount--;
             base.Attack();
-
-            IBullet bulletBehaviour = bullet.GetComponent<IBullet>();
-            if (bulletBehaviour == null)
-            {
-                Debug.LogError($"El prefab {BulletPrefab.name} no tiene un componente IBullet.", bullet);
-                Destroy(bullet);
-                return;
-            }
-
-            bulletBehaviour.SetOwner(this);
-            bullet.name = "Bullet";
         }
     }
 }

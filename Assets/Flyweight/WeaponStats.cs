@@ -9,6 +9,9 @@ public class WeaponStats : ScriptableObject
     public int Damage => _struct.Damage;
     public int ClipSize => _struct.ClipSize;
     public int BulletsPerShot => _struct.BulletsPerShot;
+    public float BulletMaxPositionRadius => _struct.BulletMaxPositionRadius;
+    public float BulletMaxRandomAngle => _struct.BulletMaxRandomAngle;
+    public float BulletReloadTime => _struct.ReloadTime;
     public AudioClip ShotSound => _struct.ShotSound;
     public AudioClip ReloadSound => _struct.ReloadSound;
 }
@@ -22,4 +25,7 @@ public struct WeaponStruct
     public int BulletsPerShot;
     public AudioClip ShotSound;
     public AudioClip ReloadSound;
+    public float BulletMaxPositionRadius;
+    public float BulletMaxRandomAngle;
+    public float ReloadTime;
 }

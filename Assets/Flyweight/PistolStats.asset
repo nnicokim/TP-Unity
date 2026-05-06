@@ -19,3 +19,6 @@ MonoBehaviour:
     BulletsPerShot: 1
     ShotSound: {fileID: 8300000, guid: fd4acd269a36e445e99a8d87c87d8e63, type: 3}
     ReloadSound: {fileID: 8300000, guid: 73dbb74bbe85c564587448fba57b7ebc, type: 3}
+    BulletMaxPositionRadius: 0
+    BulletMaxRandomAngle: 0
+    ReloadTime: 1.5

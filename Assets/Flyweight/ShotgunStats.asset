@@ -15,7 +15,10 @@ MonoBehaviour:
   _struct:
     BulletPrefab: {fileID: 2953714819622099806, guid: 416b03361826f4604b050031c1e29ac2, type: 3}
     Damage: 30
-    ClipSize: 30
+    ClipSize: 6
     BulletsPerShot: 5
     ShotSound: {fileID: 8300000, guid: ec74244db866d154dba2cfb885da464c, type: 3}
     ReloadSound: {fileID: 8300000, guid: 5d3ab9b06f05efd41a31dceae0a40f88, type: 3}
+    BulletMaxPositionRadius: 0.4
+    BulletMaxRandomAngle: 5
+    ReloadTime: 2.5

@@ -6811,16 +6811,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineThirdPersonFollow
   Damping: {x: 0.1, y: 0.5, z: 0.3}
   ShoulderOffset: {x: 0.5, y: 0.5, z: 0}
-  VerticalArmLength: 0.4
+  VerticalArmLength: 0.2
   CameraSide: 1
-  CameraDistance: 2
+  CameraDistance: 1
   AvoidObstacles:
-    Enabled: 1
+    Enabled: 0
     CollisionFilter:
       serializedVersion: 2
       m_Bits: 4294967295
     IgnoreTag: 
-    CameraRadius: 0.5
+    CameraRadius: 0.339
     DampingIntoCollision: 0
     DampingFromCollision: 0.5
 --- !u!114 &615870358
@@ -6875,7 +6875,7 @@ Transform:
   m_GameObject: {fileID: 615870354}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.5, y: 4.6, z: -42.8}
+  m_LocalPosition: {x: -21.5, y: 4.3999996, z: -41.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9840,10 +9840,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 1.5
+  m_Height: 5
   m_Direction: 1
-  m_Center: {x: 0.0000019073486, y: -0.00000011920929, z: 0.0000038146973}
+  m_Center: {x: 0.0000019073486, y: 1, z: 0.0000038146973}
 --- !u!23 &833159269
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13731,7 +13731,7 @@ Transform:
   m_GameObject: {fileID: 1138013544}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.45454547, y: 2.8181818, z: -1.8181819}
+  m_LocalPosition: {x: 0.45454547, y: 2.6363633, z: -0.90909094}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

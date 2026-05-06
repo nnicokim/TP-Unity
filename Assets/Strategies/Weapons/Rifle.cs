@@ -9,37 +9,9 @@ public class Rifle : Gun
         if (!CanShoot)
             return;
 
-        int bulletsToShoot = Mathf.Min(BulletsPerShot, _bulletCount);
+        CreateRandomBullets();
 
-        Vector3 shootDirection = GetShootDirection(transform.position);
-
-        for (int i = 0; i < bulletsToShoot; i++)
-        {
-            Vector3 spawnPosition = transform.position + shootDirection * i * 0.8f;
-            Quaternion shootRotation = GetShootRotation(spawnPosition);
-
-            GameObject bullet = Instantiate(
-                BulletPrefab,
-                spawnPosition,
-                shootRotation,
-                ParentTransform
-            );
-
-            _bulletCount--;
-
-            IBullet bulletBehaviour = bullet.GetComponent<IBullet>();
-
-            if (bulletBehaviour == null)
-            {
-                Debug.LogError($"El prefab {BulletPrefab.name} no tiene un componente IBullet!!!", bullet);
-                Destroy(bullet);
-                return;
-            }
-
-            bulletBehaviour.SetOwner(this);
-            bullet.name = "Bullet";
-        }
-
+        _bulletCount--;
         base.Attack();
     }
 }
