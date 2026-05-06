@@ -44,14 +44,7 @@ public class EventQueueManager : MonoBehaviour
             //    break;
             //}
 
-            // TODO: agregar esto de game manager
-            // if (GameManager.instance.isGamePause)
-            // {
-            //     _commands.RemoveAt(i);
-            //     break;
-            // }
-
-            if (_commands[i] == null)
+            if (GameManager.instance.isGamePause || _commands[i] == null)
             {
                 _commands.RemoveAt(i);
                 continue;
