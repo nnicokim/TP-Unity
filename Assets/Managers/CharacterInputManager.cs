@@ -5,6 +5,18 @@ using static InventoryManager;
 
 public class CharacterInputManager : MonoBehaviour
 {
+
+    // KEY BINDINGS
+    [SerializeField] private Key _keyForward = Key.W;
+    [SerializeField] private Key _keyBack = Key.S;
+    [SerializeField] private Key _keyLeft = Key.A;
+    [SerializeField] private Key _keyRight = Key.D;
+    [SerializeField] private Key _keyReload = Key.R;
+    [SerializeField] private Key _keyWeapon1 = Key.Digit1;
+    [SerializeField] private Key _keyWeapon2 = Key.Digit2;
+    [SerializeField] private Key _keyWeapon3 = Key.Digit3;
+
+
     // MOVEMENT STRATEGIES
     private Walk _walk;
     private Run _run;
@@ -123,23 +135,23 @@ public class CharacterInputManager : MonoBehaviour
             EventQueueManager.instance.AddCommand(_cmdAttack);
         }
 
-        if (keyboard.rKey.wasPressedThisFrame)
+        if (keyboard[_keyReload].wasPressedThisFrame)
         {
             EventQueueManager.instance.AddCommand(_cmdReload);
         }
 
         // WEAPONS SELECTION
-        if (keyboard.digit1Key.wasPressedThisFrame)
+        if (keyboard[_keyWeapon1].wasPressedThisFrame)
         {
             WeaponsSelection(ItemWeapons.PistolClip);
         }
 
-        if (keyboard.digit2Key.wasPressedThisFrame)
+        if (keyboard[_keyWeapon2].wasPressedThisFrame)
         {
             WeaponsSelection(ItemWeapons.RifleClip);
         }
 
-        if (keyboard.digit3Key.wasPressedThisFrame)
+        if (keyboard[_keyWeapon3].wasPressedThisFrame)
         {
             WeaponsSelection(ItemWeapons.ShotgunShell);
         }
@@ -210,16 +222,16 @@ public class CharacterInputManager : MonoBehaviour
 
         Vector3 direction = Vector3.zero;
 
-        if (keyboard.wKey.isPressed)
+        if (keyboard[_keyForward].isPressed)
             direction += forward;
 
-        if (keyboard.sKey.isPressed)
+        if (keyboard[_keyBack].isPressed)
             direction -= forward;
 
-        if (keyboard.aKey.isPressed)
+        if (keyboard[_keyLeft].isPressed)
             direction -= right;
 
-        if (keyboard.dKey.isPressed)
+        if (keyboard[_keyRight].isPressed)
             direction += right;
 
         return direction.sqrMagnitude > 1f ? direction.normalized : direction;
