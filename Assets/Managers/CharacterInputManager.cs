@@ -97,6 +97,8 @@ public class CharacterInputManager : MonoBehaviour
 
         if (ActionsManager.instance != null)
             ActionsManager.instance.ActionWeaponChangeFeedback(ItemWeapons.PistolClip);
+
+        _equipedGun.RefreshAmmoUi();
     }
 
     private void Update()
@@ -177,10 +179,10 @@ public class CharacterInputManager : MonoBehaviour
         _cmdReload = new CmdReload(_equipedGun);
 
         // 4. Update Ui Feedback
-        ActionsManager.instance.ActionWeaponChangeFeedback(selection);
+        if (ActionsManager.instance != null)
+            ActionsManager.instance.ActionWeaponChangeFeedback(selection);
 
-        // 5. Reload weapon
-        EventQueueManager.instance.AddCommand(_cmdReload);
+        _equipedGun.RefreshAmmoUi();
     }
 
     private void HandleMovementInput(Keyboard keyboard, bool isRunning)

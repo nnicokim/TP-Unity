@@ -24,6 +24,7 @@ public class Gun : MonoBehaviour, IGun
     [SerializeField] private float _aimDistance = 1000f;
     [SerializeField] private LayerMask _aimMask = ~0;
 
+    private bool _isInitialized;
     private bool _isReloading;
 
     public GameObject BulletPrefab => _stats != null ? _stats.BulletPrefab : null;
@@ -45,6 +46,14 @@ public class Gun : MonoBehaviour, IGun
 
     private void Start()
     {
+        InitializeGun();
+    }
+
+    private void InitializeGun()
+    {
+        if (_isInitialized)
+            return;
+
         AssignDefaultStats();
 
         if (_stats == null)
@@ -60,6 +69,7 @@ public class Gun : MonoBehaviour, IGun
         ResolveAimCamera();
 
         _bulletCount = ClipSize;
+        _isInitialized = true;
         AmmoUiFeedback();
     }
 
@@ -82,6 +92,8 @@ public class Gun : MonoBehaviour, IGun
 
     public void Reload()
     {
+        InitializeGun();
+
         if (_isReloading)
             return;
 
@@ -93,6 +105,12 @@ public class Gun : MonoBehaviour, IGun
 
         Debug.Log($"Recargando {gameObject.name}...");
         StartCoroutine(ReloadRoutine());
+    }
+
+    public void RefreshAmmoUi()
+    {
+        InitializeGun();
+        AmmoUiFeedback();
     }
 
     private IEnumerator ReloadRoutine()
