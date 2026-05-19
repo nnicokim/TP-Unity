@@ -10,6 +10,8 @@ public class Fists : MonoBehaviour
 
     [Header("Punch Movement")]
     [SerializeField, Min(0f)] private float punchDistance = 0.35f;
+    [SerializeField] private Vector3 leftHookRotation = new Vector3(0f, 25f, 0f);
+    [SerializeField] private Vector3 rightHookRotation = new Vector3(0f, -25f, 0f);
     [SerializeField, Min(0.01f)] private float punchForwardDuration = 0.08f;
     [SerializeField, Min(0.01f)] private float punchReturnDuration = 0.12f;
     [SerializeField, Min(0f)] private float cooldown = 0.35f;
@@ -23,6 +25,8 @@ public class Fists : MonoBehaviour
 
     private Vector3 _leftArmStartLocalPosition;
     private Vector3 _rightArmStartLocalPosition;
+    private Quaternion _leftArmStartLocalRotation;
+    private Quaternion _rightArmStartLocalRotation;
     private bool _useLeftArm = true;
     private bool _isPunching;
     private bool _isEquipped = true;
@@ -49,10 +53,12 @@ public class Fists : MonoBehaviour
 
         Transform arm = _useLeftArm ? leftArm : rightArm;
         Vector3 startPosition = _useLeftArm ? _leftArmStartLocalPosition : _rightArmStartLocalPosition;
+        Quaternion startRotation = _useLeftArm ? _leftArmStartLocalRotation : _rightArmStartLocalRotation;
+        Vector3 hookRotation = _useLeftArm ? leftHookRotation : rightHookRotation;
         _useLeftArm = !_useLeftArm;
 
         ApplyPunchDamage();
-        StartCoroutine(PunchRoutine(arm, startPosition));
+        StartCoroutine(PunchRoutine(arm, startPosition, startRotation, hookRotation));
         return true;
     }
 
@@ -68,10 +74,16 @@ public class Fists : MonoBehaviour
     private void CacheArmPositions()
     {
         if (leftArm != null)
+        {
             _leftArmStartLocalPosition = leftArm.localPosition;
+            _leftArmStartLocalRotation = leftArm.localRotation;
+        }
 
         if (rightArm != null)
+        {
             _rightArmStartLocalPosition = rightArm.localPosition;
+            _rightArmStartLocalRotation = rightArm.localRotation;
+        }
     }
 
     private void ResolveAttackReferences()
@@ -83,21 +95,23 @@ public class Fists : MonoBehaviour
             attackOrigin = attackCamera.transform;
     }
 
-    private IEnumerator PunchRoutine(Transform arm, Vector3 startPosition)
+    private IEnumerator PunchRoutine(Transform arm, Vector3 startPosition, Quaternion startRotation, Vector3 hookRotation)
     {
         _isPunching = true;
         _nextAttackTime = Time.time + cooldown;
 
         Vector3 endPosition = startPosition + Vector3.forward * punchDistance;
+        Quaternion endRotation = startRotation * Quaternion.Euler(hookRotation);
 
-        yield return MoveArm(arm, startPosition, endPosition, punchForwardDuration);
-        yield return MoveArm(arm, endPosition, startPosition, punchReturnDuration);
+        yield return MoveArm(arm, startPosition, endPosition, startRotation, endRotation, punchForwardDuration);
+        yield return MoveArm(arm, endPosition, startPosition, endRotation, startRotation, punchReturnDuration);
 
         arm.localPosition = startPosition;
+        arm.localRotation = startRotation;
         _isPunching = false;
     }
 
-    private IEnumerator MoveArm(Transform arm, Vector3 from, Vector3 to, float duration)
+    private IEnumerator MoveArm(Transform arm, Vector3 fromPosition, Vector3 toPosition, Quaternion fromRotation, Quaternion toRotation, float duration)
     {
         float elapsedTime = 0f;
 
@@ -107,11 +121,13 @@ public class Fists : MonoBehaviour
             float time = Mathf.Clamp01(elapsedTime / duration);
             float smoothTime = Mathf.SmoothStep(0f, 1f, time);
 
-            arm.localPosition = Vector3.LerpUnclamped(from, to, smoothTime);
+            arm.localPosition = Vector3.LerpUnclamped(fromPosition, toPosition, smoothTime);
+            arm.localRotation = Quaternion.SlerpUnclamped(fromRotation, toRotation, smoothTime);
             yield return null;
         }
 
-        arm.localPosition = to;
+        arm.localPosition = toPosition;
+        arm.localRotation = toRotation;
     }
 
     private void ApplyPunchDamage()
