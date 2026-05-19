@@ -5,6 +5,11 @@ using static InventoryManager;
 
 public class CharacterInputManager : MonoBehaviour
 {
+    private enum WeaponMode
+    {
+        Fists,
+        Gun
+    }
 
     // KEY BINDINGS
     [SerializeField] private Key _keyForward = Key.W;
@@ -12,6 +17,7 @@ public class CharacterInputManager : MonoBehaviour
     [SerializeField] private Key _keyLeft = Key.A;
     [SerializeField] private Key _keyRight = Key.D;
     [SerializeField] private Key _keyReload = Key.R;
+    [SerializeField] private Key _keyFists = Key.Space;
     [SerializeField] private Key _keyWeapon1 = Key.Digit1;
     [SerializeField] private Key _keyWeapon2 = Key.Digit2;
     [SerializeField] private Key _keyWeapon3 = Key.Digit3;
@@ -29,6 +35,17 @@ public class CharacterInputManager : MonoBehaviour
     [SerializeField] private GameObject[] _weapons;
     [SerializeField] private Gun _equipedGun; // main gun strategy
 
+    [Header("Fists / Weapon Switching")]
+    [SerializeField] private Fists _fists;
+    [SerializeField] private GameObject _fistsView;
+    [SerializeField] private bool _startWithPistol;
+    [SerializeField] private bool _hasPistol;
+    [SerializeField] private Transform _weaponHolder;
+    [SerializeField] private bool _applyHeldWeaponPoseOnPickup = true;
+    [SerializeField] private Vector3 _heldWeaponLocalPosition = new Vector3(1f, 1.38f, 0f);
+    [SerializeField] private Vector3 _heldWeaponLocalEulerAngles = new Vector3(-90f, -5f, 0f);
+    [SerializeField] private Vector3 _heldWeaponLocalScale = new Vector3(0.5f, 0.5f, 0.5f);
+
     [Header("Camera Relative Movement")]
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private bool _faceCameraDirection = true;
@@ -37,6 +54,7 @@ public class CharacterInputManager : MonoBehaviour
     // COMMANDS - WEAPONS
     private CmdAttack _cmdAttack;
     private CmdReload _cmdReload;
+    private WeaponMode _weaponMode = WeaponMode.Fists;
 
     private void Start()
     {
@@ -65,52 +83,62 @@ public class CharacterInputManager : MonoBehaviour
             return;
         }
 
+        ResolveCameraTransform();
+        ResolveFists();
+        ResolveWeaponHolder();
+
         if (_weapons == null || _weapons.Length == 0)
             LoadWeaponsFromChildren();
 
-        if (_weapons == null || _weapons.Length == 0)
+        if (_startWithPistol && HasWeapon(PISTOL_ID))
         {
-            Debug.LogError($"No hay armas configuradas en {gameObject.name}.");
-            enabled = false;
+            _hasPistol = true;
+            EquipPistol();
             return;
         }
 
-        ResolveCameraTransform();
-        EquipDefaultWeapon();
+        EquipFists();
     }
 
-    private void EquipDefaultWeapon()
+    private void EquipPistol()
     {
-        foreach (var weapon in _weapons)
+        if (!_hasPistol || !HasWeapon(PISTOL_ID))
         {
-            if (weapon != null)
-                weapon.SetActive(false);
-        }
-
-        if (_weapons[PISTOL_ID] == null)
-        {
-            Debug.LogError($"No hay arma por defecto (pistola) configurada en {gameObject.name}.");
-            enabled = false;
+            Debug.Log("No tenes la pistola todavia.");
             return;
         }
 
-        _weapons[PISTOL_ID].SetActive(true);
+        HideAllWeapons();
+        SetFistsActive(false);
+
         _equipedGun = _weapons[PISTOL_ID].GetComponent<Gun>();
 
         if (_equipedGun == null)
         {
-            Debug.LogError($"{_weapons[PISTOL_ID].name} no tiene componente Gun.");
-            enabled = false;
+            Debug.LogWarning($"{_weapons[PISTOL_ID].name} no tiene componente Gun.");
             return;
         }
 
+        _weapons[PISTOL_ID].SetActive(true);
         _cmdAttack = new CmdAttack(_equipedGun);
         _cmdReload = new CmdReload(_equipedGun);
+        _weaponMode = WeaponMode.Gun;
 
         if (ActionsManager.instance != null)
             ActionsManager.instance.ActionWeaponChangeFeedback(ItemWeapons.PistolClip);
 
         _equipedGun.RefreshAmmoUi();
+    }
+
+    private void EquipFists()
+    {
+        HideAllWeapons();
+        SetFistsActive(true);
+
+        _equipedGun = null;
+        _cmdAttack = null;
+        _cmdReload = null;
+        _weaponMode = WeaponMode.Fists;
     }
 
     private void Update()
@@ -132,15 +160,20 @@ public class CharacterInputManager : MonoBehaviour
         // WEAPONS
         if (mouse != null && mouse.leftButton.wasPressedThisFrame && !IsPointerOverUi())
         {
-            EventQueueManager.instance.AddCommand(_cmdAttack);
+            HandleAttackInput();
         }
 
-        if (keyboard[_keyReload].wasPressedThisFrame)
+        if (keyboard[_keyReload].wasPressedThisFrame && _weaponMode == WeaponMode.Gun && _cmdReload != null)
         {
             EventQueueManager.instance.AddCommand(_cmdReload);
         }
 
         // WEAPONS SELECTION
+        if (keyboard[_keyFists].wasPressedThisFrame)
+        {
+            EquipFists();
+        }
+
         if (keyboard[_keyWeapon1].wasPressedThisFrame)
         {
             WeaponsSelection(ItemWeapons.PistolClip);
@@ -159,6 +192,12 @@ public class CharacterInputManager : MonoBehaviour
 
     private void WeaponsSelection(InventoryManager.ItemWeapons selection)
     {
+        if (selection == ItemWeapons.PistolClip)
+        {
+            EquipPistol();
+            return;
+        }
+
         if (_weapons == null || _weapons.Length == 0)
             LoadWeaponsFromChildren();
 
@@ -169,12 +208,8 @@ public class CharacterInputManager : MonoBehaviour
             return;
         }
 
-        // 1. Desactivado de todas las armas
-        foreach (var weapon in _weapons)
-        {
-            if (weapon != null)
-                weapon.SetActive(false);
-        }
+        HideAllWeapons();
+        SetFistsActive(false);
 
         // 2. Activar el arma seleccionada
         _equipedGun = _weapons[weaponIndex].GetComponent<Gun>();
@@ -189,12 +224,47 @@ public class CharacterInputManager : MonoBehaviour
         // 3. Crear nuevas las estrategias
         _cmdAttack = new CmdAttack(_equipedGun);
         _cmdReload = new CmdReload(_equipedGun);
+        _weaponMode = WeaponMode.Gun;
 
         // 4. Update Ui Feedback
         if (ActionsManager.instance != null)
             ActionsManager.instance.ActionWeaponChangeFeedback(selection);
 
         _equipedGun.RefreshAmmoUi();
+    }
+
+    public void PickupPistol(Gun pistol)
+    {
+        if (pistol == null)
+        {
+            Debug.LogWarning("CharacterInputManager: se intento recoger una pistola null.", this);
+            return;
+        }
+
+        EnsureWeaponSlot(PISTOL_ID);
+        _weapons[PISTOL_ID] = pistol.gameObject;
+        _hasPistol = true;
+
+        AttachPistolToHolder(pistol.transform);
+        EquipPistol();
+
+        Debug.Log("Pistola recogida.");
+    }
+
+    private void HandleAttackInput()
+    {
+        if (_weaponMode == WeaponMode.Fists)
+        {
+            if (_fists != null)
+                _fists.Attack();
+            else
+                Debug.LogWarning("No hay Fists asignado al CharacterInputManager.", this);
+
+            return;
+        }
+
+        if (_cmdAttack != null)
+            EventQueueManager.instance.AddCommand(_cmdAttack);
     }
 
     private void HandleMovementInput(Keyboard keyboard, bool isRunning)
@@ -260,6 +330,23 @@ public class CharacterInputManager : MonoBehaviour
             cameraTransform = Camera.main.transform;
     }
 
+    private void ResolveFists()
+    {
+        if (_fists == null)
+            _fists = GetComponentInChildren<Fists>(true);
+    }
+
+    private void ResolveWeaponHolder()
+    {
+        if (_weaponHolder != null)
+            return;
+
+        if (cameraTransform != null)
+            _weaponHolder = cameraTransform;
+        else if (Camera.main != null)
+            _weaponHolder = Camera.main.transform;
+    }
+
     private bool IsPointerOverUi()
     {
         return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
@@ -272,5 +359,69 @@ public class CharacterInputManager : MonoBehaviour
 
         for (int i = 0; i < guns.Length; i++)
             _weapons[i] = guns[i].gameObject;
+    }
+
+    private bool HasWeapon(int weaponIndex)
+    {
+        return _weapons != null && weaponIndex >= 0 && weaponIndex < _weapons.Length && _weapons[weaponIndex] != null;
+    }
+
+    private void HideAllWeapons()
+    {
+        if (_weapons == null)
+            return;
+
+        for (int i = 0; i < _weapons.Length; i++)
+        {
+            GameObject weapon = _weapons[i];
+            if (weapon != null)
+                weapon.SetActive(ShouldKeepWeaponVisibleInWorld(i));
+        }
+    }
+
+    private bool ShouldKeepWeaponVisibleInWorld(int weaponIndex)
+    {
+        return weaponIndex == PISTOL_ID && !_hasPistol;
+    }
+
+    private void SetFistsActive(bool isActive)
+    {
+        if (_fists != null)
+            _fists.SetEquipped(isActive);
+
+        if (_fistsView != null)
+            _fistsView.SetActive(isActive);
+    }
+
+    private void EnsureWeaponSlot(int weaponIndex)
+    {
+        if (_weapons != null && _weapons.Length > weaponIndex)
+            return;
+
+        GameObject[] newWeapons = new GameObject[weaponIndex + 1];
+        if (_weapons != null)
+        {
+            for (int i = 0; i < _weapons.Length; i++)
+                newWeapons[i] = _weapons[i];
+        }
+
+        _weapons = newWeapons;
+    }
+
+    private void AttachPistolToHolder(Transform pistolTransform)
+    {
+        ResolveWeaponHolder();
+
+        if (_weaponHolder == null)
+            return;
+
+        pistolTransform.SetParent(_weaponHolder, false);
+
+        if (!_applyHeldWeaponPoseOnPickup)
+            return;
+
+        pistolTransform.localPosition = _heldWeaponLocalPosition;
+        pistolTransform.localEulerAngles = _heldWeaponLocalEulerAngles;
+        pistolTransform.localScale = _heldWeaponLocalScale;
     }
 }
