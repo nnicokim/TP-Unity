@@ -19,6 +19,9 @@ public class Gun : MonoBehaviour, IGun
     [SerializeField] protected int _bulletCount;
     [SerializeField] private AudioSource _audioSource;
 
+    [Header("Shoot Origin")]
+    [SerializeField] private Transform _muzzleTransform;
+
     [Header("Camera Aim")]
     [SerializeField] private Camera _aimCamera;
     [SerializeField] private float _aimDistance = 1000f;
@@ -35,6 +38,8 @@ public class Gun : MonoBehaviour, IGun
     public float BulletMaxRandomAngle => _stats != null ?  _stats.BulletMaxRandomAngle : 0;
     protected virtual float ReloadDuration => _stats != null ? _stats.BulletReloadTime : DEFAULT_RELOAD_DURATION;
     protected bool CanShoot => !_isReloading && _bulletCount > 0;
+    protected Vector3 MuzzlePosition => _muzzleTransform != null ? _muzzleTransform.position : transform.position;
+    protected Transform MuzzleTransform => _muzzleTransform;
 
     private void Reset()
     {
@@ -106,13 +111,14 @@ public class Gun : MonoBehaviour, IGun
 
     protected void CreateSingleBullet()
     {
-        CreateBullet(transform.position, GetShootRotation(transform.position));
+        Vector3 spawnPosition = MuzzlePosition;
+        CreateBullet(spawnPosition, GetShootRotation(spawnPosition));
     }
     protected void CreateRandomBullets()
     {
         for (int i = 0; i < BulletsPerShot; i++)
         {
-            Vector3 spawnPosition = transform.position + Random.insideUnitSphere * BulletMaxPositionRadius;
+            Vector3 spawnPosition = MuzzlePosition + Random.insideUnitSphere * BulletMaxPositionRadius;
             Quaternion shootRotation = GetShootRotation(spawnPosition) * Quaternion.AngleAxis(Random.Range(0, BulletMaxRandomAngle), spawnPosition);
             CreateBullet(spawnPosition, shootRotation);
         }

@@ -23,6 +23,11 @@ public class Fists : MonoBehaviour
     [SerializeField] private Transform attackOrigin;
     [SerializeField] private Camera attackCamera;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource punchAudioSource;
+    [SerializeField] private AudioClip punchClip;
+    [SerializeField, Range(0f, 1f)] private float punchVolume = 1f;
+
     private Vector3 _leftArmStartLocalPosition;
     private Vector3 _rightArmStartLocalPosition;
     private Quaternion _leftArmStartLocalRotation;
@@ -36,6 +41,7 @@ public class Fists : MonoBehaviour
     {
         CacheArmPositions();
         ResolveAttackReferences();
+        ResolveAudioReferences();
     }
 
     public void SetEquipped(bool isEquipped)
@@ -58,6 +64,7 @@ public class Fists : MonoBehaviour
         _useLeftArm = !_useLeftArm;
 
         ApplyPunchDamage();
+        PlayPunchSound();
         StartCoroutine(PunchRoutine(arm, startPosition, startRotation, hookRotation));
         return true;
     }
@@ -93,6 +100,21 @@ public class Fists : MonoBehaviour
 
         if (attackOrigin == null && attackCamera != null)
             attackOrigin = attackCamera.transform;
+    }
+
+    private void ResolveAudioReferences()
+    {
+        if (punchAudioSource != null)
+            return;
+
+        if (leftArm != null)
+            punchAudioSource = leftArm.GetComponentInParent<AudioSource>();
+
+        if (punchAudioSource == null && rightArm != null)
+            punchAudioSource = rightArm.GetComponentInParent<AudioSource>();
+
+        if (punchAudioSource == null)
+            punchAudioSource = GetComponentInChildren<AudioSource>(true);
     }
 
     private IEnumerator PunchRoutine(Transform arm, Vector3 startPosition, Quaternion startRotation, Vector3 hookRotation)
@@ -153,6 +175,23 @@ public class Fists : MonoBehaviour
             EventQueueManager.instance.AddCommand(new CmdApplyDamage(damageable, damage));
         else
             damageable.ApplyDamage(damage);
+    }
+
+    private void PlayPunchSound()
+    {
+        ResolveAudioReferences();
+
+        if (punchAudioSource == null)
+            return;
+
+        if (punchClip != null)
+        {
+            punchAudioSource.PlayOneShot(punchClip, punchVolume);
+            return;
+        }
+
+        if (punchAudioSource.clip != null)
+            punchAudioSource.PlayOneShot(punchAudioSource.clip, punchVolume);
     }
 
     private Ray GetPunchRay()
