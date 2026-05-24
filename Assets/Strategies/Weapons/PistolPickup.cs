@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 public class PistolPickup : MonoBehaviour
@@ -11,13 +13,23 @@ public class PistolPickup : MonoBehaviour
     [SerializeField] private LayerMask playerMask = ~0;
     [SerializeField] private bool checkPickupByDistance = true;
 
+    [Header("Pickup Feedback")]
+    [SerializeField] private Text gunInstructionText;
+    [SerializeField] private Text pickupText;
+    [SerializeField] private string pickupMessage = "PistolPickedUp";
+    [SerializeField, Min(0f)] private float pickupMessageDuration = 2f;
+
     private bool _wasPickedUp;
     private CharacterInputManager _cachedPlayer;
+    private Coroutine _pickupTextRoutine;
 
     private void Awake()
     {
         if (pistol == null)
             pistol = GetComponentInChildren<Gun>(true);
+
+        SetGunInstructionVisible(true);
+        SetPickupTextVisible(false);
     }
 
     private void Update()
@@ -62,8 +74,11 @@ public class PistolPickup : MonoBehaviour
         }
 
         _wasPickedUp = true;
+        SetGunInstructionVisible(false);
         PreparePickedUpPistol();
         character.PickupPistol(pistol);
+        pistol.PlayReloadSoundOnce();
+        ShowPickupText();
     }
 
     private void TryPickupByDistance()
@@ -97,6 +112,40 @@ public class PistolPickup : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, pickupRadius);
+    }
+
+    private void ShowPickupText()
+    {
+        if (pickupText == null)
+            return;
+
+        if (_pickupTextRoutine != null)
+            StopCoroutine(_pickupTextRoutine);
+
+        _pickupTextRoutine = StartCoroutine(ShowPickupTextRoutine());
+    }
+
+    private IEnumerator ShowPickupTextRoutine()
+    {
+        pickupText.text = pickupMessage;
+        SetPickupTextVisible(true);
+
+        yield return new WaitForSeconds(pickupMessageDuration);
+
+        SetPickupTextVisible(false);
+        _pickupTextRoutine = null;
+    }
+
+    private void SetPickupTextVisible(bool isVisible)
+    {
+        if (pickupText != null)
+            pickupText.gameObject.SetActive(isVisible);
+    }
+
+    private void SetGunInstructionVisible(bool isVisible)
+    {
+        if (gunInstructionText != null)
+            gunInstructionText.gameObject.SetActive(isVisible);
     }
 
     private void PreparePickedUpPistol()

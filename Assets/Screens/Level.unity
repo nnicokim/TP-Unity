@@ -2679,7 +2679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -641.5, y: 367.1}
+  m_AnchoredPosition: {x: -645.5, y: 380}
   m_SizeDelta: {x: 1248, y: 214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &120581047
@@ -2695,7 +2695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.0068084607, g: 0.4811321, b: 0.0068084607, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3306,7 +3306,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -36.5, y: 9.6, z: -22}
-  m_LocalScale: {x: 130, y: 1, z: 100}
+  m_LocalScale: {x: 130.5, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 613102172}
@@ -17003,6 +17003,7 @@ RectTransform:
   m_Children:
   - {fileID: 838925183}
   - {fileID: 1451269460}
+  - {fileID: 1272122898}
   m_Father: {fileID: 365064530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -18072,7 +18073,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -643, y: 459}
+  m_AnchoredPosition: {x: -645, y: 469.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &775930789
@@ -18088,7 +18089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.6698113, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -19690,6 +19691,7 @@ RectTransform:
   - {fileID: 498052638}
   - {fileID: 518044517}
   - {fileID: 2075732346}
+  - {fileID: 1252964452}
   m_Father: {fileID: 365064530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -20113,7 +20115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 475}
+  m_AnchoredPosition: {x: 50, y: 475}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838925184
@@ -27220,43 +27222,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: c705a0dc0654f45bebb9bfed10a35897, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.03
+      value: 17.26
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: c705a0dc0654f45bebb9bfed10a35897, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4
+      value: 1.35
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: c705a0dc0654f45bebb9bfed10a35897, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.00763
+      value: -27.74
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: c705a0dc0654f45bebb9bfed10a35897, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.7730485
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: c705a0dc0654f45bebb9bfed10a35897, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0.28462222
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: c705a0dc0654f45bebb9bfed10a35897, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.50057775
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: c705a0dc0654f45bebb9bfed10a35897, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.26609784
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: c705a0dc0654f45bebb9bfed10a35897, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: c705a0dc0654f45bebb9bfed10a35897, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 2774220344278030320, guid: c705a0dc0654f45bebb9bfed10a35897, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27356,7 +27358,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -62, y: 9.6, z: -111.7}
-  m_LocalScale: {x: 79.7, y: 1, z: 79.4}
+  m_LocalScale: {x: 80, y: 1, z: 79.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 613102172}
@@ -27479,6 +27481,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   checkPickupByDistance: 1
+  gunInstructionText: {fileID: 1272122899}
+  pickupText: {fileID: 1252964453}
+  pickupMessage: + Pistol Gun
+  pickupMessageDuration: 1.7
 --- !u!1001 &1197926603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28378,6 +28384,85 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 75, y: 80, z: 110}
   m_Center: {x: 6, y: -10, z: 50}
+--- !u!1 &1252964451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1252964452}
+  - component: {fileID: 1252964454}
+  - component: {fileID: 1252964453}
+  m_Layer: 5
+  m_Name: PistolPickedUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1252964452
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252964451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 833073485}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -400}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1252964453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252964451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 25
+    m_FontStyle: 3
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: + Pistol Gun
+--- !u!222 &1252964454
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252964451}
+  m_CullTransparentMesh: 1
 --- !u!1 &1258351526
 GameObject:
   m_ObjectHideFlags: 0
@@ -28606,6 +28691,87 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 65, y: 105, z: 50}
   m_Center: {x: 0, y: 0.7, z: 10}
+--- !u!1 &1272122897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1272122898}
+  - component: {fileID: 1272122900}
+  - component: {fileID: 1272122899}
+  m_Layer: 5
+  m_Name: GunInstruction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1272122898
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272122897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 700620449}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: -450}
+  m_SizeDelta: {x: 400, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1272122899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272122897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 21
+    m_FontStyle: 3
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'There''s a Pistol gun somewhere, find it
+
+'
+--- !u!222 &1272122900
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272122897}
+  m_CullTransparentMesh: 1
 --- !u!1 &1273444500
 GameObject:
   m_ObjectHideFlags: 0
@@ -28856,7 +29022,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -89.14, y: 9.6, z: -166.9}
-  m_LocalScale: {x: 81.5, y: 1, z: 32}
+  m_LocalScale: {x: 82, y: 1, z: 32.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 613102172}
@@ -34893,7 +35059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -643, y: 370}
+  m_AnchoredPosition: {x: -649, y: 383}
   m_SizeDelta: {x: 1536, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1608664020
@@ -39357,6 +39523,103 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2774220344278030320, guid: cd87b7fbdc887407f91ba6596f07683a, type: 3}
   m_PrefabInstance: {fileID: 1890139195}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1892092223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1892092224}
+  - component: {fileID: 1892092225}
+  m_Layer: 0
+  m_Name: PistolFlashLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1892092224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892092223}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7010574, y: -0.09229599, z: 0.09229599, w: 0.7010574}
+  m_LocalPosition: {x: -0.103, y: -1.42, z: 1.064}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1195219892}
+  m_LocalEulerAnglesHint: {x: 90, y: -15, z: 0}
+--- !u!108 &1892092225
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892092223}
+  m_Enabled: 1
+  serializedVersion: 12
+  m_Type: 0
+  m_Color: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
+  m_Intensity: 0.5
+  m_Range: 50
+  m_SpotAngle: 13
+  m_InnerSpotAngle: 1
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!1001 &1892679373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40570,7 +40833,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -89.2, y: 0, z: -167.1}
-  m_LocalScale: {x: 8, y: 0.1, z: 3.05}
+  m_LocalScale: {x: 8.2, y: 0.1, z: 3.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 837311074}
@@ -42991,6 +43254,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1195219894}
     - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
+      propertyPath: flashlightLight
+      value: 
+      objectReference: {fileID: 1892092225}
+    - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       propertyPath: _muzzleTransform
       value: 
       objectReference: {fileID: 1280525627}
@@ -43001,6 +43268,10 @@ PrefabInstance:
     - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       propertyPath: muzzleFlashRange
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
+      propertyPath: flashlightIntensity
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       propertyPath: muzzleFlashIntensity
@@ -43015,6 +43286,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3291729794169471212, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1280525627}
+    - targetCorrespondingSourceObject: {fileID: 3291729794169471212, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1892092224}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2883804954695371431, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       insertIndex: -1

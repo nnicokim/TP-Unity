@@ -82,8 +82,8 @@ public class UiManager : MonoBehaviour
         if (_lifeValue != null)
             _lifeValue.text = $"{Mathf.RoundToInt(result * 100f)} %";
 
-        Color color = result > .6f ? Color.green 
-                            : result > .3f ? Color.yellow : Color.red;
+        Color color = result > .6f ? new Color(0.05f, 0.45f, 0.12f)
+                    : result > .3f ? Color.yellow : Color.red;
 
         if (_lifeValue != null)
             _lifeValue.color = color;

@@ -153,6 +153,16 @@ public class Gun : MonoBehaviour, IGun
         AmmoUiFeedback();
     }
 
+    public void PlayReloadSoundOnce()
+    {
+        AssignDefaultStats();
+
+        if (_audioSource == null)
+            _audioSource = GetComponent<AudioSource>();
+
+        PlayReloadSound();
+    }
+
     private IEnumerator ReloadRoutine()
     {
         _isReloading = true;
