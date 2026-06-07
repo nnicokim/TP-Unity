@@ -1,6 +1,4 @@
-using JetBrains.Annotations;
 using System.Collections;
-using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -19,8 +17,15 @@ public class Gun : MonoBehaviour, IGun
     [SerializeField] protected int _bulletCount;
     [SerializeField] private AudioSource _audioSource;
 
+    [Header("Audio Overrides")]
+    [SerializeField] private AudioClip _shotSoundOverride;
+    [SerializeField] private AudioClip _reloadSoundOverride;
+
     [Header("Shoot Origin")]
     [SerializeField] private Transform _muzzleTransform;
+
+    [Header("Fire Rate")]
+    [SerializeField, Min(0f)] private float _secondsBetweenShots;
 
     [Header("Camera Aim")]
     [SerializeField] private Camera _aimCamera;
@@ -29,6 +34,10 @@ public class Gun : MonoBehaviour, IGun
 
     private bool _isInitialized;
     private bool _isReloading;
+    private float _nextShootTime;
+    private bool _warnedMissingAudioSource;
+    private bool _warnedMissingShotSound;
+    private bool _warnedMissingReloadSound;
 
     public GameObject BulletPrefab => _stats != null ? _stats.BulletPrefab : null;
     public int Damage => _stats != null ? _stats.Damage : 0;
@@ -36,8 +45,10 @@ public class Gun : MonoBehaviour, IGun
     public int BulletsPerShot => _stats != null ? _stats.BulletsPerShot : 0;
     public float BulletMaxPositionRadius => _stats != null ? _stats.BulletMaxPositionRadius : 0;
     public float BulletMaxRandomAngle => _stats != null ?  _stats.BulletMaxRandomAngle : 0;
+    private AudioClip ShotSound => _shotSoundOverride != null ? _shotSoundOverride : _stats != null ? _stats.ShotSound : null;
+    private AudioClip ReloadSound => _reloadSoundOverride != null ? _reloadSoundOverride : _stats != null ? _stats.ReloadSound : null;
     protected virtual float ReloadDuration => _stats != null ? _stats.BulletReloadTime : DEFAULT_RELOAD_DURATION;
-    protected bool CanShoot => !_isReloading && _bulletCount > 0;
+    protected bool CanShoot => !_isReloading && _bulletCount > 0 && Time.time >= _nextShootTime;
     protected Vector3 MuzzlePosition => _muzzleTransform != null ? _muzzleTransform.position : transform.position;
     protected Transform MuzzleTransform => _muzzleTransform;
 
@@ -125,9 +136,18 @@ public class Gun : MonoBehaviour, IGun
     }
     public virtual void Attack()
     {
+        RegisterShotCooldown();
         PlayShotSound();
         AmmoUiFeedback();
         ReloadIfEmpty();
+    }
+
+    protected void RegisterShotCooldown()
+    {
+        if (_secondsBetweenShots <= 0f)
+            return;
+
+        _nextShootTime = Time.time + _secondsBetweenShots;
     }
 
     public void Reload()
@@ -193,18 +213,45 @@ public class Gun : MonoBehaviour, IGun
 
     private void PlayShotSound()
     {
-        if (_audioSource == null || _stats == null || _stats.ShotSound == null)
+        if (_audioSource == null)
+        {
+            WarnOnce(ref _warnedMissingAudioSource, $"Falta AudioSource en {gameObject.name}.", this);
             return;
+        }
 
-        _audioSource.PlayOneShot(_stats.ShotSound);
+        if (ShotSound == null)
+        {
+            WarnOnce(ref _warnedMissingShotSound, $"Falta sonido de disparo en {gameObject.name}. Asigna Shot Sound Override o WeaponStats.ShotSound.", this);
+            return;
+        }
+
+        _audioSource.PlayOneShot(ShotSound);
     }
 
     private void PlayReloadSound()
     {
-        if (_audioSource == null || _stats == null || _stats.ReloadSound == null)
+        if (_audioSource == null)
+        {
+            WarnOnce(ref _warnedMissingAudioSource, $"Falta AudioSource en {gameObject.name}.", this);
+            return;
+        }
+
+        if (ReloadSound == null)
+        {
+            WarnOnce(ref _warnedMissingReloadSound, $"Falta sonido de recarga/obtencion en {gameObject.name}. Asigna Reload Sound Override o WeaponStats.ReloadSound.", this);
+            return;
+        }
+
+        _audioSource.PlayOneShot(ReloadSound);
+    }
+
+    private void WarnOnce(ref bool hasWarned, string message, Object context)
+    {
+        if (hasWarned)
             return;
 
-        _audioSource.PlayOneShot(_stats.ReloadSound);
+        hasWarned = true;
+        Debug.LogWarning(message, context);
     }
 
     private void ReloadIfEmpty()

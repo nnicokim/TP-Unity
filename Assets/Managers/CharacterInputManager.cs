@@ -40,6 +40,8 @@ public class CharacterInputManager : MonoBehaviour
     [SerializeField] private GameObject _fistsView;
     [SerializeField] private bool _startWithPistol;
     [SerializeField] private bool _hasPistol;
+    [SerializeField] private bool _hasRifle;
+    [SerializeField] private bool _hasShotgun;
     [SerializeField] private Transform _weaponHolder;
     [SerializeField] private bool _applyHeldWeaponPoseOnPickup = true;
     [SerializeField] private Vector3 _heldWeaponLocalPosition = new Vector3(1f, 1.38f, 0f);
@@ -93,41 +95,11 @@ public class CharacterInputManager : MonoBehaviour
         if (_startWithPistol && HasWeapon(PISTOL_ID))
         {
             _hasPistol = true;
-            EquipPistol();
+            WeaponsSelection(ItemWeapons.PistolClip);
             return;
         }
 
         EquipFists();
-    }
-
-    private void EquipPistol()
-    {
-        if (!_hasPistol || !HasWeapon(PISTOL_ID))
-        {
-            Debug.Log("No tenes la pistola todavia.");
-            return;
-        }
-
-        HideAllWeapons();
-        SetFistsActive(false);
-
-        _equipedGun = _weapons[PISTOL_ID].GetComponent<Gun>();
-
-        if (_equipedGun == null)
-        {
-            Debug.LogWarning($"{_weapons[PISTOL_ID].name} no tiene componente Gun.");
-            return;
-        }
-
-        _weapons[PISTOL_ID].SetActive(true);
-        _cmdAttack = new CmdAttack(_equipedGun);
-        _cmdReload = new CmdReload(_equipedGun);
-        _weaponMode = WeaponMode.Gun;
-
-        if (ActionsManager.instance != null)
-            ActionsManager.instance.ActionWeaponChangeFeedback(ItemWeapons.PistolClip);
-
-        _equipedGun.RefreshAmmoUi();
     }
 
     private void EquipFists()
@@ -192,16 +164,16 @@ public class CharacterInputManager : MonoBehaviour
 
     private void WeaponsSelection(InventoryManager.ItemWeapons selection)
     {
-        if (selection == ItemWeapons.PistolClip)
-        {
-            EquipPistol();
-            return;
-        }
-
         if (_weapons == null || _weapons.Length == 0)
             LoadWeaponsFromChildren();
 
         int weaponIndex = (int)selection;
+        if (!HasOwnedWeapon(weaponIndex))
+        {
+            Debug.Log($"Todavia no tenes {selection}.");
+            return;
+        }
+
         if (_weapons == null || weaponIndex >= _weapons.Length || _weapons[weaponIndex] == null)
         {
             Debug.LogWarning($"No hay arma configurada para {selection}.");
@@ -235,20 +207,35 @@ public class CharacterInputManager : MonoBehaviour
 
     public void PickupPistol(Gun pistol)
     {
-        if (pistol == null)
+        PickupWeapon(
+            pistol,
+            ItemWeapons.PistolClip,
+            true,
+            _applyHeldWeaponPoseOnPickup,
+            _heldWeaponLocalPosition,
+            _heldWeaponLocalEulerAngles,
+            _heldWeaponLocalScale);
+    }
+
+    public void PickupWeapon(Gun weapon, ItemWeapons item, bool equipImmediately, bool applyHeldPose, Vector3 heldPosition, Vector3 heldEulerAngles, Vector3 heldScale)
+    {
+        if (weapon == null)
         {
-            Debug.LogWarning("CharacterInputManager: se intento recoger una pistola null.", this);
+            Debug.LogWarning($"CharacterInputManager: se intento recoger un arma null para {item}.", this);
             return;
         }
 
-        EnsureWeaponSlot(PISTOL_ID);
-        _weapons[PISTOL_ID] = pistol.gameObject;
-        _hasPistol = true;
+        int weaponIndex = (int)item;
+        EnsureWeaponSlot(weaponIndex);
+        _weapons[weaponIndex] = weapon.gameObject;
+        SetWeaponOwned(weaponIndex, true);
 
-        AttachPistolToHolder(pistol.transform);
-        EquipPistol();
+        AttachWeaponToHolder(weapon.transform, applyHeldPose, heldPosition, heldEulerAngles, heldScale);
 
-        Debug.Log("Pistola recogida.");
+        if (equipImmediately)
+            WeaponsSelection(item);
+
+        Debug.Log($"{item} recogida.");
     }
 
     private void HandleAttackInput()
@@ -366,6 +353,33 @@ public class CharacterInputManager : MonoBehaviour
         return _weapons != null && weaponIndex >= 0 && weaponIndex < _weapons.Length && _weapons[weaponIndex] != null;
     }
 
+    private bool HasOwnedWeapon(int weaponIndex)
+    {
+        return weaponIndex switch
+        {
+            PISTOL_ID => _hasPistol,
+            RIFLE_ID => _hasRifle,
+            SHOTGUN_ID => _hasShotgun,
+            _ => false
+        };
+    }
+
+    private void SetWeaponOwned(int weaponIndex, bool isOwned)
+    {
+        switch (weaponIndex)
+        {
+            case PISTOL_ID:
+                _hasPistol = isOwned;
+                break;
+            case RIFLE_ID:
+                _hasRifle = isOwned;
+                break;
+            case SHOTGUN_ID:
+                _hasShotgun = isOwned;
+                break;
+        }
+    }
+
     private void HideAllWeapons()
     {
         if (_weapons == null)
@@ -381,7 +395,10 @@ public class CharacterInputManager : MonoBehaviour
 
     private bool ShouldKeepWeaponVisibleInWorld(int weaponIndex)
     {
-        return weaponIndex == PISTOL_ID && !_hasPistol;
+        if (HasOwnedWeapon(weaponIndex) || !HasWeapon(weaponIndex))
+            return false;
+
+        return !_weapons[weaponIndex].transform.IsChildOf(transform);
     }
 
     private void SetFistsActive(bool isActive)
@@ -408,20 +425,20 @@ public class CharacterInputManager : MonoBehaviour
         _weapons = newWeapons;
     }
 
-    private void AttachPistolToHolder(Transform pistolTransform)
+    private void AttachWeaponToHolder(Transform weaponTransform, bool applyHeldPose, Vector3 heldPosition, Vector3 heldEulerAngles, Vector3 heldScale)
     {
         ResolveWeaponHolder();
 
         if (_weaponHolder == null)
             return;
 
-        pistolTransform.SetParent(_weaponHolder, false);
+        weaponTransform.SetParent(_weaponHolder, false);
 
-        if (!_applyHeldWeaponPoseOnPickup)
+        if (!applyHeldPose)
             return;
 
-        pistolTransform.localPosition = _heldWeaponLocalPosition;
-        pistolTransform.localEulerAngles = _heldWeaponLocalEulerAngles;
-        pistolTransform.localScale = _heldWeaponLocalScale;
+        weaponTransform.localPosition = heldPosition;
+        weaponTransform.localEulerAngles = heldEulerAngles;
+        weaponTransform.localScale = heldScale;
     }
 }
