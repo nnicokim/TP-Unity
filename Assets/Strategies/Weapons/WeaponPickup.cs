@@ -86,12 +86,15 @@ public class WeaponPickup : MonoBehaviour
 
     private void ApplyShotgunHeldPoseIfUsingDefault()
     {
-        if (!IsApproximately(heldWeaponLocalScale, new Vector3(0.5f, 0.5f, 0.5f)))
+        bool isUsingGenericDefault = IsApproximately(heldWeaponLocalScale, new Vector3(0.5f, 0.5f, 0.5f));
+        bool isUsingWorldPrefabScale = IsApproximately(heldWeaponLocalScale, new Vector3(1.43f, 1.87f, 1.43f));
+
+        if (!isUsingGenericDefault && !isUsingWorldPrefabScale)
             return;
 
-        heldWeaponLocalPosition = new Vector3(0.75f, -0.85f, 1.25f);
+        heldWeaponLocalPosition = new Vector3(0.65f, -0.7f, 1.15f);
         heldWeaponLocalEulerAngles = new Vector3(-90f, -93f, 0f);
-        heldWeaponLocalScale = new Vector3(0.45f, 0.45f, 0.45f);
+        heldWeaponLocalScale = new Vector3(0.0048f, 0.0048f, 0.0048f);
     }
 
     private void Update()

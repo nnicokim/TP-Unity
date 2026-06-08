@@ -191,7 +191,9 @@ public class CharacterInputManager : MonoBehaviour
             return;
         }
 
+        EnsureEquippedWeaponUsesHolder(selection, _equipedGun.transform);
         _equipedGun.gameObject.SetActive(true);
+        FitHeldWeaponIfNeeded(selection, _equipedGun.transform);
 
         // 3. Crear nuevas las estrategias
         _cmdAttack = new CmdAttack(_equipedGun);
@@ -423,6 +425,96 @@ public class CharacterInputManager : MonoBehaviour
         }
 
         _weapons = newWeapons;
+    }
+
+    private void EnsureEquippedWeaponUsesHolder(ItemWeapons selection, Transform weaponTransform)
+    {
+        ResolveWeaponHolder();
+
+        if (_weaponHolder == null || weaponTransform == null || weaponTransform.parent == _weaponHolder)
+            return;
+
+        if (!weaponTransform.IsChildOf(transform))
+            return;
+
+        if (selection == ItemWeapons.PistolClip)
+        {
+            AttachWeaponToHolder(
+                weaponTransform,
+                _applyHeldWeaponPoseOnPickup,
+                _heldWeaponLocalPosition,
+                _heldWeaponLocalEulerAngles,
+                _heldWeaponLocalScale);
+            return;
+        }
+
+        weaponTransform.SetParent(_weaponHolder, false);
+    }
+
+    private void FitHeldWeaponIfNeeded(ItemWeapons selection, Transform weaponTransform)
+    {
+        if (selection != ItemWeapons.ShotgunShell)
+            return;
+
+        FitHeldWeaponToView(weaponTransform, new Vector3(0.6f, -0.52f, 1.1f), 1.9f);
+    }
+
+    private void FitHeldWeaponToView(Transform weaponTransform, Vector3 desiredLocalCenter, float desiredMaxSize)
+    {
+        ResolveWeaponHolder();
+
+        if (_weaponHolder == null || weaponTransform == null)
+            return;
+
+        if (!TryGetRendererBounds(weaponTransform, out Bounds bounds))
+        {
+            Debug.LogWarning($"No se encontraron Renderers visibles para encuadrar {weaponTransform.name}.", weaponTransform);
+            return;
+        }
+
+        float currentMaxSize = Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
+        if (currentMaxSize <= 0f)
+            return;
+
+        float scaleFactor = Mathf.Clamp(desiredMaxSize / currentMaxSize, 0.02f, 500f);
+        weaponTransform.localScale *= scaleFactor;
+
+        if (!TryGetRendererBounds(weaponTransform, out bounds))
+            return;
+
+        Vector3 currentLocalCenter = _weaponHolder.InverseTransformPoint(bounds.center);
+        weaponTransform.localPosition += desiredLocalCenter - currentLocalCenter;
+    }
+
+    private bool TryGetRendererBounds(Transform root, out Bounds bounds)
+    {
+        Renderer[] renderers = root.GetComponentsInChildren<Renderer>(true);
+        bounds = new Bounds(root.position, Vector3.zero);
+        bool hasBounds = false;
+
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            Renderer renderer = renderers[i];
+            if (renderer == null)
+                continue;
+
+            renderer.enabled = true;
+
+            if (!renderer.gameObject.activeInHierarchy)
+                continue;
+
+            if (!hasBounds)
+            {
+                bounds = renderer.bounds;
+                hasBounds = true;
+            }
+            else
+            {
+                bounds.Encapsulate(renderer.bounds);
+            }
+        }
+
+        return hasBounds;
     }
 
     private void AttachWeaponToHolder(Transform weaponTransform, bool applyHeldPose, Vector3 heldPosition, Vector3 heldEulerAngles, Vector3 heldScale)
