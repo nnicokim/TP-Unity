@@ -35,6 +35,7 @@ public class WeaponPickup : MonoBehaviour
 
     private bool _wasPickedUp;
     private CharacterInputManager _cachedPlayer;
+    private Coroutine _pickupTextRoutine;
 
     protected virtual void Awake()
     {
@@ -60,7 +61,10 @@ public class WeaponPickup : MonoBehaviour
         else if (weapon is Pistol)
             weaponItem = ItemWeapons.PistolClip;
         else if (weapon is Shotgun)
+        {
             weaponItem = ItemWeapons.ShotgunShell;
+            ApplyShotgunHeldPoseIfUsingDefault();
+        }
     }
 
     private void ApplyRifleHeldPoseIfUsingDefault()
@@ -78,6 +82,16 @@ public class WeaponPickup : MonoBehaviour
         return Mathf.Approximately(a.x, b.x)
             && Mathf.Approximately(a.y, b.y)
             && Mathf.Approximately(a.z, b.z);
+    }
+
+    private void ApplyShotgunHeldPoseIfUsingDefault()
+    {
+        if (!IsApproximately(heldWeaponLocalScale, new Vector3(0.5f, 0.5f, 0.5f)))
+            return;
+
+        heldWeaponLocalPosition = new Vector3(0.75f, -0.85f, 1.25f);
+        heldWeaponLocalEulerAngles = new Vector3(-90f, -93f, 0f);
+        heldWeaponLocalScale = new Vector3(0.45f, 0.45f, 0.45f);
     }
 
     private void Update()
@@ -174,8 +188,10 @@ public class WeaponPickup : MonoBehaviour
         if (pickupText == null)
             return;
 
-        pickupText.StopAllCoroutines();
-        pickupText.StartCoroutine(ShowPickupTextRoutine());
+        if (_pickupTextRoutine != null)
+            StopCoroutine(_pickupTextRoutine);
+
+        _pickupTextRoutine = StartCoroutine(ShowPickupTextRoutine());
     }
 
     private IEnumerator ShowPickupTextRoutine()
@@ -186,6 +202,7 @@ public class WeaponPickup : MonoBehaviour
         yield return new WaitForSeconds(pickupMessageDuration);
 
         SetPickupTextVisible(false);
+        _pickupTextRoutine = null;
     }
 
     private void SetPickupTextVisible(bool isVisible)
