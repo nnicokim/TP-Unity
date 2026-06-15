@@ -4636,7 +4636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed3e22f144294b7d87a93e506b3ae1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spike
-  _damage: 50
+  _damage: 40
 --- !u!54 &199083920
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12525,7 +12525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed3e22f144294b7d87a93e506b3ae1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spike
-  _damage: 50
+  _damage: 40
 --- !u!54 &477775050
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19545,7 +19545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed3e22f144294b7d87a93e506b3ae1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spike
-  _damage: 50
+  _damage: 40
 --- !u!54 &811380879
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28350,6 +28350,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   checkPickupByDistance: 1
+  _pickupAnimator: {fileID: 0}
+  _pistolHeldParameter: pistolHeld
+  _pistolHeldStateName: PistolHeld
   weaponInstructionText: {fileID: 0}
   legacyInstructionText: {fileID: 1272122899}
   pickupText: {fileID: 1252964453}
@@ -37885,7 +37888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed3e22f144294b7d87a93e506b3ae1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spike
-  _damage: 50
+  _damage: 40
 --- !u!54 &1754054893
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38532,7 +38535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed3e22f144294b7d87a93e506b3ae1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spike
-  _damage: 50
+  _damage: 40
 --- !u!54 &1786229319
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -43714,7 +43717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed3e22f144294b7d87a93e506b3ae1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spike
-  _damage: 50
+  _damage: 40
 --- !u!54 &2139979202
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -43957,6 +43960,10 @@ PrefabInstance:
     - target: {fileID: 514653770393587194, guid: 5226c7beaa03f49188a4da24604ef6c0, type: 3}
       propertyPath: m_Name
       value: Spike_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2880716635139749346, guid: 5226c7beaa03f49188a4da24604ef6c0, type: 3}
+      propertyPath: _damage
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
