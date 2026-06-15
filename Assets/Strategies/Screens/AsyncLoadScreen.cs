@@ -9,7 +9,7 @@ public class AsyncLoadScreen : MonoBehaviour
     [SerializeField] private Image _loadingBar;
     [SerializeField] private Text _loadingText;
 
-    [SerializeField] private string _targetScreen = "Level";
+    [SerializeField] private string _targetScreen = "Level_1";
 
     private void Start()
     {   

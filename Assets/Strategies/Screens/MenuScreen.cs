@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MenuScreen : MonoBehaviour
 {
-    const string GAME_SCENE_NAME = "Level";
+    const string GAME_SCENE_NAME = "Level_1";
     const string INFO_SCENE_NAME = "Info";
     const string SETTINGS_SCENE_NAME = "Settings";
     const string ASYNC_LOAD_SCENE_NAME = "AsyncLoad";
