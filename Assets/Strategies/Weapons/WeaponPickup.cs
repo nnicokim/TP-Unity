@@ -26,6 +26,11 @@ public class WeaponPickup : MonoBehaviour
     [SerializeField] private LayerMask playerMask = ~0;
     [SerializeField] private bool checkPickupByDistance = true;
 
+    [Header("Pickup Animation")]
+    [SerializeField] private Animator _pickupAnimator;
+    [SerializeField] private string _pistolHeldParameter = "pistolHeld";
+    [SerializeField] private string _pistolHeldStateName = "PistolHeld";
+
     [Header("Pickup Feedback")]
     [SerializeField] private Text weaponInstructionText;
     [SerializeField, HideInInspector, FormerlySerializedAs("gunInstructionText")] private Text legacyInstructionText;
@@ -42,6 +47,7 @@ public class WeaponPickup : MonoBehaviour
         if (weapon == null)
             weapon = GetComponentInChildren<Gun>(true);
 
+        ResolvePickupAnimator();
         AutoDetectWeaponItem();
         ConfigureWorldPickupColliders();
         SetInstructionVisible(true);
@@ -149,6 +155,7 @@ public class WeaponPickup : MonoBehaviour
             heldWeaponLocalPosition,
             heldWeaponLocalEulerAngles,
             heldWeaponLocalScale);
+        StopWorldPickupAnimation();
         weapon.PlayReloadSoundOnce();
         ShowPickupText();
     }
@@ -221,6 +228,70 @@ public class WeaponPickup : MonoBehaviour
 
         if (legacyInstructionText != null)
             legacyInstructionText.gameObject.SetActive(isVisible);
+    }
+
+    private void ResolvePickupAnimator()
+    {
+        if (_pickupAnimator != null)
+            return;
+
+        if (weapon != null)
+            _pickupAnimator = weapon.GetComponentInChildren<Animator>(true);
+
+        if (_pickupAnimator == null)
+            _pickupAnimator = GetComponentInChildren<Animator>(true);
+    }
+
+    public void StopWorldPickupAnimation()
+    {
+        if (weapon == null)
+            weapon = GetComponentInChildren<Gun>(true);
+
+        if (weapon == null)
+            return;
+
+        if (_pickupAnimator != null)
+        {
+            ApplyPistolHeldState(_pickupAnimator);
+            return;
+        }
+
+        Animator[] animators = weapon.GetComponentsInChildren<Animator>(true);
+        if (animators.Length == 0)
+            animators = GetComponentsInChildren<Animator>(true);
+
+        for (int i = 0; i < animators.Length; i++)
+            ApplyPistolHeldState(animators[i]);
+
+        Animation[] legacyAnimations = weapon.GetComponentsInChildren<Animation>(true);
+        for (int i = 0; i < legacyAnimations.Length; i++)
+            StopLegacyAnimation(legacyAnimations[i]);
+    }
+
+    private void ApplyPistolHeldState(Animator animator)
+    {
+        if (animator == null)
+            return;
+
+        if (!string.IsNullOrEmpty(_pistolHeldParameter))
+            animator.SetBool(_pistolHeldParameter, true);
+
+        if (!string.IsNullOrEmpty(_pistolHeldStateName))
+        {
+            animator.Play(_pistolHeldStateName, 0, 0f);
+            animator.Update(0f);
+        }
+
+        animator.enabled = false;
+    }
+
+    private static void StopLegacyAnimation(Animation animation)
+    {
+        if (animation == null)
+            return;
+
+        animation.Stop();
+        animation.enabled = false;
     }
 
     private void ConfigureWorldPickupColliders()
