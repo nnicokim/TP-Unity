@@ -48,20 +48,35 @@ public class ActionsManager : MonoBehaviour
     public event Action<ItemWeapons> OnWeaponChangeFeedback;
     public event Action<string> OnWeaponAmmoFeedback;
     public event Action<bool> OnWeaponReloadFeedback;
+    public event Action OnWeaponClearFeedback;
     private bool _hasWeaponChangeFeedback;
     private ItemWeapons _currentWeapon;
     private bool _hasWeaponAmmoFeedback;
     private string _weaponAmmoFeedback;
     private bool _hasWeaponReloadFeedback;
     private bool _isWeaponReloading;
+    private bool _weaponUiCleared;
 
     public void ActionWeaponChangeFeedback(ItemWeapons value)
     {
+        _weaponUiCleared = false;
         _hasWeaponChangeFeedback = true;
         _currentWeapon = value;
 
         if (OnWeaponChangeFeedback != null)
             OnWeaponChangeFeedback(value);
+    }
+
+    public void ActionClearWeaponFeedback()
+    {
+        _weaponUiCleared = true;
+        _hasWeaponChangeFeedback = false;
+        _hasWeaponAmmoFeedback = false;
+        _hasWeaponReloadFeedback = false;
+        _isWeaponReloading = false;
+
+        if (OnWeaponClearFeedback != null)
+            OnWeaponClearFeedback();
     }
     public void ActionWeaponAmmoFeedback(string value)
     {
@@ -88,14 +103,19 @@ public class ActionsManager : MonoBehaviour
         if (_hasLifeFeedback && OnLifeFeedback != null)
             OnLifeFeedback(_currentLife, _maxLife);
 
-        if (_hasWeaponChangeFeedback && OnWeaponChangeFeedback != null)
-            OnWeaponChangeFeedback(_currentWeapon);
+        if (_weaponUiCleared && OnWeaponClearFeedback != null)
+            OnWeaponClearFeedback();
+        else
+        {
+            if (_hasWeaponChangeFeedback && OnWeaponChangeFeedback != null)
+                OnWeaponChangeFeedback(_currentWeapon);
 
-        if (_hasWeaponAmmoFeedback && OnWeaponAmmoFeedback != null)
-            OnWeaponAmmoFeedback(_weaponAmmoFeedback);
+            if (_hasWeaponAmmoFeedback && OnWeaponAmmoFeedback != null)
+                OnWeaponAmmoFeedback(_weaponAmmoFeedback);
 
-        if (_hasWeaponReloadFeedback && OnWeaponReloadFeedback != null)
-            OnWeaponReloadFeedback(_isWeaponReloading);
+            if (_hasWeaponReloadFeedback && OnWeaponReloadFeedback != null)
+                OnWeaponReloadFeedback(_isWeaponReloading);
+        }
     }
     #endregion
 }

@@ -30,6 +30,7 @@ public class UiManager : MonoBehaviour
         ActionsManager.instance.OnWeaponChangeFeedback -= OnWeaponChangeFeedback;
         ActionsManager.instance.OnWeaponAmmoFeedback -= OnWeaponAmmoFeedback;
         ActionsManager.instance.OnWeaponReloadFeedback -= OnWeaponReloadFeedback;
+        ActionsManager.instance.OnWeaponClearFeedback -= OnWeaponClearFeedback;
         ActionsManager.instance.OnGameover -= OnGameover;
     }
 
@@ -108,6 +109,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] private Text _ammo;
     [SerializeField] private Text _reloadText;
 
+    private GameObject WeaponHud => _weapon != null ? _weapon.transform.parent.gameObject : null;
+
     private void WeaponsSuscription()
     {
         OnWeaponReloadFeedback(false);
@@ -118,6 +121,7 @@ public class UiManager : MonoBehaviour
         ActionsManager.instance.OnWeaponChangeFeedback += OnWeaponChangeFeedback;
         ActionsManager.instance.OnWeaponAmmoFeedback += OnWeaponAmmoFeedback;
         ActionsManager.instance.OnWeaponReloadFeedback += OnWeaponReloadFeedback;
+        ActionsManager.instance.OnWeaponClearFeedback += OnWeaponClearFeedback;
     }
 
     public void OnWeaponChangeFeedback(ItemWeapons value)
@@ -125,6 +129,10 @@ public class UiManager : MonoBehaviour
         int weaponIndex = (int)value;
         if (_weapon == null || _weaponSprites == null || weaponIndex < 0 || weaponIndex >= _weaponSprites.Count)
             return;
+
+        GameObject weaponHud = WeaponHud;
+        if (weaponHud != null)
+            weaponHud.SetActive(true);
 
         _weapon.sprite = _weaponSprites[weaponIndex];
     }
@@ -135,6 +143,27 @@ public class UiManager : MonoBehaviour
             return;
 
         _ammo.text = value;
+    }
+
+    public void OnWeaponClearFeedback()
+    {
+        GameObject weaponHud = WeaponHud;
+        if (weaponHud != null)
+        {
+            weaponHud.SetActive(false);
+            return;
+        }
+
+        if (_weapon != null)
+            _weapon.gameObject.SetActive(false);
+
+        if (_ammo != null)
+        {
+            _ammo.text = string.Empty;
+            _ammo.gameObject.SetActive(false);
+        }
+
+        OnWeaponReloadFeedback(false);
     }
 
     public void OnWeaponReloadFeedback(bool isReloading)

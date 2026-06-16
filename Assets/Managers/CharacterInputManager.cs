@@ -111,6 +111,9 @@ public class CharacterInputManager : MonoBehaviour
         _cmdAttack = null;
         _cmdReload = null;
         _weaponMode = WeaponMode.Fists;
+
+        if (ActionsManager.instance != null)
+            ActionsManager.instance.ActionClearWeaponFeedback();
     }
 
     private void Update()
