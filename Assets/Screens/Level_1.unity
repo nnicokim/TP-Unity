@@ -28584,6 +28584,7 @@ GameObject:
   - component: {fileID: 1200470356}
   - component: {fileID: 1200470355}
   - component: {fileID: 1200470361}
+  - component: {fileID: 1987654321}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -28819,6 +28820,25 @@ MonoBehaviour:
   closedPauseBetweenBlinks: 0.155
   playerMovement: {fileID: 833159272}
   mouseLook: {fileID: 0}
+--- !u!114 &1987654321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200470351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c3e91b4f2d84e6a9b1c0d5e8f72631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelIntroScreen
+  _storySprite: {fileID: 21300000, guid: 98afdc18a90244bdebdb81137fbecf1e, type: 3}
+  _continueMessage: Press SPACE to continue
+  _wakeUpBlinkManager: {fileID: 1200470361}
+  _targetCanvas: {fileID: 1262207474}
+  _minDisplayTime: 4
+  _fadeInDuration: 0.6
+  _fadeOutDuration: 1
 --- !u!1 &1203730578
 GameObject:
   m_ObjectHideFlags: 0

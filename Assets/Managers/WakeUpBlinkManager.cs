@@ -27,10 +27,27 @@ public class WakeUpBlinkManager : MonoBehaviour
 
     private void Start()
     {
+        if (FindFirstObjectByType<LevelIntroScreen>() != null)
+            return;
+
+        BeginWakeUp();
+    }
+
+    public void BeginWakeUp()
+    {
         if (!HasRequiredReferences())
             return;
 
         StartCoroutine(PlayWakeUpBlink());
+    }
+
+    public void SetPlayerControl(bool isEnabled)
+    {
+        if (playerMovement != null)
+            playerMovement.enabled = isEnabled;
+
+        if (mouseLook != null)
+            mouseLook.enabled = isEnabled;
     }
 
     private bool HasRequiredReferences()
@@ -125,12 +142,4 @@ public class WakeUpBlinkManager : MonoBehaviour
         bottomEyelid.anchoredPosition = Vector2.LerpUnclamped(_bottomClosedPosition, _bottomOpenPosition, openAmount);
     }
 
-    private void SetPlayerControl(bool isEnabled)
-    {
-        if (playerMovement != null)
-            playerMovement.enabled = isEnabled;
-
-        if (mouseLook != null)
-            mouseLook.enabled = isEnabled;
-    }
 }
