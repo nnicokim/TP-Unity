@@ -104,6 +104,18 @@ public class AudioManager : MonoBehaviour
             }
         }
 
+        if (sceneName.StartsWith("Level"))
+        {
+            for (int i = 0; i < _sceneMusic.Count; i++)
+            {
+                if (_sceneMusic[i].SceneName == "Level")
+                {
+                    entry = _sceneMusic[i];
+                    return true;
+                }
+            }
+        }
+
         entry = default;
         return false;
     }

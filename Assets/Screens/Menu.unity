@@ -284,6 +284,15 @@ MonoBehaviour:
   - SceneName: Level
     Music: {fileID: 8300000, guid: 192826a6221b0489d9977d79528de6d1, type: 3}
     Volume: 0.4
+  - SceneName: Level_1
+    Music: {fileID: 8300000, guid: 192826a6221b0489d9977d79528de6d1, type: 3}
+    Volume: 0.4
+  - SceneName: Level_2
+    Music: {fileID: 8300000, guid: 192826a6221b0489d9977d79528de6d1, type: 3}
+    Volume: 0.4
+  - SceneName: Level_3
+    Music: {fileID: 8300000, guid: 192826a6221b0489d9977d79528de6d1, type: 3}
+    Volume: 0.4
   - SceneName: Info
     Music: {fileID: 8300000, guid: b3819b4878f324e2c93f4901a401f7d6, type: 3}
     Volume: 0.6
