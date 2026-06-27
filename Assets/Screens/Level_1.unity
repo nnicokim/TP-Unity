@@ -47954,6 +47954,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1195219894}
     - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
+      propertyPath: magazineSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       propertyPath: flashlightLight
       value: 
       objectReference: {fileID: 1892092225}
@@ -47968,6 +47972,10 @@ PrefabInstance:
     - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       propertyPath: muzzleFlashRange
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
+      propertyPath: autoReloadWhenEmpty
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       propertyPath: flashlightIntensity

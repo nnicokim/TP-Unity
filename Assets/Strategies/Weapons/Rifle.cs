@@ -27,7 +27,7 @@ public class Rifle : Gun
 
         CreateRandomBullets();
 
-        _bulletCount--;
+        currentAmmo--;
         PlayMuzzleFlash();
         base.Attack();
     }

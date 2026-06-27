@@ -12683,6 +12683,14 @@ PrefabInstance:
       propertyPath: _parent
       value: 
       objectReference: {fileID: 2070256283}
+    - target: {fileID: 5883951232316955669, guid: 4dc9c14da1de249f4a5c8c2f838cbd0a, type: 3}
+      propertyPath: magazineSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883951232316955669, guid: 4dc9c14da1de249f4a5c8c2f838cbd0a, type: 3}
+      propertyPath: autoReloadWhenEmpty
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6496165934660384109, guid: 4dc9c14da1de249f4a5c8c2f838cbd0a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.226
@@ -48186,6 +48194,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2063907347}
     - target: {fileID: 3194091866884520357, guid: fa259c874e8894d9ea63a76c7c4431fd, type: 3}
+      propertyPath: magazineSize
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194091866884520357, guid: fa259c874e8894d9ea63a76c7c4431fd, type: 3}
       propertyPath: _muzzleTransform
       value: 
       objectReference: {fileID: 1985759513}
@@ -48197,6 +48209,10 @@ PrefabInstance:
       propertyPath: _shotSoundOverride
       value: 
       objectReference: {fileID: 8300000, guid: ec74244db866d154dba2cfb885da464c, type: 3}
+    - target: {fileID: 3194091866884520357, guid: fa259c874e8894d9ea63a76c7c4431fd, type: 3}
+      propertyPath: autoReloadWhenEmpty
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3194091866884520357, guid: fa259c874e8894d9ea63a76c7c4431fd, type: 3}
       propertyPath: _reloadSoundOverride
       value: 
@@ -50322,6 +50338,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1195219894}
     - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
+      propertyPath: magazineSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       propertyPath: flashlightLight
       value: 
       objectReference: {fileID: 1892092225}
@@ -50336,6 +50356,10 @@ PrefabInstance:
     - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       propertyPath: muzzleFlashRange
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
+      propertyPath: autoReloadWhenEmpty
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6142297051684127233, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       propertyPath: flashlightIntensity

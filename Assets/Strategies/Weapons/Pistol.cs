@@ -46,7 +46,7 @@ public class Pistol : Gun
             Vector3 spawnPosition = MuzzlePosition;
             Quaternion shootRotation = GetShootRotation(spawnPosition);
             CreateBullet(spawnPosition, shootRotation);
-            _bulletCount--;
+            currentAmmo--;
             PlayMuzzleFlash();
             base.Attack();
         }

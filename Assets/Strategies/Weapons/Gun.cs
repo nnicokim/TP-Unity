@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor;
 #endif
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Gun : MonoBehaviour, IGun
 {
@@ -14,8 +15,14 @@ public class Gun : MonoBehaviour, IGun
 
     public Transform ParentTransform => _parent;
     [SerializeField] private Transform _parent;
-    [SerializeField] protected int _bulletCount;
     [SerializeField] private AudioSource _audioSource;
+
+    [Header("Ammo")]
+    [SerializeField, Min(1)] private int magazineSize;
+    [SerializeField, Min(0), FormerlySerializedAs("_bulletCount")] protected int currentAmmo;
+    [SerializeField, Min(0)] private int reserveAmmo;
+    [SerializeField] private bool initializeAmmoOnStart = true;
+    [SerializeField] private bool autoReloadWhenEmpty;
 
     [Header("Audio Overrides")]
     [SerializeField] private AudioClip _shotSoundOverride;
@@ -44,16 +51,17 @@ public class Gun : MonoBehaviour, IGun
 
     public GameObject BulletPrefab => _stats != null ? _stats.BulletPrefab : null;
     public int Damage => _stats != null ? _stats.Damage : 0;
-    public int ClipSize => _stats != null ? _stats.ClipSize : 0;
+    public int ClipSize => MagazineSize;
     public int BulletsPerShot => _stats != null ? _stats.BulletsPerShot : 0;
     public float BulletMaxPositionRadius => _stats != null ? _stats.BulletMaxPositionRadius : 0;
     public float BulletMaxRandomAngle => _stats != null ?  _stats.BulletMaxRandomAngle : 0;
     private AudioClip ShotSound => _shotSoundOverride != null ? _shotSoundOverride : _stats != null ? _stats.ShotSound : null;
     private AudioClip ReloadSound => _reloadSoundOverride != null ? _reloadSoundOverride : _stats != null ? _stats.ReloadSound : null;
     protected virtual float ReloadDuration => _stats != null ? _stats.BulletReloadTime : DEFAULT_RELOAD_DURATION;
-    protected bool CanShoot => !_isReloading && _bulletCount > 0 && Time.time >= _nextShootTime;
+    protected bool CanShoot => !_isReloading && currentAmmo > 0 && Time.time >= _nextShootTime;
     protected Vector3 MuzzlePosition => _muzzleTransform != null ? _muzzleTransform.position : transform.position;
     protected Transform MuzzleTransform => _muzzleTransform;
+    private int MagazineSize => magazineSize > 0 ? magazineSize : _stats != null ? _stats.ClipSize : 0;
 
     private void Reset()
     {
@@ -91,10 +99,26 @@ public class Gun : MonoBehaviour, IGun
             _weaponRecoil = GetComponent<WeaponRecoil>();
 
         ResolveAimCamera();
+        InitializeAmmo();
 
-        _bulletCount = ClipSize;
         _isInitialized = true;
         AmmoUiFeedback();
+    }
+
+    private void InitializeAmmo()
+    {
+        if (magazineSize <= 0 && _stats != null)
+            magazineSize = Mathf.Max(1, _stats.ClipSize);
+
+        if (!initializeAmmoOnStart)
+        {
+            currentAmmo = Mathf.Clamp(currentAmmo, 0, MagazineSize);
+            reserveAmmo = Mathf.Max(0, reserveAmmo);
+            return;
+        }
+
+        currentAmmo = MagazineSize;
+        reserveAmmo = MagazineSize * 4;
     }
 
     private void OnDisable()
@@ -146,7 +170,9 @@ public class Gun : MonoBehaviour, IGun
         RegisterShotCooldown();
         PlayShotSound();
         AmmoUiFeedback();
-        ReloadIfEmpty();
+
+        if (autoReloadWhenEmpty)
+            ReloadIfEmpty();
     }
 
     public void ResetVisualRecoilRestPose()
@@ -188,6 +214,13 @@ public class Gun : MonoBehaviour, IGun
             return;
         }
 
+        if (reserveAmmo <= 0)
+        {
+            Debug.Log($"Sin municion de reserva para {gameObject.name}.");
+            AmmoUiFeedback();
+            return;
+        }
+
         Debug.Log($"Recargando {gameObject.name}...");
         StartCoroutine(ReloadRoutine());
     }
@@ -216,7 +249,14 @@ public class Gun : MonoBehaviour, IGun
 
         yield return new WaitForSeconds(ReloadDuration);
 
-        _bulletCount = ClipSize;
+        int missingAmmo = MagazineSize - currentAmmo;
+        int ammoToLoad = Mathf.Min(missingAmmo, reserveAmmo);
+
+        currentAmmo += ammoToLoad;
+        reserveAmmo -= ammoToLoad;
+        currentAmmo = Mathf.Clamp(currentAmmo, 0, MagazineSize);
+        reserveAmmo = Mathf.Max(0, reserveAmmo);
+
         AmmoUiFeedback();
         ReloadUiFeedback(false);
         _isReloading = false;
@@ -224,10 +264,8 @@ public class Gun : MonoBehaviour, IGun
 
     protected void AmmoUiFeedback()
     {
-        if (ActionsManager.instance != null && _bulletCount >= 10)
-            ActionsManager.instance.ActionWeaponAmmoFeedback($"{_bulletCount}   {ClipSize}");
-        else if (ActionsManager.instance != null && _bulletCount < 10)
-            ActionsManager.instance.ActionWeaponAmmoFeedback($"  {_bulletCount}   {ClipSize}");
+        if (ActionsManager.instance != null)
+            ActionsManager.instance.ActionWeaponAmmoFeedback($"{currentAmmo}   {reserveAmmo}");
     }
 
     private void ReloadUiFeedback(bool isReloading)
@@ -281,7 +319,7 @@ public class Gun : MonoBehaviour, IGun
 
     private void ReloadIfEmpty()
     {
-        if (_bulletCount > 0 || _isReloading)
+        if (currentAmmo > 0 || _isReloading || reserveAmmo <= 0)
             return;
 
         Reload();
@@ -289,7 +327,7 @@ public class Gun : MonoBehaviour, IGun
 
     private bool HasFullAmmo()
     {
-        return ClipSize > 0 && _bulletCount >= ClipSize;
+        return MagazineSize > 0 && currentAmmo >= MagazineSize;
     }
 
     protected Quaternion GetShootRotation(Vector3 spawnPosition)
