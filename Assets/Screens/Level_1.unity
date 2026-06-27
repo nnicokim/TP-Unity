@@ -31219,6 +31219,23 @@ MonoBehaviour:
   pickupText: {fileID: 1252964453}
   pickupMessage: + Pistol Gun
   pickupMessageDuration: 1.7
+--- !u!114 &1195219897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772681395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd6a496c7dea4d20af558f6aa70c6fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponRecoil
+  backwardKick: 0.08
+  upwardRotation: 5
+  sideRotation: 0.5
+  kickSnappiness: 28
+  returnSpeed: 18
 --- !u!1001 &1197926603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47976,6 +47993,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2883804954695371431, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1195219896}
+    - targetCorrespondingSourceObject: {fileID: 2883804954695371431, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1195219897}
     - targetCorrespondingSourceObject: {fileID: 2978530638912893391, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1283200109}

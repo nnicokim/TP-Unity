@@ -27,6 +27,9 @@ public class Gun : MonoBehaviour, IGun
     [Header("Fire Rate")]
     [SerializeField, Min(0f)] private float _secondsBetweenShots;
 
+    [Header("Visual Recoil")]
+    [SerializeField] private WeaponRecoil _weaponRecoil;
+
     [Header("Camera Aim")]
     [SerializeField] private Camera _aimCamera;
     [SerializeField] private float _aimDistance = 1000f;
@@ -84,6 +87,9 @@ public class Gun : MonoBehaviour, IGun
         if (_audioSource == null)
             _audioSource = GetComponent<AudioSource>();
 
+        if (_weaponRecoil == null)
+            _weaponRecoil = GetComponent<WeaponRecoil>();
+
         ResolveAimCamera();
 
         _bulletCount = ClipSize;
@@ -136,10 +142,29 @@ public class Gun : MonoBehaviour, IGun
     }
     public virtual void Attack()
     {
+        ApplyVisualRecoil();
         RegisterShotCooldown();
         PlayShotSound();
         AmmoUiFeedback();
         ReloadIfEmpty();
+    }
+
+    public void ResetVisualRecoilRestPose()
+    {
+        if (_weaponRecoil == null)
+            _weaponRecoil = GetComponent<WeaponRecoil>();
+
+        if (_weaponRecoil != null)
+            _weaponRecoil.ResetRestPose();
+    }
+
+    private void ApplyVisualRecoil()
+    {
+        if (_weaponRecoil == null)
+            _weaponRecoil = GetComponent<WeaponRecoil>();
+
+        if (_weaponRecoil != null)
+            _weaponRecoil.ApplyRecoil();
     }
 
     protected void RegisterShotCooldown()

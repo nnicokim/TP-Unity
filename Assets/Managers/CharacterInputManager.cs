@@ -197,6 +197,7 @@ public class CharacterInputManager : MonoBehaviour
         EnsureEquippedWeaponUsesHolder(selection, _equipedGun.transform);
         _equipedGun.gameObject.SetActive(true);
         FitHeldWeaponIfNeeded(selection, _equipedGun.transform);
+        _equipedGun.ResetVisualRecoilRestPose();
 
         // 3. Crear nuevas las estrategias
         _cmdAttack = new CmdAttack(_equipedGun);
