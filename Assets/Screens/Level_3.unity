@@ -5744,6 +5744,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212198533}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &214680810
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1774650038}
+    m_Modifications:
+    - target: {fileID: 5438415068543506550, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_Name
+      value: tank_7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 23.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.191257
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 39.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bee65ed452bd94251804685c6972408e, type: 3}
+--- !u!4 &214680811 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+  m_PrefabInstance: {fileID: 214680810}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &228871856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19834,6 +19896,68 @@ BoxCollider:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2883804954695371431, guid: 7bc2e8b30d53c4bb5a1fc97e3b6785cb, type: 3}
   m_PrefabInstance: {fileID: 4773316564873674091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &774887170
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1774650038}
+    m_Modifications:
+    - target: {fileID: 5438415068543506550, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_Name
+      value: tank_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -59.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.191257
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 30.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bee65ed452bd94251804685c6972408e, type: 3}
+--- !u!4 &774887171 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+  m_PrefabInstance: {fileID: 774887170}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &775930787
 GameObject:
@@ -41374,6 +41498,8 @@ Transform:
   - {fileID: 727775616}
   - {fileID: 474627723}
   - {fileID: 1222291575}
+  - {fileID: 774887171}
+  - {fileID: 214680811}
   m_Father: {fileID: 1091567346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1776745814
