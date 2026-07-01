@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.4528302, g: 0.0064079626, b: 0.0064079626, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1002,8 +1002,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 400}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 1000, y: 420}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1095796322
 MonoBehaviour:
@@ -1222,7 +1222,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1369,7 +1369,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 237.00279}
   m_SizeDelta: {x: 0, y: 640}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1792312377
@@ -1432,7 +1432,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 35
-    m_FontStyle: 0
+    m_FontStyle: 3
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
@@ -1442,13 +1442,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Game made by: \nAxel Castro Benza\nTom\xE1s Gonz\xE1lez Colasantti\nNicol\xE1s
-    Kim\n \nModels, effects pack and songs used:\n\"Fast Zombie\" model by RedRomb
-    \n\"Zombie A\" model by Studio New Punch\n\"Desert Eagle Gun\" model by attix84work\n\"M16
-    Assault Rifle\" model by SpatialNeglect\n\"Shotgun- Benelli M90 (XM1014)\" model
-    by Nayo 3D\n\"MuhGUNS\" effects pack by The Artifact \n\"Zombie Sound Pack -
-    Free Version\" effects pack by Catastic \n\"Depois da Batalha\" by Composiia\n\"Horror\"
-    by The_Mountain\n and many more...\n"
+  m_Text: "\nGame made by: \nNicol\xE1s Mat\xEDas Kim\nAxel Castro Benza\nTom\xE1s
+    Gonz\xE1lez Colasantti\n\n\nCREDITS\n\nModels, effects pack and songs used from
+    the following artists:\n\"Fast Zombie\" model by RedRomb \n\"Zombie A\" model
+    by Studio New Punch\n\"Desert Eagle Gun\" model by attix84work\n\"M16 Assault
+    Rifle\" model by SpatialNeglect\n\"Shotgun - Benelli M90 (XM1014)\" model by
+    Nayo 3D\n\"MuhGUNS\" effects pack by The Artifact \n\"Zombie Sound Pack - Free
+    Version\" effects pack by Catastic \n\"Depois da Batalha\" by Composiia\n\"Horror\"
+    by The_Mountain\n\"security monitor\" by wilsz95 \n\"Police Badge\" by oparaskos\n
+    and many more...\n"
 --- !u!222 &1792312380
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1667,8 +1669,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2054128228}
   m_HandleRect: {fileID: 2054128227}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1904,8 +1906,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 939996398}
   m_HandleRect: {fileID: 939996397}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.5984375
+  m_Value: -0.000012104018
+  m_Size: 0.62968194
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
