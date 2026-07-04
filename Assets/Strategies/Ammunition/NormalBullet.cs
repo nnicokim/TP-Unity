@@ -77,7 +77,8 @@ public class NormalBullet : MonoBehaviour, IBullet
 
         if (lifeStrategy != null)
         {
-            int damage = _owner != null ? _owner.Damage : 0;
+            int baseDamage = _owner != null ? _owner.Damage : 0;
+            int damage = DamageBonusManager.ApplyWeaponDamageMultiplier(baseDamage);
             Debug.Log($"Bullet golpeo a {collider.name} (-{damage})");
 
             if (EventQueueManager.instance != null)

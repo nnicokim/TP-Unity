@@ -169,12 +169,13 @@ public class Fists : MonoBehaviour
         if (damageable == null)
             return;
 
-        Debug.Log($"Fists golpeo a {hit.collider.name} (-{damage})");
+        int finalDamage = DamageBonusManager.ApplyWeaponDamageMultiplier(damage);
+        Debug.Log($"Fists golpeo a {hit.collider.name} (-{finalDamage})");
 
         if (EventQueueManager.instance != null)
-            EventQueueManager.instance.AddCommand(new CmdApplyDamage(damageable, damage));
+            EventQueueManager.instance.AddCommand(new CmdApplyDamage(damageable, finalDamage));
         else
-            damageable.ApplyDamage(damage);
+            damageable.ApplyDamage(finalDamage);
     }
 
     private void PlayPunchSound()
