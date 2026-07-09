@@ -1,36 +1,50 @@
+using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Zombie : MonoBehaviour, IInteractable, IDamageable
 {
     private const float DESTROY_AFTER_DEATH_DELAY = 1.5f;
 
     #region TARGET_GROUP
-    [SerializeField] private Transform _target;
+    [SerializeField] protected Transform _target;
     #endregion
 
     #region MOVEMENT_GROUP
-    [SerializeField] private float _moveSpeed = 2f;
-    [SerializeField] private float _rotationSpeed = 8f;
-    [SerializeField] private float _stopDistance = 1.4f;
-    [SerializeField] private float _detectionRange = 25f;
+    [SerializeField] protected float _moveSpeed = 2f;
+    [SerializeField] protected float _rotationSpeed = 8f;
+    [SerializeField] protected float _stopDistance = 1.4f;
+    [SerializeField] protected float _detectionRange = 25f;
     #endregion
 
     #region ANIMATION_GROUP
-    [SerializeField] private Animation _animation;
-    [SerializeField] private string _walkAnimationName;
-    [SerializeField] private string _idleAnimationName;
-    [SerializeField] private string _attackAnimationName;
-    [SerializeField] private string _dieAnimationName;
+    [SerializeField] protected Animation _animation;
+    [SerializeField] protected string _walkAnimationName;
+    [SerializeField] protected string _idleAnimationName;
+    [SerializeField] protected string _attackAnimationName;
+    [SerializeField] protected string _dieAnimationName;
     #endregion
 
     #region AUDIO_GROUP
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip[] _attackClips;
-    [SerializeField] private AudioClip[] _hurtClips;
-    [SerializeField] private AudioClip[] _dieClips;
-    [SerializeField] private AudioClip[] _idleClips;
-    [SerializeField] private float _idleSoundMinInterval = 4f;
-    [SerializeField] private float _idleSoundMaxInterval = 9f;
+    [SerializeField] protected AudioSource _audioSource;
+    [SerializeField] protected AudioClip[] _attackClips;
+    [SerializeField] protected AudioClip[] _hurtClips;
+    [SerializeField] protected AudioClip[] _dieClips;
+    [SerializeField] protected AudioClip[] _idleClips;
+    [SerializeField] protected float _idleSoundMinInterval = 4f;
+    [SerializeField] protected float _idleSoundMaxInterval = 9f;
+    private IEnumerator soundLoopCoroutine;
+    #endregion
+
+    #region STATE_MACHINE_GROUP
+    protected StateMachine _StateMachine = new();
+    public StateMachineState SpawnState { get; protected set; }
+    public StateMachineState IdleState { get; protected set; }
+    public StateMachineState ChaseState { get; protected set; }
+    public StateMachineState AttackState { get; protected set; }
+    public StateMachineState HurtState { get; protected set; }
+    public StateMachineState DieState { get; protected set; }
+
     #endregion
 
     #region IINTERACTABLE_GROUP
@@ -41,15 +55,18 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     private bool _canDamage = true;
     private bool _isDead;
 
-    public void Interact(Collider Collider)
+    protected float lastSpeed;
+
+    public virtual void Interact(Collider collider)
     {
         if (_isDead || !_canDamage)
             return;
-
-        IDamageable lifeStrategy = Collider.GetComponentInParent<IDamageable>();
-        lifeStrategy ??= Collider.GetComponentInChildren<IDamageable>();
-
-        TryDealDamage(lifeStrategy, Collider != null ? Collider.name : "<unknown>");
+        
+        if (collider.gameObject.layer == this.gameObject.layer)
+        {
+            ApplyMovement(-DirectionToTarget(collider.gameObject.transform), lastSpeed);
+            return;
+        }
     }
 
     private void TryDealDamage(IDamageable lifeStrategy, string targetName)
@@ -67,7 +84,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         else
             lifeStrategy.ApplyDamage(Value);
 
-        PlayRandomClip(_attackClips);
+        PlayRandomClip(_attackClips, true);
 
         Debug.Log($"Zombie aplico daño: {Value} a {targetName}");
         Invoke(nameof(EnableDamage), _damageCooldown);
@@ -90,12 +107,8 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         Debug.Log($"Zombie recibio daño: {damage}. Vida restante: {_life}");
 
         if (_life <= 0)
-        {
-            Die();
-            return;
-        }
-
-        PlayRandomClip(_hurtClips);
+            _StateMachine.ChangeState(DieState);
+        else _StateMachine.ChangeState(HurtState);
     }
 
     public void ApplyHealthRecovery(int amount)
@@ -114,12 +127,9 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         _isDead = true;
         _canDamage = false;
         CancelInvoke(nameof(EnableDamage));
-        CancelInvoke(nameof(PlayIdleSound));
         OnDie();
 
         Debug.Log($"Zombie {name} ha muerto.");
-        PlayDieAnimation();
-        PlayRandomClip(_dieClips);
         Destroy(gameObject, DESTROY_AFTER_DEATH_DELAY);
     }
 
@@ -127,18 +137,24 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     #endregion
 
     #region UNITY_EVENTS
-    private void Start()
+    protected virtual void Start()
     {
         _maxLife = _life;
-        ConfigureRigidbody();
+        //ConfigureRigidbody();
         ResolveAnimation();
         ResolveAudio();
-        ScheduleNextIdleSound();
+        SpawnState = new ZombieStateSpawn(this, _idleAnimationName, _idleClips, _StateMachine);
+        IdleState = new ZombieStateIdle(this, _idleAnimationName, _idleClips, _StateMachine);
+        ChaseState = new ZombieStateChase(this, _walkAnimationName, _idleClips, _StateMachine);
+        AttackState = new ZombieStateAttack(this, _attackAnimationName, _attackClips, _StateMachine);
+        HurtState = new ZombieStateHurt(this, _idleAnimationName, _hurtClips, _StateMachine);
+        DieState = new ZombieStateDie(this, _dieAnimationName, _dieClips, _StateMachine);
+        _StateMachine.InitStateMachine(SpawnState);
     }
 
     private void Update()
     {
-        ChaseTarget();
+        _StateMachine.CurrentState.UpdateLogic();
     }
 
     private void OnTriggerEnter(Collider Collider) => Interact(Collider);
@@ -157,61 +173,52 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         rb.includeLayers = 0;
         rb.excludeLayers = 0;
     }
-
-    private void OnValidate()
-    {
-        _life = Mathf.Max(1, _life);
-        _damage = Mathf.Max(0, _damage);
-        _damageCooldown = Mathf.Max(0.1f, _damageCooldown);
-        _moveSpeed = Mathf.Max(0f, _moveSpeed);
-        _rotationSpeed = Mathf.Max(0f, _rotationSpeed);
-        _stopDistance = Mathf.Max(0f, _stopDistance);
-        _detectionRange = Mathf.Max(0f, _detectionRange);
-    }
     #endregion
 
     #region CHASE_GROUP
-    private void ChaseTarget()
+
+    public bool IsTargetInChaseRange()
     {
-        if (_isDead)
-            return;
-
-        if (_target == null || IsGamePaused())
-        {
-            PlayMovementAnimation(false);
-            return;
-        }
-
         Vector3 direction = _target.position - transform.position;
         direction.y = 0f;
 
         float distance = direction.magnitude;
-        bool targetDetected = _detectionRange <= 0f || distance <= _detectionRange;
-        if (!targetDetected)
-        {
-            PlayMovementAnimation(false);
-            return;
-        }
+        return _detectionRange <= 0f || distance <= _detectionRange;
+    }
 
-        Vector3 moveDirection = direction.normalized;
+    public bool IsTargetInAttackRange()
+    {
+        Vector3 direction = _target.position - transform.position;
+        direction.y = 0f;
 
-        if (distance <= _stopDistance)
-        {
-            RotateTowards(moveDirection);
-            PlayAttackAnimation();
-            AttackTargetInRange();
-            return;
-        }
+        float distance = direction.magnitude;
+        return distance <= _stopDistance;
+    }
 
-        if (_moveSpeed <= 0f)
-        {
-            PlayMovementAnimation(false);
-            return;
-        }
+    protected Vector3 DirectionToTarget(Transform target)
+    {
+        Vector3 direction = target.position - transform.position;
+        direction.y = 0f;
 
-        RotateTowards(moveDirection);
-        transform.position += moveDirection * _moveSpeed * Time.deltaTime;
-        PlayMovementAnimation(true);
+        return direction.normalized;
+    }
+
+    protected void ApplyMovement(Vector3 moveDirection, float speed)
+    {
+        transform.position += speed * Time.deltaTime * moveDirection;
+        lastSpeed = speed;
+    }
+
+    public void ChaseTarget()
+    {
+        // if (_target == null || IsGamePaused())
+        // {
+        //     PlayMovementAnimation(false);
+        //     return;
+        // }
+        Vector3 direction = DirectionToTarget(_target);
+        RotateTowards(direction);
+        ApplyMovement(direction, _moveSpeed);
     }
 
     private void RotateTowards(Vector3 direction)
@@ -223,6 +230,12 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
     }
 
+    //Moves slowly in a random direction
+    public void WalkAround()
+    {
+        //TODO
+    }
+
     private bool IsGamePaused()
     {
         return GameManager.instance != null && GameManager.instance.isGamePause;
@@ -230,7 +243,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
 
     // El daño no depende de que los colliders se toquen: si el target está dentro de
     // _stopDistance y el cooldown está listo, aplicamos daño.
-    private void AttackTargetInRange()
+    public void AttackTargetInRange()
     {
         if (_target == null)
             return;
@@ -249,59 +262,14 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
             _animation = GetComponentInChildren<Animation>();
     }
 
-    private void PlayMovementAnimation(bool isMoving)
-    {
-        if (_animation == null)
-            return;
-
-        if (isMoving)
-        {
-            PlayAnimation(GetAnimationName(_walkAnimationName));
-            return;
-        }
-
-        if (!string.IsNullOrEmpty(_idleAnimationName))
-            PlayAnimation(_idleAnimationName);
-        else
-            _animation.Stop();
-    }
-
-    private void PlayAttackAnimation()
-    {
-        if (_animation == null)
-            return;
-
-        if (!string.IsNullOrEmpty(_attackAnimationName))
-            PlayAnimation(_attackAnimationName);
-        else
-            PlayMovementAnimation(false);
-    }
-
-    private void PlayDieAnimation()
-    {
-        if (_animation == null)
-            return;
-
-        if (!string.IsNullOrEmpty(_dieAnimationName))
-            PlayAnimation(_dieAnimationName);
-        else
-            _animation.Stop();
-    }
-
-    private string GetAnimationName(string preferredName)
-    {
-        if (!string.IsNullOrEmpty(preferredName))
-            return preferredName;
-
-        return _animation.clip != null ? _animation.clip.name : null;
-    }
-
-    private void PlayAnimation(string animationName)
+    public void PlayAnimation(string animationName, bool isOneshot)
     {
         if (string.IsNullOrEmpty(animationName) || _animation.IsPlaying(animationName))
             return;
 
-        _animation.CrossFade(animationName);
+        if (isOneshot) _animation.wrapMode = WrapMode.Once;
+        else _animation.wrapMode = WrapMode.Loop;
+        _animation.CrossFade(animationName);    
     }
     #endregion
 
@@ -312,32 +280,32 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
             _audioSource = GetComponent<AudioSource>();
     }
 
-    private void PlayRandomClip(AudioClip[] clips)
+    public void PlayRandomClip(AudioClip[] clips, bool isOneshot)
     {
         if (_audioSource == null || clips == null || clips.Length == 0)
             return;
 
         AudioClip clip = clips[Random.Range(0, clips.Length)];
-        if (clip != null)
-            _audioSource.PlayOneShot(clip);
+        _audioSource.PlayOneShot(clip);
+        if (!isOneshot)
+            soundLoopCoroutine = ScheduleNextIdleSound(clips);
+            StartCoroutine(ScheduleNextIdleSound(clips));
     }
 
-    private void ScheduleNextIdleSound()
+    private IEnumerator ScheduleNextIdleSound(AudioClip[] clips)
     {
-        if (_idleClips == null || _idleClips.Length == 0)
-            return;
-
         float delay = Random.Range(_idleSoundMinInterval, Mathf.Max(_idleSoundMinInterval, _idleSoundMaxInterval));
-        Invoke(nameof(PlayIdleSound), delay);
+        yield return new WaitForSeconds(delay);
+        if (clips == null || clips.Length == 0)
+            yield break;
+
+        PlayRandomClip(clips, false);
+        yield break;
     }
 
-    private void PlayIdleSound()
+    public void StopAudioclips()
     {
-        if (_isDead)
-            return;
-
-        PlayRandomClip(_idleClips);
-        ScheduleNextIdleSound();
+        StopCoroutine(soundLoopCoroutine);
     }
     #endregion
 }
