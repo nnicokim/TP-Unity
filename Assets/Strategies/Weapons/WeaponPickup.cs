@@ -7,6 +7,8 @@ using static InventoryManager;
 [DisallowMultipleComponent]
 public class WeaponPickup : MonoBehaviour
 {
+    private const float DefaultPickupRotationSpeed = 90f;
+
     [Header("Weapon")]
     [SerializeField] private ItemWeapons weaponItem = ItemWeapons.PistolClip;
     [SerializeField] private bool autoDetectWeaponItem = true;
@@ -30,6 +32,10 @@ public class WeaponPickup : MonoBehaviour
     [SerializeField] private Animator _pickupAnimator;
     [SerializeField] private string _pistolHeldParameter = "pistolHeld";
     [SerializeField] private string _pistolHeldStateName = "PistolHeld";
+    [SerializeField] private bool rotateWhenAvailable = true;
+    [SerializeField] private Vector3 pickupRotationAxis = Vector3.up;
+    [SerializeField, Min(0f)] private float pickupRotationSpeed = DefaultPickupRotationSpeed;
+    [SerializeField, HideInInspector] private bool pickupRotationDefaultsInitialized;
 
     [Header("Pickup Feedback")]
     [SerializeField] private Text weaponInstructionText;
@@ -44,6 +50,8 @@ public class WeaponPickup : MonoBehaviour
 
     protected virtual void Awake()
     {
+        ApplyPickupRotationDefaultsIfNeeded();
+
         if (weapon == null)
             weapon = GetComponentInChildren<Gun>(true);
 
@@ -52,6 +60,27 @@ public class WeaponPickup : MonoBehaviour
         ConfigureWorldPickupColliders();
         SetInstructionVisible(true);
         SetPickupTextVisible(false);
+    }
+
+    private void OnValidate()
+    {
+        ApplyPickupRotationDefaultsIfNeeded();
+    }
+
+    private void ApplyPickupRotationDefaultsIfNeeded()
+    {
+        if (pickupRotationDefaultsInitialized)
+            return;
+
+        rotateWhenAvailable = true;
+
+        if (pickupRotationAxis.sqrMagnitude <= 0f)
+            pickupRotationAxis = Vector3.up;
+
+        if (pickupRotationSpeed <= 0f)
+            pickupRotationSpeed = DefaultPickupRotationSpeed;
+
+        pickupRotationDefaultsInitialized = true;
     }
 
     private void AutoDetectWeaponItem()
@@ -105,10 +134,42 @@ public class WeaponPickup : MonoBehaviour
 
     private void Update()
     {
+        RotateWorldPickup();
+
         if (_wasPickedUp || !checkPickupByDistance)
             return;
 
         TryPickupByDistance();
+    }
+
+    private void RotateWorldPickup()
+    {
+        if (_wasPickedUp || !rotateWhenAvailable || pickupRotationSpeed <= 0f)
+            return;
+
+        if (weapon is Pistol && HasRunningPickupAnimation())
+            return;
+
+        Vector3 axis = pickupRotationAxis.sqrMagnitude > 0f ? pickupRotationAxis.normalized : Vector3.up;
+        Transform target = weapon != null ? weapon.transform : transform;
+        target.Rotate(axis, pickupRotationSpeed * Time.deltaTime, Space.World);
+    }
+
+    private bool HasRunningPickupAnimation()
+    {
+        if (_pickupAnimator != null && _pickupAnimator.enabled && _pickupAnimator.runtimeAnimatorController != null)
+            return true;
+
+        Transform root = weapon != null ? weapon.transform : transform;
+        Animation[] animations = root.GetComponentsInChildren<Animation>(true);
+        for (int i = 0; i < animations.Length; i++)
+        {
+            Animation animation = animations[i];
+            if (animation != null && animation.enabled && animation.isPlaying)
+                return true;
+        }
+
+        return false;
     }
 
     private void OnTriggerEnter(Collider other)

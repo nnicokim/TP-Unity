@@ -9,6 +9,12 @@ public class MedKit : MonoBehaviour, IInteractable
     public int Value => _healthRecoveryValue;
     [SerializeField] private int _healthRecoveryValue;
 
+    [Header("World Pickup Rotation")]
+    [SerializeField] private bool rotateWhenAvailable = true;
+    [SerializeField] private Vector3 rotationAxis = Vector3.up;
+    [SerializeField, Min(0f)] private float rotationSpeed = 90f;
+    [SerializeField] private Transform visualRoot;
+
     private bool _canInteract = true;
 
     public void Interact(Collider Collider)
@@ -50,6 +56,11 @@ public class MedKit : MonoBehaviour, IInteractable
         }
     }
 
+    private void Update()
+    {
+        RotatePickup();
+    }
+
     private void OnTriggerEnter(Collider Collider) => Interact(Collider);
     private void OnTriggerStay(Collider Collider) => Interact(Collider);
     private void OnCollisionEnter(Collision collision) => Interact(collision.collider);
@@ -60,6 +71,37 @@ public class MedKit : MonoBehaviour, IInteractable
 
         if (_collider != null)
             _collider.enabled = true;
+    }
+
+    private void RotatePickup()
+    {
+        if (!rotateWhenAvailable || HasRunningPickupAnimation() || rotationSpeed <= 0f)
+            return;
+
+        Vector3 axis = rotationAxis.sqrMagnitude > 0f ? rotationAxis.normalized : Vector3.up;
+        Transform target = visualRoot != null ? visualRoot : transform;
+        target.Rotate(axis, rotationSpeed * Time.deltaTime, Space.World);
+    }
+
+    private bool HasRunningPickupAnimation()
+    {
+        Animator[] animators = GetComponentsInChildren<Animator>(true);
+        for (int i = 0; i < animators.Length; i++)
+        {
+            Animator animator = animators[i];
+            if (animator != null && animator.enabled && animator.runtimeAnimatorController != null)
+                return true;
+        }
+
+        Animation[] animations = GetComponentsInChildren<Animation>(true);
+        for (int i = 0; i < animations.Length; i++)
+        {
+            Animation animation = animations[i];
+            if (animation != null && animation.enabled && animation.isPlaying)
+                return true;
+        }
+
+        return false;
     }
     #endregion
 }
