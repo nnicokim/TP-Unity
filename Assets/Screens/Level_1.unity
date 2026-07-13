@@ -8642,6 +8642,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MedKit
   _healthRecoveryValue: 50
+  rotateWhenAvailable: 1
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: 90
+  visualRoot: {fileID: 0}
 --- !u!1 &314328106
 GameObject:
   m_ObjectHideFlags: 0
@@ -14465,6 +14469,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MedKit
   _healthRecoveryValue: 50
+  rotateWhenAvailable: 1
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: 90
+  visualRoot: {fileID: 0}
 --- !u!1 &506258589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6689036041284674117, guid: e9de2f9d3788e4afeaf2015925299441, type: 3}
@@ -22584,6 +22592,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MedKit
   _healthRecoveryValue: 50
+  rotateWhenAvailable: 1
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: 90
+  visualRoot: {fileID: 0}
 --- !u!1001 &816713282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23264,7 +23276,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 100
+  _life: 125
 --- !u!1 &818801638
 GameObject:
   m_ObjectHideFlags: 0
@@ -32145,6 +32157,15 @@ MonoBehaviour:
   _pickupAnimator: {fileID: 0}
   _pistolHeldParameter: pistolHeld
   _pistolHeldStateName: PistolHeld
+  pickupVisualRoot: {fileID: 0}
+  rotateWhenAvailable: 1
+  pickupRotationAxis: {x: 0, y: 1, z: 0}
+  pickupRotationSpeed: 90
+  bobWhenAvailable: 1
+  pickupBobAxis: {x: 0, y: 1, z: 0}
+  pickupBobAmplitude: 0.15
+  pickupBobSpeed: 1.25
+  pickupRotationDefaultsInitialized: 1
   weaponInstructionText: {fileID: 0}
   legacyInstructionText: {fileID: 1272122899}
   pickupText: {fileID: 1252964453}
@@ -32887,6 +32908,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MedKit
   _healthRecoveryValue: 50
+  rotateWhenAvailable: 1
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: 90
+  visualRoot: {fileID: 0}
 --- !u!1 &1233263449 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6689036041284674117, guid: a9e996ee3e0db493fafe7cd5f3428070, type: 3}

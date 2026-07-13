@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0.1
+  m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -6997,7 +6997,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 50
+  _life: 150
 --- !u!1001 &253870191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7678,7 +7678,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 50
+  _life: 150
 --- !u!1001 &256565071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8527,6 +8527,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MedKit
   _healthRecoveryValue: 50
+  rotateWhenAvailable: 1
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: 90
+  visualRoot: {fileID: 0}
 --- !u!1 &314328106
 GameObject:
   m_ObjectHideFlags: 0
@@ -9252,7 +9256,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1
-  _life: 100
+  _life: 200
 --- !u!111 &327475243 stripped
 Animation:
   m_CorrespondingSourceObject: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
@@ -9520,7 +9524,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1
-  _life: 100
+  _life: 200
 --- !u!111 &331024899 stripped
 Animation:
   m_CorrespondingSourceObject: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
@@ -10562,7 +10566,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 50
+  _life: 150
 --- !u!1001 &351259107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11447,7 +11451,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1
-  _life: 100
+  _life: 150
 --- !u!111 &381168763 stripped
 Animation:
   m_CorrespondingSourceObject: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
@@ -14757,6 +14761,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MedKit
   _healthRecoveryValue: 50
+  rotateWhenAvailable: 1
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: 90
+  visualRoot: {fileID: 0}
 --- !u!1 &506258589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6689036041284674117, guid: e9de2f9d3788e4afeaf2015925299441, type: 3}
@@ -20757,6 +20765,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MedKit
   _healthRecoveryValue: 50
+  rotateWhenAvailable: 1
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: 90
+  visualRoot: {fileID: 0}
 --- !u!1001 &816713282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21437,7 +21449,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 100
+  _life: 200
 --- !u!1 &818801638
 GameObject:
   m_ObjectHideFlags: 0
@@ -22137,7 +22149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   _stats: {fileID: 11400000, guid: 516947cfdb169461a8d9565c2c98f829, type: 2}
-  _life: 250
+  _life: 200
 --- !u!114 &833159278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23055,7 +23067,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 50
+  _life: 150
 --- !u!1001 &856790077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24884,7 +24896,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1
-  _life: 100
+  _life: 200
 --- !u!1001 &963680415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28435,7 +28447,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1
-  _life: 100
+  _life: 200
 --- !u!111 &1083448174 stripped
 Animation:
   m_CorrespondingSourceObject: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
@@ -30693,6 +30705,15 @@ MonoBehaviour:
   _pickupAnimator: {fileID: 0}
   _pistolHeldParameter: pistolHeld
   _pistolHeldStateName: PistolHeld
+  pickupVisualRoot: {fileID: 0}
+  rotateWhenAvailable: 1
+  pickupRotationAxis: {x: 0, y: 1, z: 0}
+  pickupRotationSpeed: 90
+  bobWhenAvailable: 1
+  pickupBobAxis: {x: 0, y: 1, z: 0}
+  pickupBobAmplitude: 0.15
+  pickupBobSpeed: 1.25
+  pickupRotationDefaultsInitialized: 1
   weaponInstructionText: {fileID: 0}
   legacyInstructionText: {fileID: 1272122899}
   pickupText: {fileID: 1252964453}
@@ -31442,6 +31463,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MedKit
   _healthRecoveryValue: 50
+  rotateWhenAvailable: 1
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: 90
+  visualRoot: {fileID: 0}
 --- !u!1 &1233263449 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6689036041284674117, guid: a9e996ee3e0db493fafe7cd5f3428070, type: 3}
@@ -34619,7 +34644,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 50
+  _life: 150
 --- !u!4 &1384556235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2774220344278030320, guid: cd87b7fbdc887407f91ba6596f07683a, type: 3}
@@ -42249,7 +42274,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 50
+  _life: 150
 --- !u!1 &1777375026
 GameObject:
   m_ObjectHideFlags: 0
@@ -43536,7 +43561,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 50
+  _life: 150
 --- !u!1001 &1817646846
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46168,7 +46193,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 50
+  _life: 150
 --- !u!1001 &1952210057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48360,7 +48385,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 50
+  _life: 150
 --- !u!1 &2060602282 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6689036041284674117, guid: 38bf755caa2ab486480343fa7da0d735, type: 3}
@@ -48531,6 +48556,15 @@ MonoBehaviour:
   _pickupAnimator: {fileID: 0}
   _pistolHeldParameter: pistolHeld
   _pistolHeldStateName: PistolHeld
+  pickupVisualRoot: {fileID: 0}
+  rotateWhenAvailable: 1
+  pickupRotationAxis: {x: 0, y: 1, z: 0}
+  pickupRotationSpeed: 90
+  bobWhenAvailable: 1
+  pickupBobAxis: {x: 0, y: 1, z: 0}
+  pickupBobAmplitude: 0.15
+  pickupBobSpeed: 1
+  pickupRotationDefaultsInitialized: 1
   weaponInstructionText: {fileID: 1272122899}
   legacyInstructionText: {fileID: 0}
   pickupText: {fileID: 1252964453}
@@ -49801,7 +49835,7 @@ MonoBehaviour:
   _idleSoundMaxInterval: 9
   _damage: 25
   _damageCooldown: 1.5
-  _life: 50
+  _life: 200
 --- !u!111 &2115883596 stripped
 Animation:
   m_CorrespondingSourceObject: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
@@ -50779,9 +50813,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 1504032215}
     m_Modifications:
     - target: {fileID: 6009843390730879748, guid: 3fc155fbdb01748f09bff389f57bc2de, type: 3}
+      propertyPath: _life
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009843390730879748, guid: 3fc155fbdb01748f09bff389f57bc2de, type: 3}
+      propertyPath: _damage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009843390730879748, guid: 3fc155fbdb01748f09bff389f57bc2de, type: 3}
       propertyPath: _target
       value: 
       objectReference: {fileID: 833159271}
+    - target: {fileID: 6009843390730879748, guid: 3fc155fbdb01748f09bff389f57bc2de, type: 3}
+      propertyPath: _moveSpeed
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7094016396989443406, guid: 3fc155fbdb01748f09bff389f57bc2de, type: 3}
       propertyPath: m_Name
       value: Zombie_1
