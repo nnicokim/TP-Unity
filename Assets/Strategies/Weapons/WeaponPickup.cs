@@ -8,6 +8,8 @@ using static InventoryManager;
 public class WeaponPickup : MonoBehaviour
 {
     private const float DefaultPickupRotationSpeed = 90f;
+    private const float DefaultPickupBobAmplitude = 0.15f;
+    private const float DefaultPickupBobSpeed = 1.25f;
 
     [Header("Weapon")]
     [SerializeField] private ItemWeapons weaponItem = ItemWeapons.PistolClip;
@@ -32,9 +34,14 @@ public class WeaponPickup : MonoBehaviour
     [SerializeField] private Animator _pickupAnimator;
     [SerializeField] private string _pistolHeldParameter = "pistolHeld";
     [SerializeField] private string _pistolHeldStateName = "PistolHeld";
+    [SerializeField] private Transform pickupVisualRoot;
     [SerializeField] private bool rotateWhenAvailable = true;
     [SerializeField] private Vector3 pickupRotationAxis = Vector3.up;
     [SerializeField, Min(0f)] private float pickupRotationSpeed = DefaultPickupRotationSpeed;
+    [SerializeField] private bool bobWhenAvailable = true;
+    [SerializeField] private Vector3 pickupBobAxis = Vector3.up;
+    [SerializeField, Min(0f)] private float pickupBobAmplitude = DefaultPickupBobAmplitude;
+    [SerializeField, Min(0f)] private float pickupBobSpeed = DefaultPickupBobSpeed;
     [SerializeField, HideInInspector] private bool pickupRotationDefaultsInitialized;
 
     [Header("Pickup Feedback")]
@@ -47,6 +54,8 @@ public class WeaponPickup : MonoBehaviour
     private bool _wasPickedUp;
     private CharacterInputManager _cachedPlayer;
     private Coroutine _pickupTextRoutine;
+    private Transform _pickupAnimationTarget;
+    private Vector3 _pickupBaseLocalPosition;
 
     protected virtual void Awake()
     {
@@ -57,6 +66,7 @@ public class WeaponPickup : MonoBehaviour
 
         ResolvePickupAnimator();
         AutoDetectWeaponItem();
+        CachePickupAnimationTarget();
         ConfigureWorldPickupColliders();
         SetInstructionVisible(true);
         SetPickupTextVisible(false);
@@ -79,6 +89,17 @@ public class WeaponPickup : MonoBehaviour
 
         if (pickupRotationSpeed <= 0f)
             pickupRotationSpeed = DefaultPickupRotationSpeed;
+
+        bobWhenAvailable = true;
+
+        if (pickupBobAxis.sqrMagnitude <= 0f)
+            pickupBobAxis = Vector3.up;
+
+        if (pickupBobAmplitude <= 0f)
+            pickupBobAmplitude = DefaultPickupBobAmplitude;
+
+        if (pickupBobSpeed <= 0f)
+            pickupBobSpeed = DefaultPickupBobSpeed;
 
         pickupRotationDefaultsInitialized = true;
     }
@@ -134,25 +155,87 @@ public class WeaponPickup : MonoBehaviour
 
     private void Update()
     {
-        RotateWorldPickup();
-
         if (_wasPickedUp || !checkPickupByDistance)
             return;
 
         TryPickupByDistance();
     }
 
-    private void RotateWorldPickup()
+    private void LateUpdate()
     {
-        if (_wasPickedUp || !rotateWhenAvailable || pickupRotationSpeed <= 0f)
+        AnimateWorldPickup();
+    }
+
+    private void AnimateWorldPickup()
+    {
+        if (_wasPickedUp || !ShouldRunProceduralPickupAnimation())
             return;
 
         if (weapon is Pistol && HasRunningPickupAnimation())
             return;
 
+        Transform target = GetPickupAnimationTarget();
+        if (target == null)
+            return;
+
+        RotateWorldPickup(target);
+        BobWorldPickup(target);
+    }
+
+    private bool ShouldRunProceduralPickupAnimation()
+    {
+        if (weapon is Rifle || weapon is Shotgun)
+            return true;
+
+        return rotateWhenAvailable || bobWhenAvailable;
+    }
+
+    private void RotateWorldPickup(Transform target)
+    {
+        if (!rotateWhenAvailable && !(weapon is Rifle) && !(weapon is Shotgun))
+            return;
+
+        float speed = pickupRotationSpeed > 0f ? pickupRotationSpeed : DefaultPickupRotationSpeed;
         Vector3 axis = pickupRotationAxis.sqrMagnitude > 0f ? pickupRotationAxis.normalized : Vector3.up;
-        Transform target = weapon != null ? weapon.transform : transform;
-        target.Rotate(axis, pickupRotationSpeed * Time.deltaTime, Space.World);
+        target.Rotate(axis, speed * Time.deltaTime, Space.World);
+    }
+
+    private void BobWorldPickup(Transform target)
+    {
+        if (!bobWhenAvailable && !(weapon is Rifle) && !(weapon is Shotgun))
+            return;
+
+        CachePickupAnimationTarget();
+
+        float amplitude = pickupBobAmplitude > 0f ? pickupBobAmplitude : DefaultPickupBobAmplitude;
+        float speed = pickupBobSpeed > 0f ? pickupBobSpeed : DefaultPickupBobSpeed;
+        Vector3 axis = pickupBobAxis.sqrMagnitude > 0f ? pickupBobAxis.normalized : Vector3.up;
+        float offset = Mathf.Sin(Time.time * speed * Mathf.PI * 2f) * amplitude;
+
+        target.localPosition = _pickupBaseLocalPosition + axis * offset;
+    }
+
+    private Transform GetPickupAnimationTarget()
+    {
+        if (pickupVisualRoot != null)
+            return pickupVisualRoot;
+
+        if (weapon != null)
+            return weapon.transform;
+
+        return transform;
+    }
+
+    private void CachePickupAnimationTarget()
+    {
+        Transform target = GetPickupAnimationTarget();
+        if (_pickupAnimationTarget == target)
+            return;
+
+        _pickupAnimationTarget = target;
+
+        if (_pickupAnimationTarget != null)
+            _pickupBaseLocalPosition = _pickupAnimationTarget.localPosition;
     }
 
     private bool HasRunningPickupAnimation()
