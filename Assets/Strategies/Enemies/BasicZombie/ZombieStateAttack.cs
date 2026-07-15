@@ -9,6 +9,12 @@ public class ZombieStateAttack : StateMachineState
         limitTime = 1;
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+        _HasAttacked = false;
+    }
+
     public override void UpdateLogic()
     {
         base.UpdateLogic();
