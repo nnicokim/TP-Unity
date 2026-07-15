@@ -118,7 +118,7 @@ public class CharacterInputManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.instance != null && GameManager.instance.isGameOver)
+        if (GameManager.instance != null && (GameManager.instance.isGameOver || GameManager.instance.isGamePause))
             return;
 
         Keyboard keyboard = Keyboard.current;
