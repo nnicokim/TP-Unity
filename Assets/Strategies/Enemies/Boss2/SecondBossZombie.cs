@@ -11,7 +11,6 @@ public class SecondBossZombie : BossZombie
         ChaseState = new SecondBossStateChase(this, _walkAnimationName, _idleClips, _StateMachine);
         DashState = new SecondBossStateDash(this, _dashAnimationName, _dashClips, _StateMachine);
         AttackDashState = new SecondBossStateDashAttack(this, _attackAnimationName, _attackClips, _StateMachine);
-        HurtState = ChaseState;
     }
 
 }

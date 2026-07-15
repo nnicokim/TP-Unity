@@ -150,7 +150,7 @@ PrefabInstance:
       objectReference: {fileID: 7400000, guid: 975a86fda8c059a448c1706293c59775, type: 2}
     - target: {fileID: 8681642452852674115, guid: 2c81fd814df35c942bf8357360ffd886, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 2c81fd814df35c942bf8357360ffd886, type: 3}
       propertyPath: 'm_Animations.Array.data[1]'
@@ -164,6 +164,10 @@ PrefabInstance:
       propertyPath: 'm_Animations.Array.data[3]'
       value: 
       objectReference: {fileID: 7400000, guid: 975a86fda8c059a448c1706293c59775, type: 2}
+    - target: {fileID: 8681642452852674115, guid: 2c81fd814df35c942bf8357360ffd886, type: 3}
+      propertyPath: 'm_Animations.Array.data[4]'
+      value: 
+      objectReference: {fileID: 7400000, guid: eac8e8b90f94dae46aec8f4a212c5f74, type: 2}
     - target: {fileID: 8702646407245609777, guid: 2c81fd814df35c942bf8357360ffd886, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -404,16 +408,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThirdBossZombie
   _target: {fileID: 0}
-  _moveSpeed: 6
-  _rotationSpeed: 8
+  _moveSpeed: 5
+  _rotationSpeed: 6
   _stopDistance: 3
-  _detectionRange: 50
-  _animation: {fileID: 7855731552062723416}
+  _detectionRange: 150
   _walkAnimationName: meaty_walk
   _idleAnimationName: idle
   _attackAnimationName: meaty_attack
+  _hurtAnimationName: meaty_hurt
   _dieAnimationName: meaty_die
-  _audioSource: {fileID: -1154338898190251981}
   _attackClips:
   - {fileID: 8300000, guid: 44491c6b5c032437090631520291016e, type: 3}
   - {fileID: 8300000, guid: cfc397cb5b5f64b7b878c48eca85eda0, type: 3}
@@ -432,12 +435,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a531dfb28fd3941149784d5fd97083cb, type: 3}
   _idleSoundMinInterval: 4
   _idleSoundMaxInterval: 12
-  _damage: 60
+  _damage: 50
   _damageCooldown: 1
-  _life: 400
+  _life: 600
   _exitDoor: {fileID: 0}
   DashAttackRange: 25
-  InitialDashSpeed: 80
+  InitialDashSpeed: 66
   DashWallDistance: 10
   DashLength: 1.5
   _dashAnimationName: meaty_dash
@@ -445,8 +448,3 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7ca3ffb432c00964b89cf2945f4b962a, type: 3}
   - {fileID: 8300000, guid: 5220bdc8b46bebb49ae2630620185b41, type: 3}
   - {fileID: 8300000, guid: f4d01a08cb074a448b2c305d2aeab048, type: 3}
---- !u!111 &7855731552062723416 stripped
-Animation:
-  m_CorrespondingSourceObject: {fileID: 8681642452852674115, guid: 2c81fd814df35c942bf8357360ffd886, type: 3}
-  m_PrefabInstance: {fileID: 1548756590809242395}
-  m_PrefabAsset: {fileID: 0}

@@ -10,7 +10,6 @@ public class ThirdBossZombie : BossZombie
         base.Start();
         ChaseState = new ThirdBossStateChase(this, _walkAnimationName, _idleClips, _StateMachine);
         AttackDashState = new SecondBossStateDashAttack(this, _attackAnimationName, _attackClips, _StateMachine);
-        HurtState = ChaseState;
     }
 
 }

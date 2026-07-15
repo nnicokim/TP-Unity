@@ -679,7 +679,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _rotationSpeed: 10
   _stopDistance: 4
-  _detectionRange: 50
+  _detectionRange: 150
   _walkAnimationName: Walk_InPlace
   _idleAnimationName: Idle
   _attackAnimationName: Attack
@@ -703,7 +703,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a531dfb28fd3941149784d5fd97083cb, type: 3}
   _idleSoundMinInterval: 4
   _idleSoundMaxInterval: 9
-  _damage: 25
+  _damage: 35
   _damageCooldown: 2
   _life: 250
   _exitDoor: {fileID: 0}

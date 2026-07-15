@@ -65,10 +65,10 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
             return;
         
         if (collider.gameObject.layer == this.gameObject.layer)
-        {
             ApplyMovement(-DirectionToTarget(collider.gameObject.transform), lastSpeed);
-            return;
-        }
+        //else
+            //ApplyMovement(-DirectionToTarget(collider.gameObject.transform), 1);
+
     }
 
     private void TryDealDamage(IDamageable lifeStrategy, string targetName)
