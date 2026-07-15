@@ -23,6 +23,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     [SerializeField] protected string _walkAnimationName;
     [SerializeField] protected string _idleAnimationName;
     [SerializeField] protected string _attackAnimationName;
+    [SerializeField] protected string _hurtAnimationName;
     [SerializeField] protected string _dieAnimationName;
     #endregion
 
@@ -149,7 +150,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         IdleState = new ZombieStateIdle(this, _idleAnimationName, _idleClips, _StateMachine);
         ChaseState = new ZombieStateChase(this, _walkAnimationName, _idleClips, _StateMachine);
         AttackState = new ZombieStateAttack(this, _attackAnimationName, _attackClips, _StateMachine);
-        HurtState = new ZombieStateHurt(this, _idleAnimationName, _hurtClips, _StateMachine);
+        HurtState = new ZombieStateHurt(this, _hurtAnimationName, _hurtClips, _StateMachine);
         DieState = new ZombieStateDie(this, _dieAnimationName, _dieClips, _StateMachine);
         _StateMachine.InitStateMachine(SpawnState);
     }

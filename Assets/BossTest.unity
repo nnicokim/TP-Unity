@@ -809,6 +809,7 @@ MonoBehaviour:
   _isGameOver: 0
   _isVictory: 0
   _isGamePause: 0
+  _pauseMenu: {fileID: 0}
 --- !u!114 &480105910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3909,11 +3910,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 4, z: 1}
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!111 &1764815132 stripped
-Animation:
-  m_CorrespondingSourceObject: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
-  m_PrefabInstance: {fileID: 1207838937}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1764815133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3931,12 +3927,10 @@ MonoBehaviour:
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 25
-  _animation: {fileID: 1764815132}
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
   _dieAnimationName: death
-  _audioSource: {fileID: 1764815128}
   _attackClips:
   - {fileID: 8300000, guid: 44491c6b5c032437090631520291016e, type: 3}
   - {fileID: 8300000, guid: cfc397cb5b5f64b7b878c48eca85eda0, type: 3}
@@ -4095,6 +4089,7 @@ GameObject:
   - component: {fileID: 1929252630}
   - component: {fileID: 1929252634}
   - component: {fileID: 1929252635}
+  - component: {fileID: 1929252636}
   m_Layer: 0
   m_Name: Boss2
   m_TagString: Untagged
@@ -4214,12 +4209,10 @@ MonoBehaviour:
   _rotationSpeed: 8
   _stopDistance: 1.4
   _detectionRange: 25
-  _animation: {fileID: 0}
   _walkAnimationName: 
   _idleAnimationName: 
   _attackAnimationName: 
   _dieAnimationName: 
-  _audioSource: {fileID: 0}
   _attackClips: []
   _hurtClips: []
   _dieClips: []
@@ -4333,6 +4326,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!111 &1929252636
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929252629}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!82 &1952049522 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 7166628902422714309, guid: c30352b7a820b274e9f5919d8dc1fdbb, type: 3}
@@ -5028,6 +5037,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1976600943}
     - target: {fileID: 8715539753728635921, guid: c30352b7a820b274e9f5919d8dc1fdbb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715539753728635921, guid: c30352b7a820b274e9f5919d8dc1fdbb, type: 3}
       propertyPath: _animation
       value: 
       objectReference: {fileID: 1952049525}
@@ -5134,7 +5147,7 @@ PrefabInstance:
       objectReference: {fileID: 1976600943}
     - target: {fileID: 3974993959991331208, guid: e44029bca46fb6e4d87367ae24e65e67, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3974993959991331208, guid: e44029bca46fb6e4d87367ae24e65e67, type: 3}
       propertyPath: _audioSource
@@ -5143,6 +5156,10 @@ PrefabInstance:
     - target: {fileID: 3974993959991331208, guid: e44029bca46fb6e4d87367ae24e65e67, type: 3}
       propertyPath: _dashAnimationName
       value: Dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 3974993959991331208, guid: e44029bca46fb6e4d87367ae24e65e67, type: 3}
+      propertyPath: _walkAnimationName
+      value: Walk_InPlace
       objectReference: {fileID: 0}
     - target: {fileID: 4654360663700914474, guid: e44029bca46fb6e4d87367ae24e65e67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

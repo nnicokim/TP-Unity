@@ -430,12 +430,16 @@ PrefabInstance:
       objectReference: {fileID: 7400000, guid: 0a54652c2a8f18c4aaad106b793b2128, type: 2}
     - target: {fileID: 8681642452852674115, guid: 8d2bc38bffb757d40908284931f9b729, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 8d2bc38bffb757d40908284931f9b729, type: 3}
       propertyPath: 'm_Animations.Array.data[10]'
       value: 
       objectReference: {fileID: 7400000, guid: 0a54652c2a8f18c4aaad106b793b2128, type: 2}
+    - target: {fileID: 8681642452852674115, guid: 8d2bc38bffb757d40908284931f9b729, type: 3}
+      propertyPath: 'm_Animations.Array.data[11]'
+      value: 
+      objectReference: {fileID: 7400000, guid: cb3e337d92e6a7a4f910c540bba03e37, type: 2}
     - target: {fileID: 8828335716399881717, guid: 8d2bc38bffb757d40908284931f9b729, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -676,12 +680,11 @@ MonoBehaviour:
   _rotationSpeed: 10
   _stopDistance: 4
   _detectionRange: 50
-  _animation: {fileID: 7587614628627922928}
-  _walkAnimationName: Walk1_InPlace
+  _walkAnimationName: Walk_InPlace
   _idleAnimationName: Idle
   _attackAnimationName: Attack
+  _hurtAnimationName: z2_hurt
   _dieAnimationName: FallingBack
-  _audioSource: {fileID: 461070518313611329}
   _attackClips:
   - {fileID: 8300000, guid: 44491c6b5c032437090631520291016e, type: 3}
   - {fileID: 8300000, guid: cfc397cb5b5f64b7b878c48eca85eda0, type: 3}
@@ -713,8 +716,3 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7ca3ffb432c00964b89cf2945f4b962a, type: 3}
   - {fileID: 8300000, guid: 5220bdc8b46bebb49ae2630620185b41, type: 3}
   - {fileID: 8300000, guid: f4d01a08cb074a448b2c305d2aeab048, type: 3}
---- !u!111 &7587614628627922928 stripped
-Animation:
-  m_CorrespondingSourceObject: {fileID: 8681642452852674115, guid: 8d2bc38bffb757d40908284931f9b729, type: 3}
-  m_PrefabInstance: {fileID: 1240737975798641075}
-  m_PrefabAsset: {fileID: 0}
