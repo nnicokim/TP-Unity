@@ -14,7 +14,7 @@ public class BasicHealth : Actor, IDamageable
         SetLife();
     }
 
-    public virtual void ApplyDamage(int damage)
+    public virtual void ApplyDamage(int damage, DamageType type)
     {
         if (gameObject == null)
         {
@@ -22,6 +22,7 @@ public class BasicHealth : Actor, IDamageable
             return;
         }
         _life -= damage;
+        Debug.Log($"Received {damage} damage from {type}");
         if (_life <= 0) Die();
     }
 

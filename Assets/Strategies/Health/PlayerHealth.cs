@@ -5,11 +5,11 @@ public class PlayerHealth : BasicHealth
 {
     private bool _lostGame = false;
 
-    public override void ApplyDamage(int damage)
+    public override void ApplyDamage(int damage, DamageType type)
     {
         int lifeBeforeDamage = Mathf.Max(0, Life);
 
-        base.ApplyDamage(damage);
+        base.ApplyDamage(damage, type);
 
         int lifeAfterDamage = Mathf.Max(0, Life);
         GameplayStatsManager.RegisterDamageTaken(lifeBeforeDamage - lifeAfterDamage);

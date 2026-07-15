@@ -1369,7 +1369,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 237.00064}
+  m_AnchoredPosition: {x: 0, y: 237.00003}
   m_SizeDelta: {x: 0, y: 640}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1792312377
@@ -1451,8 +1451,8 @@ MonoBehaviour:
     Batalha\" by Composiia\n\"Horror\" by The_Mountain\n\"security monitor\" by wilsz95
     \n\"Police Badge\" by oparaskos\n\"Zombie\" by pxltiger is licensed under Creative
     Commons Attribution.\n\"Meaty zombie\" by Karabas Studio is licensed under Creative
-    Commons Attribution (http://creativecommons.org/licenses/by/4.0/).\n and many
-    more...\n"
+    Commons Attribution.\n\"Zombie Girl\" by LostBoyz2078 is licensed under Creative
+    Commons Attribution-NonCommercial.\n and many more...\n"
 --- !u!222 &1792312380
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1671,7 +1671,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2054128228}
   m_HandleRect: {fileID: 2054128227}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1908,8 +1908,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 939996398}
   m_HandleRect: {fileID: 939996397}
   m_Direction: 2
-  m_Value: -0.0000025753232
-  m_Size: 0.62851465
+  m_Value: -0.00000025753224
+  m_Size: 0.62967706
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

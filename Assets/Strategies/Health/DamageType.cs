@@ -1,0 +1,8 @@
+public enum DamageType
+{
+    DAMAGE_BULLET,
+    DAMAGE_EXPLOSION,
+    DAMAGE_FIST,
+    DAMAGE_ZOMBIE,
+    DAMAGE_HAZARD
+}

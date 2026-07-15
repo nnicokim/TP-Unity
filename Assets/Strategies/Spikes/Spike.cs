@@ -18,9 +18,9 @@ public class Spike : MonoBehaviour, IInteractable
             return;
 
         if (EventQueueManager.instance != null)
-            EventQueueManager.instance.AddCommand(new CmdApplyDamage(lifeStrategy, Value));
+            EventQueueManager.instance.AddCommand(new CmdApplyDamage(lifeStrategy, Value, DamageType.DAMAGE_HAZARD));
         else
-            lifeStrategy.ApplyDamage(Value);
+            lifeStrategy.ApplyDamage(Value, DamageType.DAMAGE_HAZARD);
 
         _collider.enabled = false;
         Invoke("EnableCollider", 2f);

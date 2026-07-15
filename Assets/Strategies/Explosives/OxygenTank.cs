@@ -28,7 +28,7 @@ public class OxygenTank : MonoBehaviour, IDamageable
             Debug.LogWarning($"OxygenTank en {name} necesita un Collider para recibir disparos.", this);
     }
 
-    public void ApplyDamage(int damage)
+    public void ApplyDamage(int damage, DamageType type)
     {
         if (_hasExploded)
             return;
@@ -87,6 +87,7 @@ public class OxygenTank : MonoBehaviour, IDamageable
         for (int i = 0; i < hits.Length; i++)
         {
             Collider hit = hits[i];
+            Debug.Log(hit.name);
             if (hit == null || hit.transform.IsChildOf(transform))
                 continue;
 
@@ -97,9 +98,9 @@ public class OxygenTank : MonoBehaviour, IDamageable
                 continue;
 
             if (EventQueueManager.instance != null)
-                EventQueueManager.instance.AddCommand(new CmdApplyDamage(damageable, _explosionDamage));
+                EventQueueManager.instance.AddCommand(new CmdApplyDamage(damageable, _explosionDamage, DamageType.DAMAGE_EXPLOSION));
             else
-                damageable.ApplyDamage(_explosionDamage);
+                damageable.ApplyDamage(_explosionDamage, DamageType.DAMAGE_EXPLOSION);
         }
     }
 

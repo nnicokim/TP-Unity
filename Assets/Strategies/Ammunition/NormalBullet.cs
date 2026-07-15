@@ -82,9 +82,9 @@ public class NormalBullet : MonoBehaviour, IBullet
             Debug.Log($"Bullet golpeo a {collider.name} (-{damage})");
 
             if (EventQueueManager.instance != null)
-                EventQueueManager.instance.AddCommand(new CmdApplyDamage(lifeStrategy, damage));
+                EventQueueManager.instance.AddCommand(new CmdApplyDamage(lifeStrategy, damage, DamageType.DAMAGE_BULLET));
             else
-                lifeStrategy.ApplyDamage(damage);
+                lifeStrategy.ApplyDamage(damage, DamageType.DAMAGE_BULLET);
         }
 
         _hasHit = true;

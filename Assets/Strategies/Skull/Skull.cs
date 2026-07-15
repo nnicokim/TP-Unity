@@ -21,7 +21,7 @@ public class Skull : MonoBehaviour, IDamageable
         life = Mathf.Clamp(life > 0 ? life : maxLife, 0, maxLife);
     }
 
-    public void ApplyDamage(int damage)
+    public void ApplyDamage(int damage, DamageType type)
     {
         if (_isDead)
             return;

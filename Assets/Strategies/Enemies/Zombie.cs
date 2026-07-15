@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(Animation))]
 public class Zombie : MonoBehaviour, IInteractable, IDamageable
 {
     private const float DESTROY_AFTER_DEATH_DELAY = 1.5f;
@@ -18,7 +19,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     #endregion
 
     #region ANIMATION_GROUP
-    [SerializeField] protected Animation _animation;
+    protected Animation _animation;
     [SerializeField] protected string _walkAnimationName;
     [SerializeField] protected string _idleAnimationName;
     [SerializeField] protected string _attackAnimationName;
@@ -26,7 +27,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     #endregion
 
     #region AUDIO_GROUP
-    [SerializeField] protected AudioSource _audioSource;
+    protected AudioSource _audioSource;
     [SerializeField] protected AudioClip[] _attackClips;
     [SerializeField] protected AudioClip[] _hurtClips;
     [SerializeField] protected AudioClip[] _dieClips;
@@ -80,9 +81,9 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         _canDamage = false;
 
         if (EventQueueManager.instance != null)
-            EventQueueManager.instance.AddCommand(new CmdApplyDamage(lifeStrategy, Value));
+            EventQueueManager.instance.AddCommand(new CmdApplyDamage(lifeStrategy, Value, DamageType.DAMAGE_ZOMBIE));
         else
-            lifeStrategy.ApplyDamage(Value);
+            lifeStrategy.ApplyDamage(Value, DamageType.DAMAGE_ZOMBIE);
 
         PlayRandomClip(_attackClips, true);
 
@@ -98,7 +99,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     public int MaxLife => _maxLife;
     private int _maxLife;
 
-    public void ApplyDamage(int damage)
+    public virtual void ApplyDamage(int damage, DamageType damageType)
     {
         if (_isDead)
             return;

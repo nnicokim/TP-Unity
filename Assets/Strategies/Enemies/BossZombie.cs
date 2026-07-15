@@ -18,6 +18,13 @@ public class BossZombie : Zombie
 
     private IEnumerator DashCoroutine;
 
+    public override void ApplyDamage(int damage, DamageType type)
+    {
+        if (type == DamageType.DAMAGE_EXPLOSION)
+            base.ApplyDamage(damage, type);
+        else 
+            Debug.Log($"Damage from {type} for {damage} ignored");
+    }
     protected override void OnDie()
     {
         if (_exitDoor != null)
