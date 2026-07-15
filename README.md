@@ -36,6 +36,23 @@ As you move deeper into the hospital, you will find clues, messages, hidden weap
 - HUD with health, ammunition, and objective instructions.
 - Boss encounter required to unlock the exit.
 
+## Controls
+
+| Action | Key / Input |
+| --- | --- |
+| Move | `W` `A` `S` `D` |
+| Run | `Left Shift` |
+| Look / Aim | Mouse |
+| Shoot / Punch | Left Mouse Button |
+| Reload | `R` |
+| Equip fists | `Space` |
+| Equip pistol | `1` |
+| Equip rifle | `2` |
+| Equip shotgun | `3` |
+| Open exit door | `O` |
+| Pause / Resume | `Esc` |
+| Continue (loading / intro) | `Space` |
+
 ## Can You Escape?
 
 Every hallway could be your last. Every bullet could save your life. Every door could hide something worse.
