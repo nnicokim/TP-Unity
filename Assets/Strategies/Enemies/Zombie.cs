@@ -164,43 +164,32 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
 
     private void EnableDamage() => _canDamage = true;
 
-    private void ConfigureRigidbody()
-    {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb == null)
-            return;
-
-        rb.includeLayers = 0;
-        rb.excludeLayers = 0;
-    }
     #endregion
 
     #region CHASE_GROUP
 
     public bool IsTargetInChaseRange()
     {
-        Vector3 direction = _target.position - transform.position;
-        direction.y = 0f;
-
-        float distance = direction.magnitude;
+        float distance = DistanceToTarget(_target).magnitude;
         return _detectionRange <= 0f || distance <= _detectionRange;
     }
 
     public bool IsTargetInAttackRange()
     {
-        Vector3 direction = _target.position - transform.position;
-        direction.y = 0f;
-
-        float distance = direction.magnitude;
+        float distance = DistanceToTarget(_target).magnitude;
         return distance <= _stopDistance;
+    }
+
+    protected Vector3 DistanceToTarget(Transform target)
+    {
+        Vector3 direction = target.position - transform.position;
+        direction.y = 0f;
+        return direction;
     }
 
     protected Vector3 DirectionToTarget(Transform target)
     {
-        Vector3 direction = target.position - transform.position;
-        direction.y = 0f;
-
-        return direction.normalized;
+        return DistanceToTarget(target).normalized;
     }
 
     protected void ApplyMovement(Vector3 moveDirection, float speed)
@@ -269,7 +258,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
 
         if (isOneshot) _animation.wrapMode = WrapMode.Once;
         else _animation.wrapMode = WrapMode.Loop;
-        _animation.CrossFade(animationName);    
+        _animation.CrossFade(animationName, 0.1f);    
     }
     #endregion
 

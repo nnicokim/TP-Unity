@@ -1444,13 +1444,15 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\nGame made by: \nNicol\xE1s Mat\xEDas Kim\nAxel Castro Benza\nTom\xE1s
     Gonz\xE1lez Colasantti\n\n\nCREDITS\n\nModels, effects pack and songs used from
-    the following artists:\n\"Fast Zombie\" model by RedRomb \n\"Zombie A\" model
-    by Studio New Punch\n\"Desert Eagle Gun\" model by attix84work\n\"M16 Assault
-    Rifle\" model by SpatialNeglect\n\"Shotgun - Benelli M90 (XM1014)\" model by
-    Nayo 3D\n\"MuhGUNS\" effects pack by The Artifact \n\"Zombie Sound Pack - Free
-    Version\" effects pack by Catastic \n\"Depois da Batalha\" by Composiia\n\"Horror\"
-    by The_Mountain\n\"security monitor\" by wilsz95 \n\"Police Badge\" by oparaskos\n
-    and many more...\n"
+    the following artists: \n\"Zombie A\" model by Studio New Punch\n\"Desert Eagle
+    Gun\" model by attix84work\n\"M16 Assault Rifle\" model by SpatialNeglect\n\"Shotgun
+    - Benelli M90 (XM1014)\" model by Nayo 3D\n\"MuhGUNS\" effects pack by The Artifact
+    \n\"Zombie Sound Pack - Free Version\" effects pack by Catastic \n\"Depois da
+    Batalha\" by Composiia\n\"Horror\" by The_Mountain\n\"security monitor\" by wilsz95
+    \n\"Police Badge\" by oparaskos\n\"Zombie\" by pxltiger is licensed under Creative
+    Commons Attribution.\n\"Meaty zombie\" by Karabas Studio is licensed under Creative
+    Commons Attribution (http://creativecommons.org/licenses/by/4.0/).\n and many
+    more...\n"
 --- !u!222 &1792312380
 CanvasRenderer:
   m_ObjectHideFlags: 0
