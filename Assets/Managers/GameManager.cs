@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1f;
         ResolvePauseMenu();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     #endregion
 

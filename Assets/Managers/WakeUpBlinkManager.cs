@@ -48,6 +48,12 @@ public class WakeUpBlinkManager : MonoBehaviour
 
         if (mouseLook != null)
             mouseLook.enabled = isEnabled;
+
+        if (isEnabled)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     private bool HasRequiredReferences()
