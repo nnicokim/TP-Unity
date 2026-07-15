@@ -137,7 +137,7 @@ public class UI_Gameover : MonoBehaviour
         scrollRectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         scrollRectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         scrollRectTransform.pivot = new Vector2(0.5f, 0.5f);
-        scrollRectTransform.anchoredPosition = new Vector2(0f, -145f);
+        scrollRectTransform.anchoredPosition = new Vector2(0f, 0f);
         scrollRectTransform.sizeDelta = new Vector2(620f, 220f);
 
         Image background = _scoreScrollView.GetComponent<Image>();
