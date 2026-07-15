@@ -6231,7 +6231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14505,7 +14505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20784314, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -31434,6 +31434,7 @@ MonoBehaviour:
   _defeat: {fileID: 21300000, guid: b90cbc7e5226840698e0e0fa783c81b9, type: 3}
   _gameoverImage: {fileID: 316486097}
   _retryButton: {fileID: 1352327264}
+  _nextLevelButton: {fileID: 0}
   _backToMenuButton: {fileID: 1203730580}
 --- !u!114 &1200470358
 MonoBehaviour:

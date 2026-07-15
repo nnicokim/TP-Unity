@@ -2073,6 +2073,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -4083,6 +4084,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -5545,6 +5547,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -7594,6 +7597,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -9382,6 +9386,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -9635,6 +9640,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -10294,7 +10300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10886,6 +10892,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -13078,6 +13085,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -15731,6 +15739,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -19037,7 +19046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20784314, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -21023,6 +21032,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -22278,6 +22288,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -24821,6 +24832,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -26241,6 +26253,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -29235,6 +29248,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -35799,6 +35813,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -47765,6 +47780,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -48439,6 +48455,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
+  _hurtAnimationName: 
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
