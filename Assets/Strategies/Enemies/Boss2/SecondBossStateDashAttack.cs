@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class SecondBossStateDashAttack : StateMachineState
 {
-    private new readonly SecondBossZombie enemy;
+    private new readonly BossZombie enemy;
     private float delay = 0.5f;
     private bool hasDashed;
-    public SecondBossStateDashAttack(SecondBossZombie enemy, string animationName, AudioClip[] clips, StateMachine stateMachine) : base(enemy, animationName, clips, stateMachine)
+    public SecondBossStateDashAttack(BossZombie enemy, string animationName, AudioClip[] clips, StateMachine stateMachine) : base(enemy, animationName, clips, stateMachine)
     {
         this.enemy = enemy;
         limitTime = enemy.DashLength;

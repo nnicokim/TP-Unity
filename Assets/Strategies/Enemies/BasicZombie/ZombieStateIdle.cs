@@ -8,12 +8,13 @@ public class ZombieStateIdle : StateMachineState
         limitTime = -1;
         oneshotAnimation=false;
         oneshotAudioclip=false;
+        cooldownTime = 1;
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-        if (enemy.IsTargetInChaseRange()) stateMachine.ChangeState(enemy.ChaseState);
+        if (enemy.IsTargetInChaseRange() && elapsedTime >= cooldownTime) stateMachine.ChangeState(enemy.ChaseState);
         else enemy.WalkAround();
     }
 

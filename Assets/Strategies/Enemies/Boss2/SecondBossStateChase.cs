@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class SecondBossStateChase : StateMachineState
 {
-    private new readonly SecondBossZombie enemy;
-    public SecondBossStateChase(SecondBossZombie enemy, string animationName, AudioClip[] clips, StateMachine stateMachine) : base(enemy, animationName, clips, stateMachine)
+    private new readonly BossZombie enemy;
+    public SecondBossStateChase(BossZombie enemy, string animationName, AudioClip[] clips, StateMachine stateMachine) : base(enemy, animationName, clips, stateMachine)
     {
         this.enemy = enemy;
         limitTime = -1;
@@ -16,7 +16,6 @@ public class SecondBossStateChase : StateMachineState
     {
         base.UpdateLogic();
         float random = Random.Range(0f,1f);
-        Debug.Log(random);
 
         if (!enemy.IsTargetInChaseRange() && elapsedTime >= cooldownTime) 
             stateMachine.ChangeState(enemy.IdleState);

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class SecondBossStateDash : StateMachineState
 {
-    private new readonly SecondBossZombie enemy;
-    public SecondBossStateDash(SecondBossZombie enemy, string animationName, AudioClip[] clips, StateMachine stateMachine) : base(enemy, animationName, clips, stateMachine)
+    private new readonly BossZombie enemy;
+    public SecondBossStateDash(BossZombie enemy, string animationName, AudioClip[] clips, StateMachine stateMachine) : base(enemy, animationName, clips, stateMachine)
     {
         this.enemy = enemy;
         limitTime = enemy.DashLength;
