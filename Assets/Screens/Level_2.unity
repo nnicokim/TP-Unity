@@ -34963,6 +34963,10 @@ PrefabInstance:
       propertyPath: _exitDoor
       value: 
       objectReference: {fileID: 4430651511277996699}
+    - target: {fileID: 3974993959991331208, guid: e44029bca46fb6e4d87367ae24e65e67, type: 3}
+      propertyPath: InitialDashSpeed
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 4112251520805674475, guid: e44029bca46fb6e4d87367ae24e65e67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -0.05640326
@@ -35025,7 +35029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7059718060929909236, guid: e44029bca46fb6e4d87367ae24e65e67, type: 3}
       propertyPath: m_Name
-      value: zombie_boss_2
+      value: Boss_zombie_2
       objectReference: {fileID: 0}
     - target: {fileID: 7660393974356564349, guid: e44029bca46fb6e4d87367ae24e65e67, type: 3}
       propertyPath: m_LocalScale.x
