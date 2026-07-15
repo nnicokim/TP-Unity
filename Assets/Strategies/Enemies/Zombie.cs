@@ -6,6 +6,7 @@ using UnityEngine;
 public class Zombie : MonoBehaviour, IInteractable, IDamageable
 {
     private const float DESTROY_AFTER_DEATH_DELAY = 1.5f;
+    private const int MOVEMENT_CAST_HIT_COUNT = 8;
 
     #region TARGET_GROUP
     [SerializeField] protected Transform _target;
@@ -16,6 +17,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     [SerializeField] protected float _rotationSpeed = 8f;
     [SerializeField] protected float _stopDistance = 1.4f;
     [SerializeField] protected float _detectionRange = 25f;
+    [SerializeField, Min(0f)] private float _movementSkinWidth = 0.05f;
     #endregion
 
     #region ANIMATION_GROUP
@@ -58,6 +60,10 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     private bool _isDead;
 
     protected float lastSpeed;
+    private Rigidbody _rigidbody;
+    private Collider _movementCollider;
+    private readonly RaycastHit[] _movementHits = new RaycastHit[MOVEMENT_CAST_HIT_COUNT];
+    private bool UsesKinematicCollisionMovement => GetType() == typeof(Zombie);
 
     public virtual void Interact(Collider collider)
     {
@@ -143,7 +149,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     protected virtual void Start()
     {
         _maxLife = _life;
-        //ConfigureRigidbody();
+        ConfigureRigidbody();
         ResolveAnimation();
         ResolveAudio();
         SpawnState = new ZombieStateSpawn(this, _idleAnimationName, _idleClips, _StateMachine);
@@ -166,6 +172,26 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
     private void OnCollisionStay(Collision collision) => Interact(collision.collider);
 
     private void EnableDamage() => _canDamage = true;
+
+    private void ConfigureRigidbody()
+    {
+        if (!UsesKinematicCollisionMovement)
+            return;
+
+        _rigidbody = GetComponent<Rigidbody>();
+        if (_rigidbody == null)
+            return;
+
+        // Zombies are moved manually by their state machine, not by physics.
+        // Keeping them dynamic lets the player collision launch them upward.
+        _rigidbody.useGravity = false;
+        _rigidbody.isKinematic = true;
+        _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+
+        _movementCollider = GetComponent<Collider>();
+        if (_movementCollider == null)
+            _movementCollider = GetComponentInChildren<Collider>();
+    }
 
     #endregion
 
@@ -197,8 +223,90 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
 
     protected void ApplyMovement(Vector3 moveDirection, float speed)
     {
-        transform.position += speed * Time.deltaTime * moveDirection;
+        if (!UsesKinematicCollisionMovement)
+        {
+            transform.position += speed * Time.deltaTime * moveDirection;
+            lastSpeed = speed;
+            return;
+        }
+
+        Vector3 displacement = GetAllowedDisplacement(moveDirection, speed);
+        Vector3 nextPosition = transform.position + displacement;
+
+        if (_rigidbody != null && _rigidbody.isKinematic)
+            _rigidbody.MovePosition(nextPosition);
+        else
+            transform.position = nextPosition;
+
         lastSpeed = speed;
+    }
+
+    private Vector3 GetAllowedDisplacement(Vector3 moveDirection, float speed)
+    {
+        if (speed <= 0f || moveDirection.sqrMagnitude <= 0f)
+            return Vector3.zero;
+
+        moveDirection.y = 0f;
+        if (moveDirection.sqrMagnitude <= 0f)
+            return Vector3.zero;
+
+        Vector3 direction = moveDirection.normalized;
+        float desiredDistance = speed * Time.deltaTime;
+
+        if (_movementCollider == null || desiredDistance <= 0f)
+            return direction * desiredDistance;
+
+        float castDistance = desiredDistance + _movementSkinWidth;
+        int hitCount = CastMovementCollider(direction, castDistance);
+        float allowedDistance = desiredDistance;
+
+        for (int i = 0; i < hitCount; i++)
+        {
+            Collider hitCollider = _movementHits[i].collider;
+            if (hitCollider == null || hitCollider.isTrigger || hitCollider.transform.IsChildOf(transform))
+                continue;
+
+            float distanceBeforeHit = Mathf.Max(0f, _movementHits[i].distance - _movementSkinWidth);
+            allowedDistance = Mathf.Min(allowedDistance, distanceBeforeHit);
+        }
+
+        return direction * allowedDistance;
+    }
+
+    private int CastMovementCollider(Vector3 direction, float distance)
+    {
+        if (_movementCollider is BoxCollider boxCollider)
+        {
+            Vector3 center = boxCollider.transform.TransformPoint(boxCollider.center);
+            Vector3 halfExtents = GetScaledHalfExtents(boxCollider);
+            Quaternion orientation = boxCollider.transform.rotation;
+
+            return Physics.BoxCastNonAlloc(
+                center,
+                halfExtents,
+                direction,
+                _movementHits,
+                orientation,
+                distance,
+                ~0,
+                QueryTriggerInteraction.Ignore);
+        }
+
+        Vector3 rayOrigin = transform.position + Vector3.up * 0.5f;
+        return Physics.RaycastNonAlloc(
+            rayOrigin,
+            direction,
+            _movementHits,
+            distance,
+            ~0,
+            QueryTriggerInteraction.Ignore);
+    }
+
+    private static Vector3 GetScaledHalfExtents(BoxCollider boxCollider)
+    {
+        Vector3 scale = boxCollider.transform.lossyScale;
+        scale = new Vector3(Mathf.Abs(scale.x), Mathf.Abs(scale.y), Mathf.Abs(scale.z));
+        return Vector3.Scale(boxCollider.size * 0.5f, scale);
     }
 
     public void ChaseTarget()

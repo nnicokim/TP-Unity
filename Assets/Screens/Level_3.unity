@@ -7183,10 +7183,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -7858,10 +7859,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -9435,10 +9437,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -9697,10 +9700,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -10728,10 +10732,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -11691,10 +11696,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -21892,10 +21898,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 50
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -23504,10 +23511,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -24418,6 +24426,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &910946018
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1774650038}
+    m_Modifications:
+    - target: {fileID: 5438415068543506550, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_Name
+      value: tank_9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -30.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.191257
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bee65ed452bd94251804685c6972408e, type: 3}
+--- !u!4 &910946019 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8294847721266334214, guid: bee65ed452bd94251804685c6972408e, type: 3}
+  m_PrefabInstance: {fileID: 910946018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &913477630 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2774220344278030320, guid: 0b71882fa43dd44d59cb7a382e649f3f, type: 3}
@@ -25327,10 +25397,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 30
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -28877,10 +28948,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -35213,10 +35285,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 200
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -42251,6 +42324,7 @@ Transform:
   - {fileID: 774887171}
   - {fileID: 214680811}
   - {fileID: 1992531379}
+  - {fileID: 910946019}
   m_Father: {fileID: 1091567346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1776745814
@@ -42898,10 +42972,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -44179,10 +44254,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -45536,10 +45612,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 200
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -46211,10 +46288,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 200
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -48155,10 +48233,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -50426,10 +50505,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 200
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -51875,10 +51955,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack

@@ -2066,7 +2066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
@@ -4077,7 +4077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
@@ -5540,7 +5540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
@@ -7590,7 +7590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
@@ -9379,7 +9379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
@@ -9633,7 +9633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
@@ -10885,7 +10885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
@@ -13078,7 +13078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
@@ -15732,7 +15732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 200
@@ -21025,7 +21025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 200
@@ -22281,7 +22281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 50
@@ -24825,7 +24825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 30
@@ -26246,7 +26246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
@@ -29241,7 +29241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
@@ -35806,7 +35806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 200
@@ -47773,7 +47773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
@@ -48448,7 +48448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 4
+  _moveSpeed: 7
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
