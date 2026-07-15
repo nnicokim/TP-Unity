@@ -5,7 +5,15 @@ using UnityEngine.UI;
 public class UI_Gameover : MonoBehaviour
 {
     private const string MENU_SCENE_NAME = "Menu";
+    private const string ASYNC_LOAD_SCENE_NAME = "AsyncLoad";
     private const string SCORE_SCROLL_VIEW_NAME = "VictoryStatsScrollView";
+
+    private static readonly string[] LEVEL_ORDER =
+    {
+        "Level_1",
+        "Level_2",
+        "Level_3"
+    };
 
     [SerializeField] private Sprite _victory;
     [SerializeField] private Sprite _defeat;
@@ -13,6 +21,7 @@ public class UI_Gameover : MonoBehaviour
 
     [Header("Gameover actions")]
     [SerializeField] private Button _retryButton;
+    [SerializeField] private Button _nextLevelButton;
     [SerializeField] private Button _backToMenuButton;
 
     private GameObject _scoreScrollView;
@@ -28,6 +37,12 @@ public class UI_Gameover : MonoBehaviour
         {
             _retryButton.gameObject.SetActive(false);
             _retryButton.onClick.AddListener(RetryLevel);
+        }
+
+        if (_nextLevelButton != null)
+        {
+            _nextLevelButton.gameObject.SetActive(false);
+            _nextLevelButton.onClick.AddListener(LoadNextLevel);
         }
 
         if (_backToMenuButton != null)
@@ -46,17 +61,32 @@ public class UI_Gameover : MonoBehaviour
         if (_retryButton != null)
             _retryButton.onClick.RemoveListener(RetryLevel);
 
+        if (_nextLevelButton != null)
+            _nextLevelButton.onClick.RemoveListener(LoadNextLevel);
+
         if (_backToMenuButton != null)
             _backToMenuButton.onClick.RemoveListener(LoadMenu);
     }
     #endregion
 
     #region ACTION_GAMEOVER
-    private void GameoverSuscribe() => ActionsManager.instance.OnGameover += OnGameover;
-    private void GameoverUnsuscribe() => ActionsManager.instance.OnGameover -= OnGameover;
+    private void GameoverSuscribe()
+    {
+        if (ActionsManager.instance != null)
+            ActionsManager.instance.OnGameover += OnGameover;
+    }
+
+    private void GameoverUnsuscribe()
+    {
+        if (ActionsManager.instance != null)
+            ActionsManager.instance.OnGameover -= OnGameover;
+    }
 
     private void OnGameover(bool isVictory)
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         if (_gameoverImage != null)
         {
             _gameoverImage.enabled = true;
@@ -68,8 +98,14 @@ public class UI_Gameover : MonoBehaviour
         else
             SetVictoryScoreVisible(false);
 
+        string nextLevel = GetNextLevelName();
+        bool canGoNext = isVictory && !string.IsNullOrEmpty(nextLevel);
+
         if (_retryButton != null)
-            _retryButton.gameObject.SetActive(true);
+            _retryButton.gameObject.SetActive(!isVictory);
+
+        if (_nextLevelButton != null)
+            _nextLevelButton.gameObject.SetActive(canGoNext);
 
         if (_backToMenuButton != null)
             _backToMenuButton.gameObject.SetActive(true);
@@ -79,23 +115,50 @@ public class UI_Gameover : MonoBehaviour
     #region GAMEOVER_ACTIONS
     private void RetryLevel()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        Time.timeScale = 1f;
+        PrepareSceneTransition();
         GameplayStatsManager.ResetStatsForNewRun();
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void LoadNextLevel()
+    {
+        string nextLevel = GetNextLevelName();
+        if (string.IsNullOrEmpty(nextLevel))
+            return;
+
+        PrepareSceneTransition();
+
+        PlayerPrefs.SetString("TargetScreen", nextLevel);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(ASYNC_LOAD_SCENE_NAME);
     }
 
     private void LoadMenu()
     {
+        PrepareSceneTransition();
+        SceneManager.LoadScene(MENU_SCENE_NAME);
+    }
+
+    private static void PrepareSceneTransition()
+    {
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+    #endregion
 
-        Time.timeScale = 1f;
+    #region LEVEL_PROGRESSION
+    private static string GetNextLevelName()
+    {
+        string current = SceneManager.GetActiveScene().name;
 
-        SceneManager.LoadScene(MENU_SCENE_NAME);
+        for (int i = 0; i < LEVEL_ORDER.Length - 1; i++)
+        {
+            if (LEVEL_ORDER[i] == current)
+                return LEVEL_ORDER[i + 1];
+        }
+
+        return null;
     }
     #endregion
 
