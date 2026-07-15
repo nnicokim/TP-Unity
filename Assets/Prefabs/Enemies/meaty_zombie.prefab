@@ -439,6 +439,8 @@ MonoBehaviour:
   _damageCooldown: 1
   _life: 600
   _exitDoor: {fileID: 0}
+  _exitKeyPrefab: {fileID: 4820968901081546286, guid: 114329d41eda4eecb792a5d03093fda7, type: 3}
+  _keySpawnOffset: {x: 0, y: 1, z: 0}
   DashAttackRange: 25
   InitialDashSpeed: 66
   DashWallDistance: 10

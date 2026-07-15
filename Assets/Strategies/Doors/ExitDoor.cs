@@ -21,7 +21,7 @@ public class ExitDoor : MonoBehaviour
     [Header("Interaction Prompt")]
     [SerializeField] private Text _interactionText;
     [SerializeField] private bool _showPromptOnlyWhenPlayerInRange = true;
-    [SerializeField] private string _lockedMessage = "Exit door is locked";
+    [SerializeField] private string _lockedMessage = "Find the exit key";
     [SerializeField] private string _unlockedMessage = "Press 'o' to open";
 
     [Header("Interaction Range")]
@@ -35,6 +35,7 @@ public class ExitDoor : MonoBehaviour
     private bool _isPlayerInTrigger;
     private bool _isPlayerNearDoor;
     private bool _victoryScheduled;
+    private Coroutine _temporaryMessageCoroutine;
 
     private bool IsPlayerInRange => _isPlayerInTrigger || _isPlayerNearDoor;
 
@@ -88,6 +89,26 @@ public class ExitDoor : MonoBehaviour
     {
         _isLocked = false;
         Debug.Log($"{name} desbloqueada.");
+        UpdateDoorMessage();
+    }
+
+    public void ShowTemporaryMessage(string message, float duration = 2.5f)
+    {
+        if (_interactionText == null || string.IsNullOrEmpty(message))
+            return;
+
+        if (_temporaryMessageCoroutine != null)
+            StopCoroutine(_temporaryMessageCoroutine);
+
+        _temporaryMessageCoroutine = StartCoroutine(ShowTemporaryMessageRoutine(message, duration));
+    }
+
+    private IEnumerator ShowTemporaryMessageRoutine(string message, float duration)
+    {
+        _interactionText.text = message;
+        _interactionText.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(duration);
+        _temporaryMessageCoroutine = null;
         UpdateDoorMessage();
     }
 
@@ -221,7 +242,7 @@ public class ExitDoor : MonoBehaviour
 
     private void UpdateDoorMessage()
     {
-        if (_interactionText == null)
+        if (_interactionText == null || _temporaryMessageCoroutine != null)
             return;
 
         bool shouldShow = !_isOpen && (!_showPromptOnlyWhenPlayerInRange || IsPlayerInRange);
