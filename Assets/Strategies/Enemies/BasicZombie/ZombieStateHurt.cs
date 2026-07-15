@@ -4,7 +4,7 @@ public class ZombieStateHurt : StateMachineState
 {
     public ZombieStateHurt(Zombie enemy, string animationName, AudioClip[] clips, StateMachine stateMachine) : base(enemy, animationName, clips, stateMachine)
     {
-        limitTime = 1;
+        limitTime = 0.5f;
     }
 
     public override void UpdateLogic()

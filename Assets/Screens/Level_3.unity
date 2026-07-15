@@ -2468,12 +2468,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -6920,12 +6920,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -7190,7 +7190,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -7595,12 +7595,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -7865,7 +7865,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -9442,7 +9442,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -9704,7 +9704,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -10465,12 +10465,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -10735,7 +10735,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -11698,7 +11698,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -13943,12 +13943,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -16321,12 +16321,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -21621,12 +21621,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -21891,7 +21891,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -23233,12 +23233,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -23503,7 +23503,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -25056,12 +25056,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -25326,7 +25326,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -27608,12 +27608,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -28596,12 +28596,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -28876,7 +28876,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -34913,12 +34913,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -35183,7 +35183,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -42537,12 +42537,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -42807,7 +42807,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -43818,12 +43818,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -44088,7 +44088,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -46444,12 +46444,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -46714,7 +46714,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -48653,12 +48653,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8681642452852674115, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: 'm_Animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 2905132476169856563, guid: aaf4645d9ed264d5db2ec59acfddbf3a, type: 3}
+      objectReference: {fileID: 7400000, guid: f4dce17bc1913e64c8b54889f11716f2, type: 2}
     - target: {fileID: 8787761728520718195, guid: 36a2c05d0ac7d4049a0a414c0e6a0106, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -48923,7 +48923,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -50372,7 +50372,7 @@ MonoBehaviour:
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
-  _hurtAnimationName: 
+  _hurtAnimationName: hurt
   _dieAnimationName: death
   _attackClips:
   - {fileID: 8300000, guid: 2c536cff31c3a402898ac356ebd96aba, type: 3}
@@ -51513,7 +51513,7 @@ SceneRoots:
   - {fileID: 1091567346}
   - {fileID: 407938792}
   - {fileID: 903150249}
+  - {fileID: 680384106}
   - {fileID: 1504032215}
   - {fileID: 988738230}
   - {fileID: 1262207475}
-  - {fileID: 680384106}
