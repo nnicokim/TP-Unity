@@ -2066,10 +2066,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -4077,10 +4078,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -5540,10 +5542,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -7590,10 +7593,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -9379,10 +9383,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -9633,10 +9638,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -10885,10 +10891,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -13078,10 +13085,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -15732,10 +15740,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 200
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -21025,10 +21034,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 200
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -22281,10 +22291,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 50
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -24825,10 +24836,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 30
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -26246,10 +26258,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -29241,10 +29254,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 150
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -35807,10 +35821,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 200
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -47774,10 +47789,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack
@@ -48449,10 +48465,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
-  _moveSpeed: 7
+  _moveSpeed: 4
   _rotationSpeed: 7
   _stopDistance: 2.5
   _detectionRange: 100
+  _movementSkinWidth: 0.05
   _walkAnimationName: walk
   _idleAnimationName: idle
   _attackAnimationName: attack

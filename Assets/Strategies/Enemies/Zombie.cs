@@ -185,8 +185,8 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         // Zombies are moved manually by their state machine, not by physics.
         // Keeping them dynamic lets the player collision launch them upward.
         _rigidbody.useGravity = false;
-        _rigidbody.isKinematic = true;
-        _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        _rigidbody.isKinematic = false;
+        _rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
 
         _movementCollider = GetComponent<Collider>();
         if (_movementCollider == null)
@@ -223,7 +223,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
 
     protected void ApplyMovement(Vector3 moveDirection, float speed)
     {
-        if (!UsesKinematicCollisionMovement)
+        //if (!UsesKinematicCollisionMovement)
         {
             transform.position += speed * Time.deltaTime * moveDirection;
             lastSpeed = speed;
@@ -259,6 +259,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         float castDistance = desiredDistance + _movementSkinWidth;
         int hitCount = CastMovementCollider(direction, castDistance);
         float allowedDistance = desiredDistance;
+        Vector3 normalDirection = direction;
 
         for (int i = 0; i < hitCount; i++)
         {
@@ -266,11 +267,15 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
             if (hitCollider == null || hitCollider.isTrigger || hitCollider.transform.IsChildOf(transform))
                 continue;
 
+            Vector3 hitDirection = (hitCollider.transform.position - transform.position).normalized;
             float distanceBeforeHit = Mathf.Max(0f, _movementHits[i].distance - _movementSkinWidth);
             allowedDistance = Mathf.Min(allowedDistance, distanceBeforeHit);
+            if (allowedDistance == distanceBeforeHit)
+                normalDirection = hitDirection;
         }
 
-        return direction * allowedDistance;
+        int flip = Random.Range(0.0f, 1.0f) >= 0.5f ? 1 : -1;
+        return direction * allowedDistance + Quaternion.AngleAxis(90 * flip, Vector3.up) * normalDirection * (desiredDistance - allowedDistance);
     }
 
     private int CastMovementCollider(Vector3 direction, float distance)

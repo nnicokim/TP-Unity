@@ -7184,7 +7184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 100
   _movementSkinWidth: 0.05
@@ -7860,7 +7860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 100
   _movementSkinWidth: 0.05
@@ -9438,7 +9438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 150
   _movementSkinWidth: 0.05
@@ -9701,7 +9701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 150
   _movementSkinWidth: 0.05
@@ -10733,7 +10733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 100
   _movementSkinWidth: 0.05
@@ -11697,7 +11697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 150
   _movementSkinWidth: 0.05
@@ -19202,6 +19202,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4430651511277996699}
     - target: {fileID: -8399298686312817847, guid: f716ac52ebefa74408aa71c27e8d1965, type: 3}
+      propertyPath: _moveSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8399298686312817847, guid: f716ac52ebefa74408aa71c27e8d1965, type: 3}
       propertyPath: _detectionRange
       value: 250
       objectReference: {fileID: 0}
@@ -21899,7 +21903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 50
   _movementSkinWidth: 0.05
@@ -23512,7 +23516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 100
   _movementSkinWidth: 0.05
@@ -25398,7 +25402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 30
   _movementSkinWidth: 0.05
@@ -28949,7 +28953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 150
   _movementSkinWidth: 0.05
@@ -35287,7 +35291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 200
   _movementSkinWidth: 0.05
@@ -42974,7 +42978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 150
   _movementSkinWidth: 0.05
@@ -44256,7 +44260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 100
   _movementSkinWidth: 0.05
@@ -45614,7 +45618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 200
   _movementSkinWidth: 0.05
@@ -46290,7 +46294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 200
   _movementSkinWidth: 0.05
@@ -48235,7 +48239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 100
   _movementSkinWidth: 0.05
@@ -50507,7 +50511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 200
   _movementSkinWidth: 0.05
@@ -51957,7 +51961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   _target: {fileID: 833159271}
   _moveSpeed: 7
-  _rotationSpeed: 7
+  _rotationSpeed: 4
   _stopDistance: 2.5
   _detectionRange: 100
   _movementSkinWidth: 0.05
@@ -52984,6 +52988,10 @@ PrefabInstance:
     - target: {fileID: 6009843390730879748, guid: 3fc155fbdb01748f09bff389f57bc2de, type: 3}
       propertyPath: _moveSpeed
       value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009843390730879748, guid: 3fc155fbdb01748f09bff389f57bc2de, type: 3}
+      propertyPath: _rotationSpeed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7094016396989443406, guid: 3fc155fbdb01748f09bff389f57bc2de, type: 3}
       propertyPath: m_Name
