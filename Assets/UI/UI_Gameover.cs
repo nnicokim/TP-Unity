@@ -16,6 +16,7 @@ public class UI_Gameover : MonoBehaviour
     };
 
     [SerializeField] private Sprite _victory;
+    [SerializeField] private Sprite _levelCompleted;
     [SerializeField] private Sprite _defeat;
     [SerializeField] private Image _gameoverImage;
 
@@ -90,7 +91,7 @@ public class UI_Gameover : MonoBehaviour
         if (_gameoverImage != null)
         {
             _gameoverImage.enabled = true;
-            _gameoverImage.sprite = isVictory ? _victory : _defeat;
+            _gameoverImage.sprite = ResolveGameoverSprite(isVictory);
         }
 
         if (isVictory)
@@ -109,6 +110,18 @@ public class UI_Gameover : MonoBehaviour
 
         if (_backToMenuButton != null)
             _backToMenuButton.gameObject.SetActive(true);
+    }
+
+    private Sprite ResolveGameoverSprite(bool isVictory)
+    {
+        if (!isVictory)
+            return _defeat;
+
+        // Levels 1 and 2: intermediate completion. Level 3: final victory.
+        if (!string.IsNullOrEmpty(GetNextLevelName()))
+            return _levelCompleted != null ? _levelCompleted : _victory;
+
+        return _victory;
     }
     #endregion
 
