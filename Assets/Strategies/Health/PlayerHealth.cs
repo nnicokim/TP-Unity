@@ -7,13 +7,24 @@ public class PlayerHealth : BasicHealth
 
     public override void ApplyDamage(int damage)
     {
+        int lifeBeforeDamage = Mathf.Max(0, Life);
+
         base.ApplyDamage(damage);
+
+        int lifeAfterDamage = Mathf.Max(0, Life);
+        GameplayStatsManager.RegisterDamageTaken(lifeBeforeDamage - lifeAfterDamage);
+
         LifeUiFeedback();
     }
 
     public override void ApplyHealthRecovery(int amount)
     {
+        int lifeBeforeHeal = Life;
+
         base.ApplyHealthRecovery(amount);
+
+        GameplayStatsManager.RegisterLifeHealed(Life - lifeBeforeHeal);
+
         LifeUiFeedback();
     }
 

@@ -23,6 +23,8 @@ public class MenuScreen : MonoBehaviour
 
     public void LoadGame()
     {
+        GameplayStatsManager.ResetStatsForNewRun();
+
         PlayerPrefs.SetString("TargetScreen", GAME_SCENE_NAME);
         PlayerPrefs.Save();
 

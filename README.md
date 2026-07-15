@@ -1,8 +1,8 @@
-# Hospital Nightmare
+# Biohazard Ward
 
 You wake up inside an abandoned hospital. The lights flicker, the hallways seem endless, and something is moving in the dark. You do not know how long you have been unconscious, but you know one thing for sure: you have to get out alive.
 
-**Hospital Nightmare** is a first-person zombie shooter set in a decaying medical facility overrun by hostile creatures, buried secrets, and a final threat standing between you and the only way out.
+**Biohazard Ward** is a first-person zombie shooter set in a decaying medical facility overrun by hostile creatures, buried secrets, and a final threat standing between you and the only way out.
 
 Explore dark rooms, find weapons, manage your ammunition, and fight through waves of enemies as you search for a way to escape.
 

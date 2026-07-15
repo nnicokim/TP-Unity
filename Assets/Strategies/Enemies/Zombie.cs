@@ -127,6 +127,7 @@ public class Zombie : MonoBehaviour, IInteractable, IDamageable
         _isDead = true;
         _canDamage = false;
         CancelInvoke(nameof(EnableDamage));
+        GameplayStatsManager.RegisterZombieKilled();
         OnDie();
 
         Debug.Log($"Zombie {name} ha muerto.");
